@@ -126,10 +126,10 @@ public class Cadastro extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        lista_pesquisa_registro_visitantes = new javax.swing.JList<>();
+        lista_pesquisa_registro_visitantes = new javax.swing.JList<String>();
         jLabel8 = new javax.swing.JLabel();
         pesquisa_registro_visitantes = new javax.swing.JTextField();
-        tipo_doc_visitante = new javax.swing.JComboBox<>();
+        tipo_doc_visitante = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         com_quem_falar_visitante = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -180,8 +180,6 @@ public class Cadastro extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         txt_info = new javax.swing.JTextPane();
         sair_button = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         associar_button = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -190,13 +188,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info2 = new javax.swing.JTextPane();
         ferramentas_adm_controle_saida = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        lista_pesquisa_controle_saida = new javax.swing.JList<>();
-        posto_graduacao_controle_saida = new javax.swing.JComboBox<>();
+        lista_pesquisa_controle_saida = new javax.swing.JList<String>();
+        posto_graduacao_controle_saida = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nome_guerra_controle_saida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        sessao_controle_saida = new javax.swing.JComboBox<>();
+        sessao_controle_saida = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         motivo_controle_saida = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
@@ -211,8 +209,6 @@ public class Cadastro extends javax.swing.JFrame {
         controle_tabela_saida = new javax.swing.JTable();
         pesquisa_controle_saida = new javax.swing.JTextField();
         sair_controle = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         def_horario_saida_entrada = new javax.swing.JButton();
@@ -220,13 +216,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info3 = new javax.swing.JTextPane();
         ferramentas_adm_controle_entrada = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        lista_pesquisa_controle_entrada = new javax.swing.JList<>();
-        posto_graduacao_controle_entrada = new javax.swing.JComboBox<>();
+        lista_pesquisa_controle_entrada = new javax.swing.JList<String>();
+        posto_graduacao_controle_entrada = new javax.swing.JComboBox<String>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         nome_guerra_controle_entrada = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        sessao_controle_entrada = new javax.swing.JComboBox<>();
+        sessao_controle_entrada = new javax.swing.JComboBox<String>();
         jLabel21 = new javax.swing.JLabel();
         motivo_controle_entrada = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
@@ -240,8 +236,6 @@ public class Cadastro extends javax.swing.JFrame {
         controle_tabela_saida1 = new javax.swing.JTable();
         pesquisa_controle_entrada = new javax.swing.JTextField();
         sair_controle1 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EGGCF Portaria");
@@ -277,7 +271,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        tipo_doc_visitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
+        tipo_doc_visitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
         tipo_doc_visitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipo_doc_visitanteActionPerformed(evt);
@@ -572,25 +566,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/eggcf_80x105.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6))
-        );
-
         associar_button.setText("Associar Veículo");
         associar_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -603,11 +578,9 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(56, 56, 56)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
                     .addComponent(pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lista_pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -626,96 +599,96 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(telefone_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(txtVisitante)
-                        .addGap(72, 72, 72)
-                        .addComponent(c1)
-                        .addGap(9, 9, 9)
-                        .addComponent(c2)
-                        .addGap(9, 9, 9)
-                        .addComponent(c3)
-                        .addGap(9, 9, 9)
-                        .addComponent(c4)
-                        .addGap(9, 9, 9)
-                        .addComponent(c5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtVisitante)
                             .addComponent(Civil)
                             .addComponent(Fornec)
                             .addComponent(Militar))
-                        .addGap(19, 19, 19)
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel10)
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c6)
-                            .addComponent(c11)
-                            .addComponent(c16))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c7)
-                            .addComponent(c12)
-                            .addComponent(c17))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c8)
-                            .addComponent(c13)
-                            .addComponent(c18))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c9)
-                            .addComponent(c14)
-                            .addComponent(c19))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c10)
-                            .addComponent(c15)
-                            .addComponent(c20)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(destino_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(com_quem_falar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(associar_button))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(capturar_video_registro_visitantes)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(420, 420, 420)
-                        .addComponent(jScrollPane5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(novo_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c6)
+                                    .addComponent(c11)
+                                    .addComponent(c16))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c7)
+                                    .addComponent(c12)
+                                    .addComponent(c17))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c8)
+                                    .addComponent(c13)
+                                    .addComponent(c18))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c9)
+                                    .addComponent(c14)
+                                    .addComponent(c19))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c10)
+                                    .addComponent(c15)
+                                    .addComponent(c20)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(c1)
                                 .addGap(9, 9, 9)
-                                .addComponent(redefinir_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addComponent(cadastrar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(iniciar_video_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(c2)
+                                .addGap(9, 9, 9)
+                                .addComponent(c3)
+                                .addGap(9, 9, 9)
+                                .addComponent(c4)
+                                .addGap(9, 9, 9)
+                                .addComponent(c5))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(destino_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(com_quem_falar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(associar_button))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(novo_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(9, 9, 9)
+                                    .addComponent(redefinir_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(cadastrar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(40, 40, 40)
+                                    .addComponent(iniciar_video_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(46, 46, 46)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(capturar_video_registro_visitantes)
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)))))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane5)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(ferramentas_adm_visitante)
                                 .addGap(5, 5, 5)
-                                .addComponent(sair_button)))))
-                .addContainerGap())
+                                .addComponent(sair_button)))
+                        .addGap(12, 12, 12))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,11 +696,8 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lista_pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -749,58 +719,63 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(tipo_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(numero_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telefone_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(txtVisitante))
-                            .addComponent(c1)
-                            .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(c3)
-                            .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(c5))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Civil)
-                                .addGap(17, 17, 17)
-                                .addComponent(Fornec))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(c11)
-                                .addGap(7, 7, 7)
-                                .addComponent(c16))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c7)
-                                .addGap(7, 7, 7)
-                                .addComponent(c12)
-                                .addGap(7, 7, 7)
-                                .addComponent(c17))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(c18))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c9)
-                                .addGap(7, 7, 7)
-                                .addComponent(c14)
-                                .addGap(7, 7, 7)
-                                .addComponent(c19))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(c15)
-                                .addGap(7, 7, 7)
-                                .addComponent(c20))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
+                                .addGap(26, 26, 26)
+                                .addComponent(txtVisitante)
+                                .addGap(6, 6, 6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Militar)
-                                    .addComponent(jLabel10))))
-                        .addGap(7, 7, 7)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Civil)
+                                        .addGap(17, 17, 17)
+                                        .addComponent(Fornec))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(Militar))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c1)
+                                    .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(c3)
+                                    .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(c5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(c11)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c16))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(c7)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c12)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c17))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(c18))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(c9)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c14)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c19))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(c15)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(c20))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel10)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel4))
@@ -809,7 +784,7 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(destino_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(com_quem_falar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(associar_button))
-                        .addGap(7, 7, 7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -819,11 +794,9 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(novo_visitante)
                             .addComponent(redefinir_visitante)
-                            .addComponent(cadastrar_visitante))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                            .addComponent(cadastrar_visitante)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -831,9 +804,9 @@ public class Cadastro extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(ferramentas_adm_visitante))
-                            .addComponent(sair_button))))
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                            .addComponent(sair_button))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
@@ -874,7 +847,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 90));
 
-        posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
+        posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(posto_graduacao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 47, 87, -1));
 
         jLabel11.setText("Posto/Graduação:");
@@ -887,7 +860,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel13.setText("Seção:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, -1, -1));
 
-        sessao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel4.add(sessao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 98, 252, -1));
 
         jLabel14.setText("Motivo de Saída:");
@@ -914,7 +887,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(foto_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         iniciar_video_controle_saida.setText("Iniciar Vídeo");
         iniciar_video_controle_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -922,7 +895,7 @@ public class Cadastro extends javax.swing.JFrame {
                 iniciar_video_controle_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(iniciar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 130, -1));
+        jPanel4.add(iniciar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, -1));
 
         capturar_video_controle_saida.setText("Capturar Foto");
         capturar_video_controle_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -930,7 +903,7 @@ public class Cadastro extends javax.swing.JFrame {
                 capturar_video_controle_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(capturar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 420, 130, -1));
+        jPanel4.add(capturar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 130, -1));
 
         novo_saida.setText("Novo");
         novo_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -938,7 +911,7 @@ public class Cadastro extends javax.swing.JFrame {
                 novo_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(novo_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 450, -1, -1));
+        jPanel4.add(novo_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         redefinir_saida.setText("Redefinir");
         redefinir_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -946,7 +919,7 @@ public class Cadastro extends javax.swing.JFrame {
                 redefinir_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(redefinir_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 450, -1, -1));
+        jPanel4.add(redefinir_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
 
         cadastrar_saida.setText("Cadastrar");
         cadastrar_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -954,7 +927,7 @@ public class Cadastro extends javax.swing.JFrame {
                 cadastrar_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(cadastrar_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
+        jPanel4.add(cadastrar_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, -1, -1));
 
         controle_tabela_saida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -997,25 +970,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/eggcf_80x105.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel17)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1025,61 +979,54 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel15)
                     .addComponent(pesquisa_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ferramentas_adm_controle_saida)
-                        .addGap(3, 3, 3)
-                        .addComponent(sair_controle)
+                        .addComponent(def_horario_entrada_controle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(def_horario_entrada_controle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
-                                .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane6)
-                                .addContainerGap())))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ferramentas_adm_controle_saida)
+                                .addGap(3, 3, 3)
+                                .addComponent(sair_controle))
+                            .addComponent(jScrollPane6))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel9)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(def_horario_entrada_controle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ferramentas_adm_controle_saida)
-                            .addComponent(sair_controle)))
+                            .addComponent(sair_controle))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
+                        .addContainerGap()
                         .addComponent(jLabel15)
                         .addGap(6, 6, 6)
                         .addComponent(pesquisa_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(179, 179, 179))
         );
 
         jTabbedPane1.addTab("Controle de saída de CB/SD", jPanel2);
@@ -1119,7 +1066,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(lista_pesquisa_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 90));
 
-        posto_graduacao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
+        posto_graduacao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
         jPanel9.add(posto_graduacao_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 47, 87, -1));
 
         jLabel18.setText("Posto/Graduação:");
@@ -1132,7 +1079,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel20.setText("Seção:");
         jPanel9.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, -1, -1));
 
-        sessao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel9.add(sessao_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 98, 252, -1));
 
         jLabel21.setText("Motivo de Entrada:");
@@ -1159,7 +1106,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(foto_controle_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 175, -1, -1));
+        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         iniciar_video_controle_entrada.setText("Iniciar Vídeo");
         iniciar_video_controle_entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1167,7 +1114,7 @@ public class Cadastro extends javax.swing.JFrame {
                 iniciar_video_controle_entradaActionPerformed(evt);
             }
         });
-        jPanel9.add(iniciar_video_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 120, -1));
+        jPanel9.add(iniciar_video_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 120, -1));
 
         capturar_video_controle_entrada.setText("Capturar Foto");
         capturar_video_controle_entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1175,7 +1122,7 @@ public class Cadastro extends javax.swing.JFrame {
                 capturar_video_controle_entradaActionPerformed(evt);
             }
         });
-        jPanel9.add(capturar_video_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 420, 120, -1));
+        jPanel9.add(capturar_video_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 120, -1));
 
         novo_entrada.setText("Novo");
         novo_entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1183,7 +1130,7 @@ public class Cadastro extends javax.swing.JFrame {
                 novo_entradaActionPerformed(evt);
             }
         });
-        jPanel9.add(novo_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 450, -1, -1));
+        jPanel9.add(novo_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         redefinir_entrada.setText("Redefinir");
         redefinir_entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1191,7 +1138,7 @@ public class Cadastro extends javax.swing.JFrame {
                 redefinir_entradaActionPerformed(evt);
             }
         });
-        jPanel9.add(redefinir_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 450, -1, -1));
+        jPanel9.add(redefinir_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
 
         cadastrar_entrada.setText("Cadastrar");
         cadastrar_entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1199,7 +1146,7 @@ public class Cadastro extends javax.swing.JFrame {
                 cadastrar_entradaActionPerformed(evt);
             }
         });
-        jPanel9.add(cadastrar_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
+        jPanel9.add(cadastrar_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, -1, -1));
 
         controle_tabela_saida1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1242,88 +1189,66 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jPanel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/eggcf_80x105.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addComponent(jLabel22)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel16)
                     .addComponent(pesquisa_controle_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane7)
+                        .addComponent(jScrollPane4)
+                        .addGap(13, 13, 13))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ferramentas_adm_controle_entrada)
+                                .addGap(6, 6, 6)
+                                .addComponent(sair_controle1)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(def_horario_saida_entrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE))
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ferramentas_adm_controle_entrada)
-                        .addGap(6, 6, 6)
-                        .addComponent(sair_controle1)
+                        .addComponent(def_horario_saida_entrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(def_horario_saida_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ferramentas_adm_controle_entrada)
+                            .addComponent(sair_controle1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(6, 6, 6)
                         .addComponent(pesquisa_controle_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(def_horario_saida_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ferramentas_adm_controle_entrada)
-                            .addComponent(sair_controle1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(183, 183, 183))
         );
 
         jTabbedPane1.addTab("Controle de Entrada Fora do Expediente de Militares", jPanel7);
 
         getContentPane().add(jTabbedPane1);
 
-        setBounds(0, 0, 1282, 869);
+        setBounds(0, 0, 1282, 704);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lista_pesquisa_registro_visitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_pesquisa_registro_visitantesMouseClicked
@@ -2439,7 +2364,7 @@ public class Cadastro extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -2525,27 +2450,21 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
