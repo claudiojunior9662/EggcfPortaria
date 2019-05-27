@@ -126,36 +126,39 @@ public class Cadastro extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        lista_pesquisa_registro_visitantes = new javax.swing.JList<String>();
-        jLabel8 = new javax.swing.JLabel();
-        pesquisa_registro_visitantes = new javax.swing.JTextField();
-        tipo_doc_visitante = new javax.swing.JComboBox<String>();
-        jLabel4 = new javax.swing.JLabel();
-        com_quem_falar_visitante = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        telefone_visitante = new javax.swing.JFormattedTextField();
         cadastrar_visitante = new javax.swing.JButton();
         redefinir_visitante = new javax.swing.JButton();
-        capturar_video_registro_visitantes = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         controle_tabela = new javax.swing.JTable();
         def_horario_saida_visitante = new javax.swing.JButton();
-        numero_doc_visitante = new javax.swing.JTextField();
+        novo_visitante = new javax.swing.JButton();
+        ferramentas_adm_visitante = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txt_info = new javax.swing.JTextPane();
+        sair_button = new javax.swing.JButton();
+        associar_button = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        lista_pesquisa_registro_visitantes = new javax.swing.JList<>();
         nome_visitante = new javax.swing.JTextField();
-        iniciar_video_registro_visitantes = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        pesquisa_registro_visitantes = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        numero_doc_visitante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        foto_visitante = new javax.swing.JLabel();
-        destino_visitante = new javax.swing.JTextField();
+        tipo_doc_visitante = new javax.swing.JComboBox<>();
         Civil = new javax.swing.JRadioButton();
         Militar = new javax.swing.JRadioButton();
         txtVisitante = new javax.swing.JLabel();
         Fornec = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        novo_visitante = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        ferramentas_adm_visitante = new javax.swing.JButton();
+        telefone_visitante = new javax.swing.JFormattedTextField();
+        destino_visitante = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        com_quem_falar_visitante = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         c4 = new javax.swing.JCheckBox();
         c2 = new javax.swing.JCheckBox();
         c3 = new javax.swing.JCheckBox();
@@ -166,7 +169,6 @@ public class Cadastro extends javax.swing.JFrame {
         c7 = new javax.swing.JCheckBox();
         c9 = new javax.swing.JCheckBox();
         c8 = new javax.swing.JCheckBox();
-        jLabel10 = new javax.swing.JLabel();
         c11 = new javax.swing.JCheckBox();
         c15 = new javax.swing.JCheckBox();
         c19 = new javax.swing.JCheckBox();
@@ -177,10 +179,9 @@ public class Cadastro extends javax.swing.JFrame {
         c17 = new javax.swing.JCheckBox();
         c18 = new javax.swing.JCheckBox();
         c13 = new javax.swing.JCheckBox();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        txt_info = new javax.swing.JTextPane();
-        sair_button = new javax.swing.JButton();
-        associar_button = new javax.swing.JButton();
+        foto_visitante = new javax.swing.JLabel();
+        iniciar_video_registro_visitantes = new javax.swing.JButton();
+        capturar_video_registro_visitantes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         def_horario_entrada_controle = new javax.swing.JButton();
@@ -188,13 +189,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info2 = new javax.swing.JTextPane();
         ferramentas_adm_controle_saida = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        lista_pesquisa_controle_saida = new javax.swing.JList<String>();
-        posto_graduacao_controle_saida = new javax.swing.JComboBox<String>();
+        lista_pesquisa_controle_saida = new javax.swing.JList<>();
+        posto_graduacao_controle_saida = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nome_guerra_controle_saida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        sessao_controle_saida = new javax.swing.JComboBox<String>();
+        sessao_controle_saida = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         motivo_controle_saida = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
@@ -216,13 +217,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info3 = new javax.swing.JTextPane();
         ferramentas_adm_controle_entrada = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        lista_pesquisa_controle_entrada = new javax.swing.JList<String>();
-        posto_graduacao_controle_entrada = new javax.swing.JComboBox<String>();
+        lista_pesquisa_controle_entrada = new javax.swing.JList<>();
+        posto_graduacao_controle_entrada = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         nome_guerra_controle_entrada = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        sessao_controle_entrada = new javax.swing.JComboBox<String>();
+        sessao_controle_entrada = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         motivo_controle_entrada = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
@@ -251,72 +252,19 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        lista_pesquisa_registro_visitantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lista_pesquisa_registro_visitantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lista_pesquisa_registro_visitantesMouseClicked(evt);
-            }
-        });
-
-        jLabel8.setText("Pesquisa por nome:");
-
-        pesquisa_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisa_registro_visitantesActionPerformed(evt);
-            }
-        });
-        pesquisa_registro_visitantes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                pesquisa_registro_visitantesKeyReleased(evt);
-            }
-        });
-
-        tipo_doc_visitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
-        tipo_doc_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipo_doc_visitanteActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Com quem deseja falar:");
-
-        com_quem_falar_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                com_quem_falar_visitanteActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Telefone:");
-
-        try {
-            telefone_visitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        telefone_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefone_visitanteActionPerformed(evt);
-            }
-        });
-
-        cadastrar_visitante.setText("Cadastrar");
+        cadastrar_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cadastrar.png"))); // NOI18N
+        cadastrar_visitante.setToolTipText("Cadastrar");
         cadastrar_visitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrar_visitanteActionPerformed(evt);
             }
         });
 
-        redefinir_visitante.setText("Redefinir");
+        redefinir_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/editar.png"))); // NOI18N
+        redefinir_visitante.setToolTipText("Redefinir");
         redefinir_visitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 redefinir_visitanteActionPerformed(evt);
-            }
-        });
-
-        capturar_video_registro_visitantes.setText("Capturar Foto");
-        capturar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capturar_video_registro_visitantesActionPerformed(evt);
             }
         });
 
@@ -365,68 +313,13 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        nome_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome_visitanteActionPerformed(evt);
-            }
-        });
-
-        iniciar_video_registro_visitantes.setText("Iniciar Vídeo");
-        iniciar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciar_video_registro_visitantesActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Número Documento:");
-
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        foto_visitante.setBackground(new java.awt.Color(0, 0, 0));
-        foto_visitante.setOpaque(true);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(foto_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(foto_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-        );
-
-        destino_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                destino_visitanteActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(Civil);
-        Civil.setText("Civil");
-
-        buttonGroup1.add(Militar);
-        Militar.setText("Militar");
-
-        txtVisitante.setText("Tipo Visitante:");
-
-        buttonGroup1.add(Fornec);
-        Fornec.setText("Fornecedor");
-
-        jLabel1.setText("Nome Completo:");
-
-        jLabel3.setText("Tipo Documento:");
-
-        novo_visitante.setText("Novo");
+        novo_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/adicionar.png"))); // NOI18N
+        novo_visitante.setToolTipText("Novo Cadastro");
         novo_visitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novo_visitanteActionPerformed(evt);
             }
         });
-
-        jLabel7.setText("Destino:");
 
         ferramentas_adm_visitante.setText("Ferramentas de Administrador");
         ferramentas_adm_visitante.addActionListener(new java.awt.event.ActionListener() {
@@ -434,6 +327,127 @@ public class Cadastro extends javax.swing.JFrame {
                 ferramentas_adm_visitanteActionPerformed(evt);
             }
         });
+
+        jScrollPane5.setViewportView(txt_info);
+
+        sair_button.setText("Sair");
+        sair_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sair_buttonActionPerformed(evt);
+            }
+        });
+
+        associar_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/associarVeiculo.png"))); // NOI18N
+        associar_button.setToolTipText("Associar Veículo");
+        associar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                associar_buttonActionPerformed(evt);
+            }
+        });
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lista_pesquisa_registro_visitantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lista_pesquisa_registro_visitantesMouseClicked(evt);
+            }
+        });
+        jPanel12.add(lista_pesquisa_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 120));
+
+        nome_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nome_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(nome_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, -1));
+
+        jLabel1.setText("Nome Completo:");
+        jPanel12.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        pesquisa_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisa_registro_visitantesActionPerformed(evt);
+            }
+        });
+        pesquisa_registro_visitantes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pesquisa_registro_visitantesKeyReleased(evt);
+            }
+        });
+        jPanel12.add(pesquisa_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, -1));
+
+        jLabel8.setText("Pesquisa por nome:");
+        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        jLabel3.setText("Tipo Documento:");
+        jPanel12.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
+        jPanel12.add(numero_doc_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, -1));
+
+        jLabel2.setText("Número Documento:");
+        jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
+
+        tipo_doc_visitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
+        tipo_doc_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipo_doc_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(tipo_doc_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, -1));
+
+        buttonGroup1.add(Civil);
+        Civil.setText("Civil");
+        jPanel12.add(Civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+
+        buttonGroup1.add(Militar);
+        Militar.setText("Militar");
+        jPanel12.add(Militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+
+        txtVisitante.setText("Tipo Visitante:");
+        jPanel12.add(txtVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
+
+        buttonGroup1.add(Fornec);
+        Fornec.setText("Fornecedor");
+        jPanel12.add(Fornec, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, -1, -1));
+
+        jLabel5.setText("Telefone:");
+        jPanel12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        jLabel7.setText("Destino:");
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        try {
+            telefone_visitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        telefone_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefone_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(telefone_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 139, -1));
+
+        destino_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destino_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(destino_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 139, -1));
+
+        jLabel4.setText("Com quem deseja falar:");
+        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        com_quem_falar_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                com_quem_falar_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(com_quem_falar_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 139, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Crachá"));
 
         buttonGroup2.add(c4);
         c4.setText("4");
@@ -515,8 +529,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Crachá:");
-
         buttonGroup2.add(c11);
         c11.setText("11");
 
@@ -557,138 +569,140 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane5.setViewportView(txt_info);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(c1)
+                        .addGap(7, 7, 7)
+                        .addComponent(c2)
+                        .addGap(7, 7, 7)
+                        .addComponent(c3)
+                        .addGap(7, 7, 7)
+                        .addComponent(c4)
+                        .addGap(7, 7, 7)
+                        .addComponent(c5))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(c6)
+                        .addGap(7, 7, 7)
+                        .addComponent(c7)
+                        .addGap(7, 7, 7)
+                        .addComponent(c8)
+                        .addGap(7, 7, 7)
+                        .addComponent(c9)
+                        .addGap(17, 17, 17)
+                        .addComponent(c10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(c11)
+                        .addGap(0, 0, 0)
+                        .addComponent(c12)
+                        .addGap(0, 0, 0)
+                        .addComponent(c13)
+                        .addGap(0, 0, 0)
+                        .addComponent(c14)
+                        .addGap(10, 10, 10)
+                        .addComponent(c15))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(c16)
+                        .addGap(0, 0, 0)
+                        .addComponent(c17)
+                        .addGap(0, 0, 0)
+                        .addComponent(c18)
+                        .addGap(0, 0, 0)
+                        .addComponent(c19)
+                        .addGap(10, 10, 10)
+                        .addComponent(c20)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(c1)
+                    .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c3)
+                    .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c5))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c7)
+                    .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c9)
+                    .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(c11)
+                    .addComponent(c12)
+                    .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c14)
+                    .addComponent(c15))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(c16)
+                    .addComponent(c17)
+                    .addComponent(c18)
+                    .addComponent(c19)
+                    .addComponent(c20))
+                .addContainerGap())
+        );
 
-        sair_button.setText("Sair");
-        sair_button.addActionListener(new java.awt.event.ActionListener() {
+        jPanel12.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        foto_visitante.setBackground(new java.awt.Color(0, 0, 0));
+        foto_visitante.setOpaque(true);
+        jPanel12.add(foto_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 220, 220));
+
+        iniciar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciarGravacao.png"))); // NOI18N
+        iniciar_video_registro_visitantes.setToolTipText("Iniciar Vídeo");
+        iniciar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sair_buttonActionPerformed(evt);
+                iniciar_video_registro_visitantesActionPerformed(evt);
             }
         });
+        jPanel12.add(iniciar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, 38));
 
-        associar_button.setText("Associar Veículo");
-        associar_button.addActionListener(new java.awt.event.ActionListener() {
+        capturar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/capturarFoto.png"))); // NOI18N
+        capturar_video_registro_visitantes.setToolTipText("Capturar Foto");
+        capturar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                associar_buttonActionPerformed(evt);
+                capturar_video_registro_visitantesActionPerformed(evt);
             }
         });
+        jPanel12.add(capturar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, 38));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lista_pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(jLabel5))
-                    .addComponent(nome_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tipo_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(numero_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(telefone_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVisitante)
-                            .addComponent(Civil)
-                            .addComponent(Fornec)
-                            .addComponent(Militar))
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel10)
-                        .addGap(2, 2, 2)
+                            .addComponent(novo_visitante)
+                            .addComponent(redefinir_visitante)
+                            .addComponent(cadastrar_visitante)
+                            .addComponent(associar_button))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c6)
-                                    .addComponent(c11)
-                                    .addComponent(c16))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c7)
-                                    .addComponent(c12)
-                                    .addComponent(c17))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c8)
-                                    .addComponent(c13)
-                                    .addComponent(c18))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c9)
-                                    .addComponent(c14)
-                                    .addComponent(c19))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c10)
-                                    .addComponent(c15)
-                                    .addComponent(c20)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(c1)
-                                .addGap(9, 9, 9)
-                                .addComponent(c2)
-                                .addGap(9, 9, 9)
-                                .addComponent(c3)
-                                .addGap(9, 9, 9)
-                                .addComponent(c4)
-                                .addGap(9, 9, 9)
-                                .addComponent(c5))))
+                            .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(destino_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(com_quem_falar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(associar_button))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(novo_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(9, 9, 9)
-                                    .addComponent(redefinir_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(19, 19, 19)
-                                    .addComponent(cadastrar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(40, 40, 40)
-                                    .addComponent(iniciar_video_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(capturar_video_registro_visitantes)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(55, 55, 55)))))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ferramentas_adm_visitante)
-                                .addGap(5, 5, 5)
-                                .addComponent(sair_button)))
-                        .addGap(12, 12, 12))))
+                        .addComponent(ferramentas_adm_visitante)
+                        .addGap(5, 5, 5)
+                        .addComponent(sair_button))
+                    .addComponent(jScrollPane5))
+                .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,118 +710,37 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lista_pesquisa_registro_visitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(nome_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel3)))
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipo_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numero_doc_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telefone_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(txtVisitante)
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(Civil)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(Fornec))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(Militar))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c1)
-                                    .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c3)
-                                    .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(c11)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c16))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(c7)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c12)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c17))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(c18))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(c9)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c14)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c19))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(c15)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(c20))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel10)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(destino_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(com_quem_falar_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(associar_button))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(capturar_video_registro_visitantes)
-                            .addComponent(iniciar_video_registro_visitantes))
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(novo_visitante)
-                            .addComponent(redefinir_visitante)
-                            .addComponent(cadastrar_visitante)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(763, 763, 763))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(ferramentas_adm_visitante))
-                            .addComponent(sair_button))
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(ferramentas_adm_visitante))
+                                    .addComponent(sair_button))
+                                .addGap(5, 5, 5)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(novo_visitante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(redefinir_visitante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cadastrar_visitante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(associar_button)))
+                        .addContainerGap())))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cadastrar_visitante, novo_visitante, redefinir_visitante});
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
 
@@ -847,7 +780,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 90));
 
-        posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB" }));
+        posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(posto_graduacao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 47, 87, -1));
 
         jLabel11.setText("Posto/Graduação:");
@@ -860,7 +793,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel13.setText("Seção:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, -1, -1));
 
-        sessao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel4.add(sessao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 98, 252, -1));
 
         jLabel14.setText("Motivo de Saída:");
@@ -999,7 +932,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(ferramentas_adm_controle_saida)
                                 .addGap(3, 3, 3)
                                 .addComponent(sair_controle))
-                            .addComponent(jScrollPane6))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1277, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -1066,7 +999,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(lista_pesquisa_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 90));
 
-        posto_graduacao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
+        posto_graduacao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
         jPanel9.add(posto_graduacao_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 47, 87, -1));
 
         jLabel18.setText("Posto/Graduação:");
@@ -1079,7 +1012,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel20.setText("Seção:");
         jPanel9.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, -1, -1));
 
-        sessao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessao_controle_entrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel9.add(sessao_controle_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 98, 252, -1));
 
         jLabel21.setText("Motivo de Entrada:");
@@ -1208,7 +1141,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jScrollPane7))
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ferramentas_adm_controle_entrada)
@@ -1248,570 +1181,8 @@ public class Cadastro extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1);
 
-        setBounds(0, 0, 1282, 704);
+        setBounds(0, 0, 1622, 857);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lista_pesquisa_registro_visitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_pesquisa_registro_visitantesMouseClicked
-        try {
-            lista_pesquisa_registro_visitantes.setVisible(false);
-            ResultadoPesquisa();
-        } catch (SQLException | IOException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        redefinir_visitante.setEnabled(true);
-        cadastrar_visitante.setEnabled(false);
-        novo_visitante.setEnabled(true);
-        nome_visitante.setEnabled(false);
-        telefone_visitante.setEnabled(false);
-        numero_doc_visitante.setEnabled(false);
-        Civil.setEnabled(false);
-        Militar.setEnabled(false);
-        Fornec.setEnabled(false);
-        tipo_doc_visitante.setEnabled(false);
-        com_quem_falar_visitante.setEnabled(false);
-        destino_visitante.setEnabled(false);
-
-        c1.setEnabled(false);
-        c2.setEnabled(false);
-        c3.setEnabled(false);
-        c4.setEnabled(false);
-        c5.setEnabled(false);
-        c6.setEnabled(false);
-        c7.setEnabled(false);
-        c8.setEnabled(false);
-        c9.setEnabled(false);
-        c10.setEnabled(false);
-        c11.setEnabled(false);
-        c12.setEnabled(false);
-        c13.setEnabled(false);
-        c14.setEnabled(false);
-        c15.setEnabled(false);
-        c16.setEnabled(false);
-        c17.setEnabled(false);
-        c18.setEnabled(false);
-        c19.setEnabled(false);
-        c20.setEnabled(false);
-    }//GEN-LAST:event_lista_pesquisa_registro_visitantesMouseClicked
-
-    private void pesquisa_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisa_registro_visitantesActionPerformed
-        lista_pesquisa_registro_visitantes.setVisible(false);
-    }//GEN-LAST:event_pesquisa_registro_visitantesActionPerformed
-
-    private void pesquisa_registro_visitantesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisa_registro_visitantesKeyReleased
-        try {
-            ListaDePesquisa();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_pesquisa_registro_visitantesKeyReleased
-
-    private void tipo_doc_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_doc_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipo_doc_visitanteActionPerformed
-
-    private void com_quem_falar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_com_quem_falar_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_com_quem_falar_visitanteActionPerformed
-
-    private void telefone_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefone_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefone_visitanteActionPerformed
-
-    private void cadastrar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_visitanteActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        CadastroBEAN c = new CadastroBEAN();
-        cadastroDAO dao = new cadastroDAO();
-        String tipo_doc = null;
-        int cracha;
-
-        try {
-            if(dao.busca_nome(nome_visitante.getText().toUpperCase())==true && red == 0){
-                JOptionPane.showMessageDialog(null,"O Sr.(a) " + nome_visitante.getText() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
-                buttonGroup1.clearSelection();
-            buttonGroup2.clearSelection();
-            imageArray = null;
-            foto_visitante.setIcon(null);
-            redefinir_visitante.setEnabled(false);
-            cadastrar_visitante.setEnabled(false);
-            nome_visitante.setEnabled(false);
-            numero_doc_visitante.setEnabled(false);
-            destino_visitante.setEnabled(false);
-            com_quem_falar_visitante.setEnabled(false);
-            telefone_visitante.setEnabled(false);
-            Civil.setEnabled(false);
-            Militar.setEnabled(false);
-            Fornec.setEnabled(false);
-            tipo_doc_visitante.setEnabled(false);
-            c1.setEnabled(false);
-            c2.setEnabled(false);
-            c3.setEnabled(false);
-            c4.setEnabled(false);
-            c5.setEnabled(false);
-            c6.setEnabled(false);
-            c7.setEnabled(false);
-            c8.setEnabled(false);
-            c9.setEnabled(false);
-            c10.setEnabled(false);
-            c11.setEnabled(false);
-            c12.setEnabled(false);
-            c13.setEnabled(false);
-            c14.setEnabled(false);
-            c15.setEnabled(false);
-            c16.setEnabled(false);
-            c17.setEnabled(false);
-            c18.setEnabled(false);
-            c19.setEnabled(false);
-            c20.setEnabled(false);
-            nome_visitante.setText("");
-            numero_doc_visitante.setText("");
-            destino_visitante.setText("");
-            telefone_visitante.setText("");
-            com_quem_falar_visitante.setText("");
-            Civil.setSelected(false);
-            Militar.setSelected(false);
-            Fornec.setSelected(false);
-            tipo_doc_visitante.setSelectedIndex(0);
-            novo_visitante.setEnabled(true);
-            red = 0;
-                return;
-            }if(nome_visitante.getText().equals("")){
-                JOptionPane.showMessageDialog(null,"O campo 'Nome Completo' não pode ser vazio!");
-                return;
-            }else{
-                c.setNomeCompleto(nome_visitante.getText().toUpperCase());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if(numero_doc_visitante.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Número Documento' não pode ser vazio!");
-            return;
-        }else{
-            c.setDocumentoIden(numero_doc_visitante.getText());
-        }
-
-        if(destino_visitante.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Destino' não pode ser vazio!");
-            return;
-        }else{
-            c.setDestino(destino_visitante.getText().toUpperCase());
-        }
-
-        if(com_quem_falar_visitante.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Com quem falar' não pode ser vazio!");
-            return;
-        }else{
-            c.setComquemFalar(com_quem_falar_visitante.getText().toUpperCase());
-        }
-
-        if( telefone_visitante == null){
-            JOptionPane.showMessageDialog(null,"O campo 'Telefone' não pode ser vazio!");
-            return;
-        }else{
-            c.setTelefone(telefone_visitante.getText());
-        }
-
-        if(imageArray == null && webcam_found){
-            JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
-            return;
-        }else if(webcam_found){
-            try {
-                c.setFoto(getImgBytes(imageArray));
-            } catch (IOException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
-        }
-
-        tipo_doc = (String) tipo_doc_visitante.getSelectedItem();
-        if(tipo_doc.equals("Selecione...")){
-            JOptionPane.showMessageDialog(null,"O campo 'Tipo Documento' não pode ser vazio!");
-            return;
-        }else{
-            c.setTipoDocumento(tipo_doc);
-        }
-
-        if(c1.isSelected()){
-            cracha = 1;
-            c.setN_cracha(cracha);
-            c1.setEnabled(false);
-        }
-        else if(c2.isSelected()){
-            cracha = 2;
-            c.setN_cracha(cracha);
-            c2.setEnabled(false);
-        }
-        else if(c3.isSelected()){
-            cracha = 3;
-            c.setN_cracha(cracha);
-            c3.setEnabled(false);
-        }
-        else if(c4.isSelected()){
-            cracha = 4;
-            c.setN_cracha(cracha);
-            c4.setEnabled(false);
-        }
-        else if(c5.isSelected()){
-            cracha = 5;
-            c.setN_cracha(cracha);
-            c5.setEnabled(false);
-        }
-        else if(c6.isSelected()){
-            cracha = 6;
-            c.setN_cracha(cracha);
-            c6.setEnabled(false);
-        }
-        else if(c7.isSelected()){
-            cracha = 7;
-            c.setN_cracha(cracha);
-            c7.setEnabled(false);
-        }
-        else if(c8.isSelected()){
-            cracha = 8;
-            c.setN_cracha(cracha);
-            c8.setEnabled(false);
-        }
-        else if(c9.isSelected()){
-            cracha = 9;
-            c.setN_cracha(cracha);
-            c9.setEnabled(false);
-        }
-        else if(c10.isSelected()){
-            cracha = 10;
-            c.setN_cracha(cracha);
-            c10.setEnabled(false);
-        }
-        else if(c11.isSelected()){
-            cracha = 11;
-            c.setN_cracha(cracha);
-            c11.setEnabled(false);
-        }
-        else if(c12.isSelected()){
-            cracha = 12;
-            c.setN_cracha(cracha);
-            c12.setEnabled(false);
-        }
-        else if(c13.isSelected()){
-            cracha = 13;
-            c.setN_cracha(cracha);
-            c13.setEnabled(false);
-        }
-        else if(c14.isSelected()){
-            cracha = 14;
-            c.setN_cracha(cracha);
-            c14.setEnabled(false);
-        }
-        else if(c15.isSelected()){
-            cracha = 15;
-            c.setN_cracha(cracha);
-            c15.setEnabled(false);
-        }
-        else if(c16.isSelected()){
-            cracha = 16;
-            c.setN_cracha(cracha);
-            c16.setEnabled(false);
-        }
-        else if(c17.isSelected()){
-            cracha = 17;
-            c.setN_cracha(cracha);
-            c17.setEnabled(false);
-        }
-        else if(c18.isSelected()){
-            cracha = 18;
-            c.setN_cracha(cracha);
-            c18.setEnabled(false);
-        }
-        else if(c19.isSelected()){
-            cracha = 19;
-            c.setN_cracha(cracha);
-            c19.setEnabled(false);
-        }
-        else if(c20.isSelected()){
-            cracha = 20;
-            c.setN_cracha(cracha);
-            c20.setEnabled(false);
-        }
-
-        else{
-            JOptionPane.showMessageDialog(null,"O usuário precisa estar relacionado à um crachá!");
-            return;
-        }
-
-        if(Civil.isSelected()== true){
-            c.setTipoVisitante("Civil");
-        }
-        else if(Militar.isSelected()== true){
-            c.setTipoVisitante("Militar");
-        }
-        else if(Fornec.isSelected()== true){
-            c.setTipoVisitante("Fornecedor");
-        }else{
-            JOptionPane.showMessageDialog(null,"Selecione o tipo do visitante!");
-            return;
-        }
-
-        c.setData(sdf.format(new Date()));
-        c.setHoraE(sdh.format(new Date()));
-        c.setHoraS(null);
-        c.setCor_veiculo(VeiculosFrame.cor);
-        c.setModelo_veiculo(VeiculosFrame.modelo);
-        c.setMarca_veiculo(VeiculosFrame.marca);
-        c.setPlaca_veiculo(VeiculosFrame.placa2);
-        
-        VeiculosFrame.cor = null;
-        VeiculosFrame.modelo = null;
-        VeiculosFrame.marca = null;
-        VeiculosFrame.placa2 = null;
-        
-        dao.create(c);
-        readJTable();
-
-        buttonGroup1.clearSelection();
-        buttonGroup2.clearSelection();
-        imageArray = null;
-        foto_visitante.setIcon(null);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(false);
-        nome_visitante.setEnabled(false);
-        numero_doc_visitante.setEnabled(false);
-        destino_visitante.setEnabled(false);
-        com_quem_falar_visitante.setEnabled(false);
-        telefone_visitante.setEnabled(false);
-        Civil.setEnabled(false);
-        Militar.setEnabled(false);
-        Fornec.setEnabled(false);
-        tipo_doc_visitante.setEnabled(false);
-
-        c1.setEnabled(false);
-        c2.setEnabled(false);
-        c3.setEnabled(false);
-        c4.setEnabled(false);
-        c5.setEnabled(false);
-        c6.setEnabled(false);
-        c7.setEnabled(false);
-        c8.setEnabled(false);
-        c9.setEnabled(false);
-        c10.setEnabled(false);
-        c11.setEnabled(false);
-        c12.setEnabled(false);
-        c13.setEnabled(false);
-        c14.setEnabled(false);
-        c15.setEnabled(false);
-        c16.setEnabled(false);
-        c17.setEnabled(false);
-        c18.setEnabled(false);
-        c19.setEnabled(false);
-        c20.setEnabled(false);
-
-        nome_visitante.setText("");
-        numero_doc_visitante.setText("");
-        destino_visitante.setText("");
-        telefone_visitante.setText("");
-        com_quem_falar_visitante.setText("");
-        Civil.setSelected(false);
-        Militar.setSelected(false);
-        Fornec.setSelected(false);
-        tipo_doc_visitante.setSelectedIndex(0);
-        novo_visitante.setEnabled(true);
-        red = 0;
-        txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-    }//GEN-LAST:event_cadastrar_visitanteActionPerformed
-
-    private void redefinir_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redefinir_visitanteActionPerformed
-        try {
-            verifica_check();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        com_quem_falar_visitante.setEnabled(true);
-        destino_visitante.setEnabled(true);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(true);
-        novo_visitante.setEnabled(true);
-        red = 1;
-    }//GEN-LAST:event_redefinir_visitanteActionPerformed
-
-    private void capturar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturar_video_registro_visitantesActionPerformed
-        try {
-            ByteArrayOutputStream buff = new ByteArrayOutputStream();
-            ImageIO.write(WEBCAM.getImage(), "JPEG", buff);
-            byte[] bytes = buff.toByteArray();
-
-            ByteArrayInputStream is = new ByteArrayInputStream(bytes);
-            BufferedImage imagem = ImageIO.read(is);
-
-            int nova_largura = foto_visitante.getWidth(), nova_altura = foto_visitante.getHeight();
-            BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g = new_img.createGraphics();
-            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
-            imageArray = new_img;
-        } catch (IOException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        new Thread(){
-            public void run(){
-                WEBCAM.close();
-                executando = false;
-                capturar_video_registro_visitantes.setEnabled(false);
-            }
-        }.start();
-    }//GEN-LAST:event_capturar_video_registro_visitantesActionPerformed
-
-    private void controle_tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_controle_tabelaMouseClicked
-        try {
-            Integer id = (Integer) controle_tabela.getValueAt(controle_tabela.getSelectedRow(),0);
-            cadastroDAO dao = new cadastroDAO();
-            if(controle_tabela.getValueAt(controle_tabela.getSelectedRow(), 11) == null){
-                def_horario_saida_visitante.setEnabled(true);
-            }else{
-                def_horario_saida_visitante.setEnabled(false);
-            }
-            CadastroBEAN retorno = dao.buscaImg(id);
-            exibirImagemLabel(retorno.getFoto(),foto_visitante);
-        } catch (SQLException ex) {
-            System.err.println("Erro tableMouseClicked!");
-        }
-    }//GEN-LAST:event_controle_tabelaMouseClicked
-
-    private void def_horario_saida_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_def_horario_saida_visitanteActionPerformed
-        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        int cracha;
-        int l = controle_tabela.getSelectedRow();
-        CadastroBEAN c = new CadastroBEAN();
-        cadastroDAO dao = new cadastroDAO();
-        c.setHoraS(sdh.format(new Date()));
-        c.setId((int)controle_tabela.getValueAt(l, 0));
-        try {
-            dao.altera(c);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        readJTable();
-        def_horario_saida_visitante.setEnabled(false);
-        txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-        try {
-            verifica_check();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_def_horario_saida_visitanteActionPerformed
-
-    private void nome_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome_visitanteActionPerformed
-
-    private void iniciar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar_video_registro_visitantesActionPerformed
-        new Thread(){
-            public void run(){
-                executando = true;
-                foto_visitante.setText("Iniciando...");
-                WEBCAM.open();
-                foto_visitante.setText("");
-                INICIALIZA_VIDEO(foto_visitante);
-                capturar_video_registro_visitantes.setEnabled(true);
-            }
-        }.start();
-    }//GEN-LAST:event_iniciar_video_registro_visitantesActionPerformed
-
-    private void destino_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destino_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_destino_visitanteActionPerformed
-
-    private void novo_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novo_visitanteActionPerformed
-        try {
-            verifica_check();
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        executando = false;
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(true);
-        nome_visitante.setEnabled(true);
-        numero_doc_visitante.setEnabled(true);
-        destino_visitante.setEnabled(true);
-        com_quem_falar_visitante.setEnabled(true);
-        telefone_visitante.setEnabled(true);
-        Civil.setEnabled(true);
-        Militar.setEnabled(true);
-        Fornec.setEnabled(true);
-        capturar_video_registro_visitantes.setEnabled(false);
-        def_horario_saida_visitante.setEnabled(false);
-        novo_visitante.setEnabled(false);
-        tipo_doc_visitante.setEnabled(true);
-
-        nome_visitante.setText("");
-        numero_doc_visitante.setText("");
-        destino_visitante.setText("");
-        com_quem_falar_visitante.setText("");
-        telefone_visitante.setText("");
-        tipo_doc_visitante.setSelectedIndex(0);
-        buttonGroup1.clearSelection();
-    }//GEN-LAST:event_novo_visitanteActionPerformed
-
-    private void ferramentas_adm_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferramentas_adm_visitanteActionPerformed
-        Login login = new Login();
-        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-    }//GEN-LAST:event_ferramentas_adm_visitanteActionPerformed
-
-    private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c4ActionPerformed
-
-    private void c2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c2ActionPerformed
-
-    private void c3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c3ActionPerformed
-
-    private void c5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c5ActionPerformed
-
-    private void c10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c10ActionPerformed
-
-    private void c1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c1ActionPerformed
-
-    private void c6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c6ActionPerformed
-
-    private void c7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c7ActionPerformed
-
-    private void c9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c9ActionPerformed
-
-    private void c8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c8ActionPerformed
-
-    private void c16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c16ActionPerformed
-
-    private void c13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c13ActionPerformed
-
-    private void sair_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_buttonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_sair_buttonActionPerformed
 
     private void def_horario_entrada_controleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_def_horario_entrada_controleActionPerformed
         try{
@@ -2338,20 +1709,551 @@ public class Cadastro extends javax.swing.JFrame {
         lista_pesquisa_controle_saida.setVisible(false);
     }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        lista_pesquisa_registro_visitantes.setVisible(false);
-    }//GEN-LAST:event_jPanel1MouseClicked
-
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         lista_pesquisa_controle_entrada.setVisible(false);
     }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        lista_pesquisa_registro_visitantes.setVisible(false);
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     private void associar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associar_buttonActionPerformed
         VeiculosFrame vf = new VeiculosFrame();
         vf.setDefaultCloseOperation(vf.DISPOSE_ON_CLOSE);
         vf.setLocationRelativeTo(null);
-        vf.setVisible(true);                        
+        vf.setVisible(true);
     }//GEN-LAST:event_associar_buttonActionPerformed
+
+    private void sair_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_buttonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_sair_buttonActionPerformed
+
+    private void c13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c13ActionPerformed
+
+    private void c16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c16ActionPerformed
+
+    private void c8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c8ActionPerformed
+
+    private void c9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c9ActionPerformed
+
+    private void c7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c7ActionPerformed
+
+    private void c6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c6ActionPerformed
+
+    private void c1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c1ActionPerformed
+
+    private void c10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c10ActionPerformed
+
+    private void c5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c5ActionPerformed
+
+    private void c3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c3ActionPerformed
+
+    private void c2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c2ActionPerformed
+
+    private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c4ActionPerformed
+
+    private void ferramentas_adm_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferramentas_adm_visitanteActionPerformed
+        Login login = new Login();
+        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+    }//GEN-LAST:event_ferramentas_adm_visitanteActionPerformed
+
+    private void novo_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novo_visitanteActionPerformed
+        try {
+            verifica_check();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        executando = false;
+        redefinir_visitante.setEnabled(false);
+        cadastrar_visitante.setEnabled(true);
+        nome_visitante.setEnabled(true);
+        numero_doc_visitante.setEnabled(true);
+        destino_visitante.setEnabled(true);
+        com_quem_falar_visitante.setEnabled(true);
+        telefone_visitante.setEnabled(true);
+        Civil.setEnabled(true);
+        Militar.setEnabled(true);
+        Fornec.setEnabled(true);
+        capturar_video_registro_visitantes.setEnabled(false);
+        def_horario_saida_visitante.setEnabled(false);
+        novo_visitante.setEnabled(false);
+        tipo_doc_visitante.setEnabled(true);
+
+        nome_visitante.setText("");
+        numero_doc_visitante.setText("");
+        destino_visitante.setText("");
+        com_quem_falar_visitante.setText("");
+        telefone_visitante.setText("");
+        tipo_doc_visitante.setSelectedIndex(0);
+        buttonGroup1.clearSelection();
+    }//GEN-LAST:event_novo_visitanteActionPerformed
+
+    private void destino_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destino_visitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_destino_visitanteActionPerformed
+
+    private void iniciar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar_video_registro_visitantesActionPerformed
+        new Thread(){
+            public void run(){
+                executando = true;
+                foto_visitante.setText("Iniciando...");
+                WEBCAM.open();
+                foto_visitante.setText("");
+                INICIALIZA_VIDEO(foto_visitante);
+                capturar_video_registro_visitantes.setEnabled(true);
+            }
+        }.start();
+    }//GEN-LAST:event_iniciar_video_registro_visitantesActionPerformed
+
+    private void nome_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_visitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nome_visitanteActionPerformed
+
+    private void def_horario_saida_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_def_horario_saida_visitanteActionPerformed
+        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int cracha;
+        int l = controle_tabela.getSelectedRow();
+        CadastroBEAN c = new CadastroBEAN();
+        cadastroDAO dao = new cadastroDAO();
+        c.setHoraS(sdh.format(new Date()));
+        c.setId((int)controle_tabela.getValueAt(l, 0));
+        try {
+            dao.altera(c);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        readJTable();
+        def_horario_saida_visitante.setEnabled(false);
+        txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
+        try {
+            verifica_check();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_def_horario_saida_visitanteActionPerformed
+
+    private void controle_tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_controle_tabelaMouseClicked
+        try {
+            Integer id = (Integer) controle_tabela.getValueAt(controle_tabela.getSelectedRow(),0);
+            cadastroDAO dao = new cadastroDAO();
+            if(controle_tabela.getValueAt(controle_tabela.getSelectedRow(), 11) == null){
+                def_horario_saida_visitante.setEnabled(true);
+            }else{
+                def_horario_saida_visitante.setEnabled(false);
+            }
+            CadastroBEAN retorno = dao.buscaImg(id);
+            exibirImagemLabel(retorno.getFoto(),foto_visitante);
+        } catch (SQLException ex) {
+            System.err.println("Erro tableMouseClicked!");
+        }
+    }//GEN-LAST:event_controle_tabelaMouseClicked
+
+    private void capturar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturar_video_registro_visitantesActionPerformed
+        try {
+            ByteArrayOutputStream buff = new ByteArrayOutputStream();
+            ImageIO.write(WEBCAM.getImage(), "JPEG", buff);
+            byte[] bytes = buff.toByteArray();
+
+            ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+            BufferedImage imagem = ImageIO.read(is);
+
+            int nova_largura = foto_visitante.getWidth(), nova_altura = foto_visitante.getHeight();
+            BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = new_img.createGraphics();
+            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            imageArray = new_img;
+        } catch (IOException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        new Thread(){
+            public void run(){
+                WEBCAM.close();
+                executando = false;
+                capturar_video_registro_visitantes.setEnabled(false);
+            }
+        }.start();
+    }//GEN-LAST:event_capturar_video_registro_visitantesActionPerformed
+
+    private void redefinir_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redefinir_visitanteActionPerformed
+        try {
+            verifica_check();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        com_quem_falar_visitante.setEnabled(true);
+        destino_visitante.setEnabled(true);
+        redefinir_visitante.setEnabled(false);
+        cadastrar_visitante.setEnabled(true);
+        novo_visitante.setEnabled(true);
+        red = 1;
+    }//GEN-LAST:event_redefinir_visitanteActionPerformed
+
+    private void cadastrar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_visitanteActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
+        CadastroBEAN c = new CadastroBEAN();
+        cadastroDAO dao = new cadastroDAO();
+        String tipo_doc = null;
+        int cracha;
+
+        try {
+            if(dao.busca_nome(nome_visitante.getText().toUpperCase())==true && red == 0){
+                JOptionPane.showMessageDialog(null,"O Sr.(a) " + nome_visitante.getText() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
+                buttonGroup1.clearSelection();
+                buttonGroup2.clearSelection();
+                imageArray = null;
+                foto_visitante.setIcon(null);
+                redefinir_visitante.setEnabled(false);
+                cadastrar_visitante.setEnabled(false);
+                nome_visitante.setEnabled(false);
+                numero_doc_visitante.setEnabled(false);
+                destino_visitante.setEnabled(false);
+                com_quem_falar_visitante.setEnabled(false);
+                telefone_visitante.setEnabled(false);
+                Civil.setEnabled(false);
+                Militar.setEnabled(false);
+                Fornec.setEnabled(false);
+                tipo_doc_visitante.setEnabled(false);
+                c1.setEnabled(false);
+                c2.setEnabled(false);
+                c3.setEnabled(false);
+                c4.setEnabled(false);
+                c5.setEnabled(false);
+                c6.setEnabled(false);
+                c7.setEnabled(false);
+                c8.setEnabled(false);
+                c9.setEnabled(false);
+                c10.setEnabled(false);
+                c11.setEnabled(false);
+                c12.setEnabled(false);
+                c13.setEnabled(false);
+                c14.setEnabled(false);
+                c15.setEnabled(false);
+                c16.setEnabled(false);
+                c17.setEnabled(false);
+                c18.setEnabled(false);
+                c19.setEnabled(false);
+                c20.setEnabled(false);
+                nome_visitante.setText("");
+                numero_doc_visitante.setText("");
+                destino_visitante.setText("");
+                telefone_visitante.setText("");
+                com_quem_falar_visitante.setText("");
+                Civil.setSelected(false);
+                Militar.setSelected(false);
+                Fornec.setSelected(false);
+                tipo_doc_visitante.setSelectedIndex(0);
+                novo_visitante.setEnabled(true);
+                red = 0;
+                return;
+            }if(nome_visitante.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"O campo 'Nome Completo' não pode ser vazio!");
+                return;
+            }else{
+                c.setNomeCompleto(nome_visitante.getText().toUpperCase());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if(numero_doc_visitante.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"O campo 'Número Documento' não pode ser vazio!");
+            return;
+        }else{
+            c.setDocumentoIden(numero_doc_visitante.getText());
+        }
+
+        if(destino_visitante.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"O campo 'Destino' não pode ser vazio!");
+            return;
+        }else{
+            c.setDestino(destino_visitante.getText().toUpperCase());
+        }
+
+        if(com_quem_falar_visitante.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"O campo 'Com quem falar' não pode ser vazio!");
+            return;
+        }else{
+            c.setComquemFalar(com_quem_falar_visitante.getText().toUpperCase());
+        }
+
+        if( telefone_visitante == null){
+            JOptionPane.showMessageDialog(null,"O campo 'Telefone' não pode ser vazio!");
+            return;
+        }else{
+            c.setTelefone(telefone_visitante.getText());
+        }
+
+        if(imageArray == null && webcam_found){
+            JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
+            return;
+        }else if(webcam_found){
+            try {
+                c.setFoto(getImgBytes(imageArray));
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
+        }
+
+        tipo_doc = (String) tipo_doc_visitante.getSelectedItem();
+        if(tipo_doc.equals("Selecione...")){
+            JOptionPane.showMessageDialog(null,"O campo 'Tipo Documento' não pode ser vazio!");
+            return;
+        }else{
+            c.setTipoDocumento(tipo_doc);
+        }
+
+        if(c1.isSelected()){
+            cracha = 1;
+            c.setN_cracha(cracha);
+            c1.setEnabled(false);
+        }
+        else if(c2.isSelected()){
+            cracha = 2;
+            c.setN_cracha(cracha);
+            c2.setEnabled(false);
+        }
+        else if(c3.isSelected()){
+            cracha = 3;
+            c.setN_cracha(cracha);
+            c3.setEnabled(false);
+        }
+        else if(c4.isSelected()){
+            cracha = 4;
+            c.setN_cracha(cracha);
+            c4.setEnabled(false);
+        }
+        else if(c5.isSelected()){
+            cracha = 5;
+            c.setN_cracha(cracha);
+            c5.setEnabled(false);
+        }
+        else if(c6.isSelected()){
+            cracha = 6;
+            c.setN_cracha(cracha);
+            c6.setEnabled(false);
+        }
+        else if(c7.isSelected()){
+            cracha = 7;
+            c.setN_cracha(cracha);
+            c7.setEnabled(false);
+        }
+        else if(c8.isSelected()){
+            cracha = 8;
+            c.setN_cracha(cracha);
+            c8.setEnabled(false);
+        }
+        else if(c9.isSelected()){
+            cracha = 9;
+            c.setN_cracha(cracha);
+            c9.setEnabled(false);
+        }
+        else if(c10.isSelected()){
+            cracha = 10;
+            c.setN_cracha(cracha);
+            c10.setEnabled(false);
+        }
+        else if(c11.isSelected()){
+            cracha = 11;
+            c.setN_cracha(cracha);
+            c11.setEnabled(false);
+        }
+        else if(c12.isSelected()){
+            cracha = 12;
+            c.setN_cracha(cracha);
+            c12.setEnabled(false);
+        }
+        else if(c13.isSelected()){
+            cracha = 13;
+            c.setN_cracha(cracha);
+            c13.setEnabled(false);
+        }
+        else if(c14.isSelected()){
+            cracha = 14;
+            c.setN_cracha(cracha);
+            c14.setEnabled(false);
+        }
+        else if(c15.isSelected()){
+            cracha = 15;
+            c.setN_cracha(cracha);
+            c15.setEnabled(false);
+        }
+        else if(c16.isSelected()){
+            cracha = 16;
+            c.setN_cracha(cracha);
+            c16.setEnabled(false);
+        }
+        else if(c17.isSelected()){
+            cracha = 17;
+            c.setN_cracha(cracha);
+            c17.setEnabled(false);
+        }
+        else if(c18.isSelected()){
+            cracha = 18;
+            c.setN_cracha(cracha);
+            c18.setEnabled(false);
+        }
+        else if(c19.isSelected()){
+            cracha = 19;
+            c.setN_cracha(cracha);
+            c19.setEnabled(false);
+        }
+        else if(c20.isSelected()){
+            cracha = 20;
+            c.setN_cracha(cracha);
+            c20.setEnabled(false);
+        }
+
+        else{
+            JOptionPane.showMessageDialog(null,"O usuário precisa estar relacionado à um crachá!");
+            return;
+        }
+
+        if(Civil.isSelected()== true){
+            c.setTipoVisitante("Civil");
+        }
+        else if(Militar.isSelected()== true){
+            c.setTipoVisitante("Militar");
+        }
+        else if(Fornec.isSelected()== true){
+            c.setTipoVisitante("Fornecedor");
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione o tipo do visitante!");
+            return;
+        }
+
+        c.setData(sdf.format(new Date()));
+        c.setHoraE(sdh.format(new Date()));
+        c.setHoraS(null);
+        c.setCor_veiculo(VeiculosFrame.cor);
+        c.setModelo_veiculo(VeiculosFrame.modelo);
+        c.setMarca_veiculo(VeiculosFrame.marca);
+        c.setPlaca_veiculo(VeiculosFrame.placa2);
+
+        VeiculosFrame.cor = null;
+        VeiculosFrame.modelo = null;
+        VeiculosFrame.marca = null;
+        VeiculosFrame.placa2 = null;
+
+        dao.create(c);
+        readJTable();
+
+        buttonGroup1.clearSelection();
+        buttonGroup2.clearSelection();
+        imageArray = null;
+        foto_visitante.setIcon(null);
+        redefinir_visitante.setEnabled(false);
+        cadastrar_visitante.setEnabled(false);
+        nome_visitante.setEnabled(false);
+        numero_doc_visitante.setEnabled(false);
+        destino_visitante.setEnabled(false);
+        com_quem_falar_visitante.setEnabled(false);
+        telefone_visitante.setEnabled(false);
+        Civil.setEnabled(false);
+        Militar.setEnabled(false);
+        Fornec.setEnabled(false);
+        tipo_doc_visitante.setEnabled(false);
+
+        c1.setEnabled(false);
+        c2.setEnabled(false);
+        c3.setEnabled(false);
+        c4.setEnabled(false);
+        c5.setEnabled(false);
+        c6.setEnabled(false);
+        c7.setEnabled(false);
+        c8.setEnabled(false);
+        c9.setEnabled(false);
+        c10.setEnabled(false);
+        c11.setEnabled(false);
+        c12.setEnabled(false);
+        c13.setEnabled(false);
+        c14.setEnabled(false);
+        c15.setEnabled(false);
+        c16.setEnabled(false);
+        c17.setEnabled(false);
+        c18.setEnabled(false);
+        c19.setEnabled(false);
+        c20.setEnabled(false);
+
+        nome_visitante.setText("");
+        numero_doc_visitante.setText("");
+        destino_visitante.setText("");
+        telefone_visitante.setText("");
+        com_quem_falar_visitante.setText("");
+        Civil.setSelected(false);
+        Militar.setSelected(false);
+        Fornec.setSelected(false);
+        tipo_doc_visitante.setSelectedIndex(0);
+        novo_visitante.setEnabled(true);
+        red = 0;
+        txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
+    }//GEN-LAST:event_cadastrar_visitanteActionPerformed
+
+    private void telefone_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefone_visitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefone_visitanteActionPerformed
+
+    private void com_quem_falar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_com_quem_falar_visitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_com_quem_falar_visitanteActionPerformed
+
+    private void tipo_doc_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_doc_visitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipo_doc_visitanteActionPerformed
+
+    private void pesquisa_registro_visitantesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisa_registro_visitantesKeyReleased
+        try {
+            ListaDePesquisa();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pesquisa_registro_visitantesKeyReleased
+
+    private void pesquisa_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisa_registro_visitantesActionPerformed
+        lista_pesquisa_registro_visitantes.setVisible(false);
+    }//GEN-LAST:event_pesquisa_registro_visitantesActionPerformed
+
+    private void lista_pesquisa_registro_visitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_pesquisa_registro_visitantesMouseClicked
+            try {
+                ResultadoPesquisa();
+            } catch (SQLException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        lista_pesquisa_registro_visitantes.setVisible(false);
+    }//GEN-LAST:event_lista_pesquisa_registro_visitantesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2443,7 +2345,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton iniciar_video_controle_saida;
     private javax.swing.JButton iniciar_video_registro_visitantes;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -2463,9 +2364,11 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
