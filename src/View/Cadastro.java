@@ -9,7 +9,6 @@ import Connection.ConnectionFactory;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamException;
 import com.github.sarxos.webcam.WebcamResolution;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -39,10 +38,7 @@ import model.bean.ControleExpedienteBEAN;
 import model.dao.cadastroDAO;
 import model.dao.controleDAO;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import javax.swing.table.TableRowSorter;
 import model.bean.ControleForaExpedienteBEAN;
-import model.dao.PreencheServicoDAO;
 import model.dao.controlefDAO;
 
 /**
