@@ -77,7 +77,7 @@ public class Cadastro extends javax.swing.JFrame {
             webcam_found = true;
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Nao foi detectado nenhum dispositivo de video!\n O programa nao ira ser capaz de capturar imagens!\n Favor conecte um dispositivo de video e abra o programa novamente! "+ e);
-            iniciar_video_registro_visitantes.setEnabled(false);
+            iniciarVideoRegistroVisitantes.setEnabled(false);
             iniciar_video_controle_saida.setEnabled(false);
             webcam_found = false;
         }
@@ -122,17 +122,17 @@ public class Cadastro extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        cadastrar_visitante = new javax.swing.JButton();
-        redefinir_visitante = new javax.swing.JButton();
+        cadastrarVisistante = new javax.swing.JButton();
+        redefinirVisitante = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         controle_tabela = new javax.swing.JTable();
         def_horario_saida_visitante = new javax.swing.JButton();
-        novo_visitante = new javax.swing.JButton();
+        novoVisitante = new javax.swing.JButton();
         ferramentas_adm_visitante = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         txt_info = new javax.swing.JTextPane();
         sair_button = new javax.swing.JButton();
-        associar_button = new javax.swing.JButton();
+        associarVeiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         lista_pesquisa_registro_visitantes = new javax.swing.JList<>();
@@ -176,8 +176,8 @@ public class Cadastro extends javax.swing.JFrame {
         c18 = new javax.swing.JCheckBox();
         c13 = new javax.swing.JCheckBox();
         foto_visitante = new javax.swing.JLabel();
-        iniciar_video_registro_visitantes = new javax.swing.JButton();
-        capturar_video_registro_visitantes = new javax.swing.JButton();
+        iniciarVideoRegistroVisitantes = new javax.swing.JButton();
+        capturarVideoRegistroVisitantes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         def_horario_entrada_controle = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -248,19 +248,19 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        cadastrar_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cadastrar.png"))); // NOI18N
-        cadastrar_visitante.setToolTipText("Cadastrar");
-        cadastrar_visitante.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarVisistante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/cadastrar.png"))); // NOI18N
+        cadastrarVisistante.setToolTipText("Cadastrar");
+        cadastrarVisistante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrar_visitanteActionPerformed(evt);
+                cadastrarVisistanteActionPerformed(evt);
             }
         });
 
-        redefinir_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/editar.png"))); // NOI18N
-        redefinir_visitante.setToolTipText("Redefinir");
-        redefinir_visitante.addActionListener(new java.awt.event.ActionListener() {
+        redefinirVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/editar.png"))); // NOI18N
+        redefinirVisitante.setToolTipText("Redefinir");
+        redefinirVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                redefinir_visitanteActionPerformed(evt);
+                redefinirVisitanteActionPerformed(evt);
             }
         });
 
@@ -309,11 +309,11 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        novo_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/adicionar.png"))); // NOI18N
-        novo_visitante.setToolTipText("Novo Cadastro");
-        novo_visitante.addActionListener(new java.awt.event.ActionListener() {
+        novoVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/adicionar.png"))); // NOI18N
+        novoVisitante.setToolTipText("Novo Cadastro");
+        novoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novo_visitanteActionPerformed(evt);
+                novoVisitanteActionPerformed(evt);
             }
         });
 
@@ -333,11 +333,11 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        associar_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/associarVeiculo.png"))); // NOI18N
-        associar_button.setToolTipText("Associar Veículo");
-        associar_button.addActionListener(new java.awt.event.ActionListener() {
+        associarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/associarVeiculo.png"))); // NOI18N
+        associarVeiculo.setToolTipText("Associar Veículo");
+        associarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                associar_buttonActionPerformed(evt);
+                associarVeiculoActionPerformed(evt);
             }
         });
 
@@ -654,23 +654,23 @@ public class Cadastro extends javax.swing.JFrame {
         foto_visitante.setOpaque(true);
         jPanel12.add(foto_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 220, 220));
 
-        iniciar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciarGravacao.png"))); // NOI18N
-        iniciar_video_registro_visitantes.setToolTipText("Iniciar Vídeo");
-        iniciar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
+        iniciarVideoRegistroVisitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciarGravacao.png"))); // NOI18N
+        iniciarVideoRegistroVisitantes.setToolTipText("Iniciar Vídeo");
+        iniciarVideoRegistroVisitantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciar_video_registro_visitantesActionPerformed(evt);
+                iniciarVideoRegistroVisitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(iniciar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 38));
+        jPanel12.add(iniciarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 38));
 
-        capturar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/capturarFoto.png"))); // NOI18N
-        capturar_video_registro_visitantes.setToolTipText("Capturar Foto");
-        capturar_video_registro_visitantes.addActionListener(new java.awt.event.ActionListener() {
+        capturarVideoRegistroVisitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/capturarFoto.png"))); // NOI18N
+        capturarVideoRegistroVisitantes.setToolTipText("Capturar Foto");
+        capturarVideoRegistroVisitantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capturar_video_registro_visitantesActionPerformed(evt);
+                capturarVideoRegistroVisitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(capturar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, 38));
+        jPanel12.add(capturarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, 38));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -685,10 +685,10 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(novo_visitante)
-                            .addComponent(redefinir_visitante)
-                            .addComponent(cadastrar_visitante)
-                            .addComponent(associar_button))
+                            .addComponent(novoVisitante)
+                            .addComponent(redefinirVisitante)
+                            .addComponent(cadastrarVisistante)
+                            .addComponent(associarVeiculo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(def_horario_saida_visitante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -726,17 +726,17 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(novo_visitante)
+                                .addComponent(novoVisitante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(redefinir_visitante)
+                                .addComponent(redefinirVisitante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cadastrar_visitante)
+                                .addComponent(cadastrarVisistante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(associar_button)))
+                                .addComponent(associarVeiculo)))
                         .addContainerGap())))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cadastrar_visitante, novo_visitante, redefinir_visitante});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cadastrarVisistante, novoVisitante, redefinirVisitante});
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
 
@@ -772,7 +772,7 @@ public class Cadastro extends javax.swing.JFrame {
                 lista_pesquisa_controle_saidaMouseClicked(evt);
             }
         });
-        jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 400, 100));
+        jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 400, 100));
 
         posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(posto_graduacao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 87, -1));
@@ -1707,12 +1707,12 @@ public class Cadastro extends javax.swing.JFrame {
         lista_pesquisa_registro_visitantes.setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void associar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associar_buttonActionPerformed
+    private void associarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associarVeiculoActionPerformed
         VeiculosFrame vf = new VeiculosFrame();
         vf.setDefaultCloseOperation(vf.DISPOSE_ON_CLOSE);
         vf.setLocationRelativeTo(null);
         vf.setVisible(true);
-    }//GEN-LAST:event_associar_buttonActionPerformed
+    }//GEN-LAST:event_associarVeiculoActionPerformed
 
     private void sair_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_buttonActionPerformed
         System.exit(0);
@@ -1773,15 +1773,17 @@ public class Cadastro extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_ferramentas_adm_visitanteActionPerformed
 
-    private void novo_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novo_visitanteActionPerformed
+    private void novoVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoVisitanteActionPerformed
         try {
             verifica_check();
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
         executando = false;
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(true);
+        redefinirVisitante.setEnabled(false);
+        cadastrarVisistante.setEnabled(true);
+        associarVeiculo.setEnabled(true);
+        
         nome_visitante.setEnabled(true);
         numero_doc_visitante.setEnabled(true);
         destino_visitante.setEnabled(true);
@@ -1790,9 +1792,9 @@ public class Cadastro extends javax.swing.JFrame {
         Civil.setEnabled(true);
         Militar.setEnabled(true);
         Fornec.setEnabled(true);
-        capturar_video_registro_visitantes.setEnabled(false);
+        capturarVideoRegistroVisitantes.setEnabled(false);
         def_horario_saida_visitante.setEnabled(false);
-        novo_visitante.setEnabled(false);
+        novoVisitante.setEnabled(false);
         tipo_doc_visitante.setEnabled(true);
 
         nome_visitante.setText("");
@@ -1802,13 +1804,15 @@ public class Cadastro extends javax.swing.JFrame {
         telefone_visitante.setText("");
         tipo_doc_visitante.setSelectedIndex(0);
         buttonGroup1.clearSelection();
-    }//GEN-LAST:event_novo_visitanteActionPerformed
+        
+        
+    }//GEN-LAST:event_novoVisitanteActionPerformed
 
     private void destino_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destino_visitanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_destino_visitanteActionPerformed
 
-    private void iniciar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciar_video_registro_visitantesActionPerformed
+    private void iniciarVideoRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarVideoRegistroVisitantesActionPerformed
         new Thread(){
             public void run(){
                 executando = true;
@@ -1816,10 +1820,10 @@ public class Cadastro extends javax.swing.JFrame {
                 WEBCAM.open();
                 foto_visitante.setText("");
                 INICIALIZA_VIDEO(foto_visitante);
-                capturar_video_registro_visitantes.setEnabled(true);
+                capturarVideoRegistroVisitantes.setEnabled(true);
             }
         }.start();
-    }//GEN-LAST:event_iniciar_video_registro_visitantesActionPerformed
+    }//GEN-LAST:event_iniciarVideoRegistroVisitantesActionPerformed
 
     private void nome_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_visitanteActionPerformed
         // TODO add your handling code here:
@@ -1866,7 +1870,7 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_controle_tabelaMouseClicked
 
-    private void capturar_video_registro_visitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturar_video_registro_visitantesActionPerformed
+    private void capturarVideoRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturarVideoRegistroVisitantesActionPerformed
         try {
             ByteArrayOutputStream buff = new ByteArrayOutputStream();
             ImageIO.write(WEBCAM.getImage(), "JPEG", buff);
@@ -1888,12 +1892,12 @@ public class Cadastro extends javax.swing.JFrame {
             public void run(){
                 WEBCAM.close();
                 executando = false;
-                capturar_video_registro_visitantes.setEnabled(false);
+                capturarVideoRegistroVisitantes.setEnabled(false);
             }
         }.start();
-    }//GEN-LAST:event_capturar_video_registro_visitantesActionPerformed
+    }//GEN-LAST:event_capturarVideoRegistroVisitantesActionPerformed
 
-    private void redefinir_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redefinir_visitanteActionPerformed
+    private void redefinirVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redefinirVisitanteActionPerformed
         try {
             verifica_check();
         } catch (SQLException ex) {
@@ -1901,13 +1905,13 @@ public class Cadastro extends javax.swing.JFrame {
         }
         com_quem_falar_visitante.setEnabled(true);
         destino_visitante.setEnabled(true);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(true);
-        novo_visitante.setEnabled(true);
+        redefinirVisitante.setEnabled(false);
+        cadastrarVisistante.setEnabled(true);
+        novoVisitante.setEnabled(true);
         red = 1;
-    }//GEN-LAST:event_redefinir_visitanteActionPerformed
+    }//GEN-LAST:event_redefinirVisitanteActionPerformed
 
-    private void cadastrar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_visitanteActionPerformed
+    private void cadastrarVisistanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarVisistanteActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
         CadastroBEAN c = new CadastroBEAN();
@@ -1922,8 +1926,8 @@ public class Cadastro extends javax.swing.JFrame {
                 buttonGroup2.clearSelection();
                 imageArray = null;
                 foto_visitante.setIcon(null);
-                redefinir_visitante.setEnabled(false);
-                cadastrar_visitante.setEnabled(false);
+                redefinirVisitante.setEnabled(false);
+                cadastrarVisistante.setEnabled(false);
                 nome_visitante.setEnabled(false);
                 numero_doc_visitante.setEnabled(false);
                 destino_visitante.setEnabled(false);
@@ -1962,7 +1966,7 @@ public class Cadastro extends javax.swing.JFrame {
                 Militar.setSelected(false);
                 Fornec.setSelected(false);
                 tipo_doc_visitante.setSelectedIndex(0);
-                novo_visitante.setEnabled(true);
+                novoVisitante.setEnabled(true);
                 red = 0;
                 return;
             }if(nome_visitante.getText().equals("")){
@@ -2163,8 +2167,8 @@ public class Cadastro extends javax.swing.JFrame {
         buttonGroup2.clearSelection();
         imageArray = null;
         foto_visitante.setIcon(null);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(false);
+        redefinirVisitante.setEnabled(false);
+        cadastrarVisistante.setEnabled(false);
         nome_visitante.setEnabled(false);
         numero_doc_visitante.setEnabled(false);
         destino_visitante.setEnabled(false);
@@ -2205,10 +2209,10 @@ public class Cadastro extends javax.swing.JFrame {
         Militar.setSelected(false);
         Fornec.setSelected(false);
         tipo_doc_visitante.setSelectedIndex(0);
-        novo_visitante.setEnabled(true);
+        novoVisitante.setEnabled(true);
         red = 0;
         txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-    }//GEN-LAST:event_cadastrar_visitanteActionPerformed
+    }//GEN-LAST:event_cadastrarVisistanteActionPerformed
 
     private void telefone_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefone_visitanteActionPerformed
         // TODO add your handling code here:
@@ -2288,7 +2292,7 @@ public class Cadastro extends javax.swing.JFrame {
     public static javax.swing.JRadioButton Civil;
     public static javax.swing.JRadioButton Fornec;
     public static javax.swing.JRadioButton Militar;
-    private javax.swing.JButton associar_button;
+    private javax.swing.JButton associarVeiculo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox c1;
@@ -2311,12 +2315,12 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JCheckBox c7;
     private javax.swing.JCheckBox c8;
     private javax.swing.JCheckBox c9;
+    private javax.swing.JButton cadastrarVisistante;
     private javax.swing.JButton cadastrar_entrada;
     private javax.swing.JButton cadastrar_saida;
-    private javax.swing.JButton cadastrar_visitante;
+    private javax.swing.JButton capturarVideoRegistroVisitantes;
     private javax.swing.JButton capturar_video_controle_entrada;
     private javax.swing.JButton capturar_video_controle_saida;
-    private javax.swing.JButton capturar_video_registro_visitantes;
     private javax.swing.JTextField com_quem_falar_visitante;
     public static javax.swing.JTable controle_tabela;
     private javax.swing.JTable controle_tabela_saida;
@@ -2331,9 +2335,9 @@ public class Cadastro extends javax.swing.JFrame {
     public static javax.swing.JLabel foto_controle_entrada;
     public static javax.swing.JLabel foto_controle_saida;
     public static javax.swing.JLabel foto_visitante;
+    private javax.swing.JButton iniciarVideoRegistroVisitantes;
     private javax.swing.JButton iniciar_video_controle_entrada;
     private javax.swing.JButton iniciar_video_controle_saida;
-    private javax.swing.JButton iniciar_video_registro_visitantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2377,18 +2381,18 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField nome_guerra_controle_entrada;
     private javax.swing.JTextField nome_guerra_controle_saida;
     public static javax.swing.JTextField nome_visitante;
+    private javax.swing.JButton novoVisitante;
     private javax.swing.JButton novo_entrada;
     private javax.swing.JButton novo_saida;
-    private javax.swing.JButton novo_visitante;
     public static javax.swing.JTextField numero_doc_visitante;
     private javax.swing.JTextField pesquisa_controle_entrada;
     private javax.swing.JTextField pesquisa_controle_saida;
     private javax.swing.JTextField pesquisa_registro_visitantes;
     private javax.swing.JComboBox<String> posto_graduacao_controle_entrada;
     private javax.swing.JComboBox<String> posto_graduacao_controle_saida;
+    private javax.swing.JButton redefinirVisitante;
     private javax.swing.JButton redefinir_entrada;
     private javax.swing.JButton redefinir_saida;
-    private javax.swing.JButton redefinir_visitante;
     private javax.swing.JButton sair_button;
     private javax.swing.JButton sair_controle;
     private javax.swing.JButton sair_controle1;
@@ -2401,6 +2405,10 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextPane txt_info2;
     private javax.swing.JTextPane txt_info3;
     // End of variables declaration//GEN-END:variables
+    public void estadoInicial(){
+        novoVisitante.
+    }
+    
     public void readJTable(){
         SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableModel modelo = (DefaultTableModel) controle_tabela.getModel();
@@ -2687,6 +2695,7 @@ public class Cadastro extends javax.swing.JFrame {
             imageArray = imagem;
         }
         lista_pesquisa_registro_visitantes.setVisible(false);
+        redefinirVisitante.setEnabled(true);
     }
     
     public void ResultadoPesquisa_controle(String grad_posto, String nome_guerra) throws SQLException, IOException{
@@ -2852,9 +2861,9 @@ public class Cadastro extends javax.swing.JFrame {
     private void desativa_botoes_encerra_sv(){
         //Registro de visitantes
         pesquisa_registro_visitantes.setEnabled(false);
-        iniciar_video_registro_visitantes.setEnabled(false);
-        capturar_video_registro_visitantes.setEnabled(false);
-        novo_visitante.setEnabled(false);
+        iniciarVideoRegistroVisitantes.setEnabled(false);
+        capturarVideoRegistroVisitantes.setEnabled(false);
+        novoVisitante.setEnabled(false);
         nome_visitante.setEnabled(false);
         tipo_doc_visitante.setEnabled(false);
         numero_doc_visitante.setEnabled(false);
@@ -2885,9 +2894,9 @@ public class Cadastro extends javax.swing.JFrame {
         c20.setEnabled(false);
         destino_visitante.setEnabled(false);
         com_quem_falar_visitante.setEnabled(false);
-        associar_button.setEnabled(false);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(false);
+        associarVeiculo.setEnabled(false);
+        redefinirVisitante.setEnabled(false);
+        cadastrarVisistante.setEnabled(false);
         def_horario_saida_visitante.setEnabled(false);
         controle_tabela.setEnabled(false);
         
@@ -2924,9 +2933,9 @@ public class Cadastro extends javax.swing.JFrame {
     public void inicia_botoes_inicia_sv(){
         //Registro de visitantes
         pesquisa_registro_visitantes.setEnabled(true);
-        iniciar_video_registro_visitantes.setEnabled(true);
-        capturar_video_registro_visitantes.setEnabled(false);
-        novo_visitante.setEnabled(true);
+        iniciarVideoRegistroVisitantes.setEnabled(true);
+        capturarVideoRegistroVisitantes.setEnabled(false);
+        novoVisitante.setEnabled(true);
         nome_visitante.setEnabled(false);
         tipo_doc_visitante.setEnabled(false);
         numero_doc_visitante.setEnabled(false);
@@ -2957,9 +2966,9 @@ public class Cadastro extends javax.swing.JFrame {
         c20.setEnabled(false);
         destino_visitante.setEnabled(false);
         com_quem_falar_visitante.setEnabled(false);
-        associar_button.setEnabled(false);
-        redefinir_visitante.setEnabled(false);
-        cadastrar_visitante.setEnabled(false);
+        associarVeiculo.setEnabled(false);
+        redefinirVisitante.setEnabled(false);
+        cadastrarVisistante.setEnabled(false);
         def_horario_saida_visitante.setEnabled(false);
         controle_tabela.setEnabled(true);
         

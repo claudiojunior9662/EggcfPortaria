@@ -71,10 +71,10 @@
                               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="novo_visitante" min="-2" max="-2" attributes="0"/>
-                                  <Component id="redefinir_visitante" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cadastrar_visitante" min="-2" max="-2" attributes="0"/>
-                                  <Component id="associar_button" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="novoVisitante" min="-2" max="-2" attributes="0"/>
+                                  <Component id="redefinirVisitante" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cadastrarVisistante" min="-2" max="-2" attributes="0"/>
+                                  <Component id="associarVeiculo" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -124,13 +124,13 @@
                                       <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="novo_visitante" linkSize="4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="novoVisitante" linkSize="4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="redefinir_visitante" linkSize="4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="redefinirVisitante" linkSize="4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cadastrar_visitante" linkSize="4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastrarVisistante" linkSize="4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="associar_button" min="-2" max="-2" attributes="0"/>
+                                      <Component id="associarVeiculo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -141,7 +141,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="cadastrar_visitante">
+            <Component class="javax.swing.JButton" name="cadastrarVisistante">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icones/cadastrar.png"/>
@@ -149,10 +149,10 @@
                 <Property name="toolTipText" type="java.lang.String" value="Cadastrar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrar_visitanteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarVisistanteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="redefinir_visitante">
+            <Component class="javax.swing.JButton" name="redefinirVisitante">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icones/editar.png"/>
@@ -160,7 +160,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Redefinir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redefinir_visitanteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redefinirVisitanteActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -279,7 +279,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="def_horario_saida_visitanteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="novo_visitante">
+            <Component class="javax.swing.JButton" name="novoVisitante">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icones/adicionar.png"/>
@@ -287,7 +287,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Novo Cadastro"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novo_visitanteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoVisitanteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="ferramentas_adm_visitante">
@@ -317,7 +317,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sair_buttonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="associar_button">
+            <Component class="javax.swing.JButton" name="associarVeiculo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icones/associarVeiculo.png"/>
@@ -325,7 +325,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="Associar Ve&#xed;culo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="associar_buttonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="associarVeiculoActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
@@ -918,7 +918,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="iniciar_video_registro_visitantes">
+                <Component class="javax.swing.JButton" name="iniciarVideoRegistroVisitantes">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icones/iniciarGravacao.png"/>
@@ -926,7 +926,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="Iniciar V&#xed;deo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iniciar_video_registro_visitantesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iniciarVideoRegistroVisitantesActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -934,7 +934,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="capturar_video_registro_visitantes">
+                <Component class="javax.swing.JButton" name="capturarVideoRegistroVisitantes">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icones/capturarFoto.png"/>
@@ -942,7 +942,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="Capturar Foto"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="capturar_video_registro_visitantesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="capturarVideoRegistroVisitantesActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1093,7 +1093,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="240" y="10" width="400" height="100"/>
+                      <AbsoluteConstraints x="10" y="70" width="400" height="100"/>
                     </Constraint>
                   </Constraints>
                 </Component>
