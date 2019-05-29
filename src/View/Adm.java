@@ -75,7 +75,6 @@ public class Adm extends javax.swing.JFrame {
         iniciarServico = new javax.swing.JButton();
         finalizarServico = new javax.swing.JButton();
         emitirRelatorios = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
@@ -103,13 +102,6 @@ public class Adm extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("visitantes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,18 +109,13 @@ public class Adm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(data_rel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(iniciarServico)
-                                .addGap(97, 97, 97)
-                                .addComponent(finalizarServico))
-                            .addComponent(emitirRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jButton1))))
+                        .addComponent(iniciarServico)
+                        .addGap(97, 97, 97)
+                        .addComponent(finalizarServico))
+                    .addComponent(emitirRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +128,7 @@ public class Adm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(iniciarServico)
-                            .addComponent(finalizarServico))
-                        .addGap(43, 43, 43)
-                        .addComponent(jButton1)))
+                            .addComponent(finalizarServico))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -205,10 +190,6 @@ public class Adm extends javax.swing.JFrame {
         emiteRelatorioVisitantes();
     }//GEN-LAST:event_emitirRelatoriosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        emiteRelatorioVisitantes();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -249,7 +230,6 @@ public class Adm extends javax.swing.JFrame {
     private javax.swing.JButton emitirRelatorios;
     public static javax.swing.JButton finalizarServico;
     public static javax.swing.JButton iniciarServico;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     public boolean verifica_dir(String path){
@@ -470,7 +450,7 @@ public class Adm extends javax.swing.JFrame {
                     table.addCell(c9);
                     table.addCell(c10);
                     table.addCell(c11);
-                    if(cf.getHora_saida().equals("")){
+                    if(cf.getHora_saida().equals(null)){
                         table.addCell("");
                     }else{
                         PdfPCell c12 = new PdfPCell(new Phrase(cf.getHora_saida(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
@@ -582,7 +562,7 @@ public class Adm extends javax.swing.JFrame {
                     table.addCell(c9);
                     table.addCell(c10);
                     table.addCell(c11);
-                    if(c.getHora_entrada().equals("")){
+                    if(c.getHora_entrada() == null){
                         table.addCell("");
                     }else{
                         PdfPCell c12 = new PdfPCell(new Phrase(c.getHora_entrada(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));

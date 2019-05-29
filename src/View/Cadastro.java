@@ -179,7 +179,6 @@ public class Cadastro extends javax.swing.JFrame {
         iniciar_video_registro_visitantes = new javax.swing.JButton();
         capturar_video_registro_visitantes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         def_horario_entrada_controle = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         txt_info2 = new javax.swing.JTextPane();
@@ -201,10 +200,11 @@ public class Cadastro extends javax.swing.JFrame {
         novo_saida = new javax.swing.JButton();
         redefinir_saida = new javax.swing.JButton();
         cadastrar_saida = new javax.swing.JButton();
+        pesquisa_controle_saida = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         controle_tabela_saida = new javax.swing.JTable();
-        pesquisa_controle_saida = new javax.swing.JTextField();
         sair_controle = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -343,7 +343,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel12.setBorder(null);
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lista_pesquisa_registro_visitantes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -652,7 +652,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         foto_visitante.setBackground(new java.awt.Color(0, 0, 0));
         foto_visitante.setOpaque(true);
-        jPanel12.add(foto_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 220, 220));
+        jPanel12.add(foto_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 220, 220));
 
         iniciar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciarGravacao.png"))); // NOI18N
         iniciar_video_registro_visitantes.setToolTipText("Iniciar Vídeo");
@@ -661,7 +661,7 @@ public class Cadastro extends javax.swing.JFrame {
                 iniciar_video_registro_visitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(iniciar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, 38));
+        jPanel12.add(iniciar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 38));
 
         capturar_video_registro_visitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/capturarFoto.png"))); // NOI18N
         capturar_video_registro_visitantes.setToolTipText("Capturar Foto");
@@ -670,7 +670,7 @@ public class Cadastro extends javax.swing.JFrame {
                 capturar_video_registro_visitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(capturar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, 38));
+        jPanel12.add(capturar_video_registro_visitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, 38));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -747,8 +747,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Procurar por nome de guerra:");
-
         def_horario_entrada_controle.setText("Definir Horário de Entrada");
         def_horario_entrada_controle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -765,7 +763,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setBorder(null);
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lista_pesquisa_controle_saida.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -774,27 +772,27 @@ public class Cadastro extends javax.swing.JFrame {
                 lista_pesquisa_controle_saidaMouseClicked(evt);
             }
         });
-        jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 90));
+        jPanel4.add(lista_pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 400, 100));
 
         posto_graduacao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
-        jPanel4.add(posto_graduacao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 47, 87, -1));
+        jPanel4.add(posto_graduacao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 87, -1));
 
         jLabel11.setText("Posto/Graduação:");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         jLabel12.setText("Nome de Guerra:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 27, -1, -1));
-        jPanel4.add(nome_guerra_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 47, 155, -1));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+        jPanel4.add(nome_guerra_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 155, -1));
 
         jLabel13.setText("Seção:");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, -1, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         sessao_controle_saida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
-        jPanel4.add(sessao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 98, 252, -1));
+        jPanel4.add(sessao_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 252, -1));
 
         jLabel14.setText("Motivo de Saída:");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 129, -1, -1));
-        jPanel4.add(motivo_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 149, 252, -1));
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        jPanel4.add(motivo_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 252, -1));
 
         jPanel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -816,7 +814,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(foto_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         iniciar_video_controle_saida.setText("Iniciar Vídeo");
         iniciar_video_controle_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -824,7 +822,7 @@ public class Cadastro extends javax.swing.JFrame {
                 iniciar_video_controle_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(iniciar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, -1));
+        jPanel4.add(iniciar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 130, -1));
 
         capturar_video_controle_saida.setText("Capturar Foto");
         capturar_video_controle_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -832,7 +830,7 @@ public class Cadastro extends javax.swing.JFrame {
                 capturar_video_controle_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(capturar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 130, -1));
+        jPanel4.add(capturar_video_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 130, -1));
 
         novo_saida.setText("Novo");
         novo_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -840,7 +838,7 @@ public class Cadastro extends javax.swing.JFrame {
                 novo_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(novo_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
+        jPanel4.add(novo_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 600, -1, -1));
 
         redefinir_saida.setText("Redefinir");
         redefinir_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -848,7 +846,7 @@ public class Cadastro extends javax.swing.JFrame {
                 redefinir_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(redefinir_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
+        jPanel4.add(redefinir_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 600, -1, -1));
 
         cadastrar_saida.setText("Cadastrar");
         cadastrar_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -856,7 +854,22 @@ public class Cadastro extends javax.swing.JFrame {
                 cadastrar_saidaActionPerformed(evt);
             }
         });
-        jPanel4.add(cadastrar_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, -1, -1));
+        jPanel4.add(cadastrar_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, -1, -1));
+
+        pesquisa_controle_saida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisa_controle_saidaActionPerformed(evt);
+            }
+        });
+        pesquisa_controle_saida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pesquisa_controle_saidaKeyReleased(evt);
+            }
+        });
+        jPanel4.add(pesquisa_controle_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 400, -1));
+
+        jLabel15.setText("Procurar por nome de guerra:");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         controle_tabela_saida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -881,17 +894,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(controle_tabela_saida);
 
-        pesquisa_controle_saida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisa_controle_saidaActionPerformed(evt);
-            }
-        });
-        pesquisa_controle_saida.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                pesquisa_controle_saidaKeyReleased(evt);
-            }
-        });
-
         sair_controle.setText("Sair");
         sair_controle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -908,36 +910,31 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(pesquisa_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(def_horario_entrada_controle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ferramentas_adm_controle_saida)
+                        .addGap(3, 3, 3)
+                        .addComponent(sair_controle))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ferramentas_adm_controle_saida)
-                                .addGap(3, 3, 3)
-                                .addComponent(sair_controle))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1277, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(def_horario_entrada_controle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(1606, 1606, 1606))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -947,15 +944,12 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(ferramentas_adm_controle_saida)
                             .addComponent(sair_controle))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel15)
-                        .addGap(6, 6, 6)
-                        .addComponent(pesquisa_controle_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(179, 179, 179))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Controle de saída de CB/SD", jPanel2);
@@ -2618,7 +2612,7 @@ public class Cadastro extends javax.swing.JFrame {
     public void ListaDePesquisa_controle() throws SQLException{
         try{
             controleDAO cdao = new controleDAO();
-            cdao.executaSQL("SELECT nome_guerra FROM controle_saida WHERE nome_guerra LIKE '%" + pesquisa_controle_saida.getText() + "%' ORDER BY nome_guerra");
+            cdao.executaSQL("SELECT nome_guerra, grad_posto FROM controle_saida WHERE nome_guerra LIKE '%" + pesquisa_controle_saida.getText() + "%' ORDER BY nome_guerra");
             model_list2.removeAllElements();
             int v2 = 0;
             while(cdao.rs3.next() & v2 < 4){
