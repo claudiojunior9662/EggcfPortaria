@@ -133,7 +133,7 @@ public class Cadastro extends javax.swing.JFrame {
         associarVeiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        listaPesquisaVisitantes = new javax.swing.JList<>();
+        listaPesquisaVisitantes = new javax.swing.JList<String>();
         nomeCompletoVisitante = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         pesquisaRegistroVisitantes = new javax.swing.JTextField();
@@ -141,7 +141,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         numeroDocumentoVisitante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tipoDocumentoVisitante = new javax.swing.JComboBox<>();
+        tipoDocumentoVisitante = new javax.swing.JComboBox<String>();
         civil = new javax.swing.JRadioButton();
         militar = new javax.swing.JRadioButton();
         txtVisitante = new javax.swing.JLabel();
@@ -182,13 +182,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info2 = new javax.swing.JTextPane();
         ferramentas_adm_controle_saida = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        listaPesquisaSaida = new javax.swing.JList<>();
-        postoGraduacaoSaida = new javax.swing.JComboBox<>();
+        listaPesquisaSaida = new javax.swing.JList<String>();
+        postoGraduacaoSaida = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nomeGuerraSaida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        sessaoSaida = new javax.swing.JComboBox<>();
+        sessaoSaida = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         motivoSaida = new javax.swing.JTextField();
         pesquisaSaida = new javax.swing.JTextField();
@@ -209,13 +209,13 @@ public class Cadastro extends javax.swing.JFrame {
         txt_info3 = new javax.swing.JTextPane();
         ferramentas_adm_controle_entrada = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        listaPesquisaEntrada = new javax.swing.JList<>();
-        postoGraduacaoEntrada = new javax.swing.JComboBox<>();
+        listaPesquisaEntrada = new javax.swing.JList<String>();
+        postoGraduacaoEntrada = new javax.swing.JComboBox<String>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         nomeGuerraEntrada = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        sessaoEntrada = new javax.swing.JComboBox<>();
+        sessaoEntrada = new javax.swing.JComboBox<String>();
         jLabel21 = new javax.swing.JLabel();
         motivoEntrada = new javax.swing.JTextField();
         pesquisaEntrada = new javax.swing.JTextField();
@@ -233,9 +233,9 @@ public class Cadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EGGCF Portaria");
         setExtendedState(6);
-        setState(6);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
+        jTabbedPane1.setAutoscrolls(true);
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1098, 100));
 
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -285,18 +285,13 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
         tabelaVisitantes.setToolTipText("");
+        tabelaVisitantes.setPreferredSize(new java.awt.Dimension(0, 0));
         tabelaVisitantes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaVisitantesMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(tabelaVisitantes);
-        if (tabelaVisitantes.getColumnModel().getColumnCount() > 0) {
-            tabelaVisitantes.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tabelaVisitantes.getColumnModel().getColumn(1).setPreferredWidth(70);
-            tabelaVisitantes.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabelaVisitantes.getColumnModel().getColumn(5).setPreferredWidth(150);
-        }
 
         definirHorarioSaidaVisitantes.setText("Definir horário de saída");
         definirHorarioSaidaVisitantes.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +376,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel2.setText("Número Documento:");
         jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
-        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
+        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
         tipoDocumentoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoDocumentoVisitanteActionPerformed(evt);
@@ -430,14 +425,14 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel12.add(destinoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 139, -1));
 
         jLabel4.setText("Com quem deseja falar:");
-        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         comQuemFalarVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comQuemFalarVisitanteActionPerformed(evt);
             }
         });
-        jPanel12.add(comQuemFalarVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 139, -1));
+        jPanel12.add(comQuemFalarVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 139, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Crachá"));
 
@@ -672,69 +667,64 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ferramentas_adm_visitante)
-                                .addGap(5, 5, 5)
-                                .addComponent(sair_button))
-                            .addComponent(jScrollPane5))
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(novoVisitante))
-                            .addComponent(redefinirVisitante)
-                            .addComponent(salvarVisitante)
-                            .addComponent(associarVeiculo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3)))))
+                    .addComponent(novoVisitante)
+                    .addComponent(redefinirVisitante)
+                    .addComponent(salvarVisitante)
+                    .addComponent(associarVeiculo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(498, 498, 498)
+                .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1326, 1326, 1326)
+                .addComponent(ferramentas_adm_visitante)
+                .addGap(5, 5, 5)
+                .addComponent(sair_button)
+                .addGap(0, 6, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane5)
+                .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(763, 763, 763))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(ferramentas_adm_visitante))
-                                    .addComponent(sair_button))
-                                .addGap(5, 5, 5)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(novoVisitante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
                                 .addComponent(redefinirVisitante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
                                 .addComponent(salvarVisitante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
                                 .addComponent(associarVeiculo)))
-                        .addGap(13, 13, 13))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(6, 6, 6)
+                .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(ferramentas_adm_visitante))
+                    .addComponent(sair_button))
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {novoVisitante, redefinirVisitante, salvarVisitante});
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
 
@@ -772,7 +762,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(listaPesquisaSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 100));
 
-        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
+        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(postoGraduacaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
 
         jLabel11.setText("Posto/Graduação:");
@@ -785,7 +775,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel13.setText("Seção:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel4.add(sessaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 400, -1));
 
         jLabel14.setText("Motivo de Saída:");
@@ -931,8 +921,8 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(43, 43, 43))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)))
+                        .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2)
@@ -982,7 +972,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(listaPesquisaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 90));
 
-        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
+        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
         jPanel9.add(postoGraduacaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 120, -1));
 
         jLabel18.setText("Posto/Graduação:");
@@ -995,7 +985,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel20.setText("Seção:");
         jPanel9.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel9.add(sessaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 400, -1));
 
         jLabel21.setText("Motivo de Entrada:");
