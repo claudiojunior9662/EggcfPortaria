@@ -82,7 +82,7 @@ public class Cadastro extends javax.swing.JFrame {
             webcam_found = false;
         }
         
-        readJTable();
+        atualizaTabelaVisitantes();
         readJTable_controle();
         readJTable_controlef();
         
@@ -104,6 +104,7 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialVisitantes();
         estadoInicialSaida();
         estadoInicialEntrada();
+        System.out.println(webcam_found);
         
 }
 
@@ -122,8 +123,6 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         salvarVisitante = new javax.swing.JButton();
         redefinirVisitante = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabelaVisitantes = new javax.swing.JTable();
         definirHorarioSaidaVisitantes = new javax.swing.JButton();
         novoVisitante = new javax.swing.JButton();
         ferramentas_adm_visitante = new javax.swing.JButton();
@@ -133,7 +132,7 @@ public class Cadastro extends javax.swing.JFrame {
         associarVeiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        listaPesquisaVisitantes = new javax.swing.JList<String>();
+        listaPesquisaVisitantes = new javax.swing.JList<>();
         nomeCompletoVisitante = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         pesquisaRegistroVisitantes = new javax.swing.JTextField();
@@ -141,7 +140,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         numeroDocumentoVisitante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tipoDocumentoVisitante = new javax.swing.JComboBox<String>();
+        tipoDocumentoVisitante = new javax.swing.JComboBox<>();
         civil = new javax.swing.JRadioButton();
         militar = new javax.swing.JRadioButton();
         txtVisitante = new javax.swing.JLabel();
@@ -176,19 +175,21 @@ public class Cadastro extends javax.swing.JFrame {
         fotoVisitante = new javax.swing.JLabel();
         iniciarVideoRegistroVisitantes = new javax.swing.JButton();
         capturarVideoRegistroVisitantes = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaVisitantes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         definirHorarioEntradaSaida = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         txt_info2 = new javax.swing.JTextPane();
         ferramentas_adm_controle_saida = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        listaPesquisaSaida = new javax.swing.JList<String>();
-        postoGraduacaoSaida = new javax.swing.JComboBox<String>();
+        listaPesquisaSaida = new javax.swing.JList<>();
+        postoGraduacaoSaida = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nomeGuerraSaida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        sessaoSaida = new javax.swing.JComboBox<String>();
+        sessaoSaida = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         motivoSaida = new javax.swing.JTextField();
         pesquisaSaida = new javax.swing.JTextField();
@@ -197,25 +198,25 @@ public class Cadastro extends javax.swing.JFrame {
         capturarVideoSaida = new javax.swing.JButton();
         iniciarVideoSaida = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaSaida = new javax.swing.JTable();
         sair_controle = new javax.swing.JButton();
         redefinirSaida = new javax.swing.JButton();
         salvarSaida = new javax.swing.JButton();
         novoSaida = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaSaida = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         definirHorarioEntradaEntrada = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         txt_info3 = new javax.swing.JTextPane();
         ferramentas_adm_controle_entrada = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        listaPesquisaEntrada = new javax.swing.JList<String>();
-        postoGraduacaoEntrada = new javax.swing.JComboBox<String>();
+        listaPesquisaEntrada = new javax.swing.JList<>();
+        postoGraduacaoEntrada = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         nomeGuerraEntrada = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        sessaoEntrada = new javax.swing.JComboBox<String>();
+        sessaoEntrada = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         motivoEntrada = new javax.swing.JTextField();
         pesquisaEntrada = new javax.swing.JTextField();
@@ -223,12 +224,12 @@ public class Cadastro extends javax.swing.JFrame {
         fotoEntrada = new javax.swing.JLabel();
         iniciarVideoEntrada = new javax.swing.JButton();
         capturarVideoEntrada = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tabelaEntrada = new javax.swing.JTable();
         sair_controle1 = new javax.swing.JButton();
         novoEntrada = new javax.swing.JButton();
         redefinirEntrada = new javax.swing.JButton();
         salvarEntrada = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaEntrada = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EGGCF Portaria");
@@ -259,39 +260,6 @@ public class Cadastro extends javax.swing.JFrame {
                 redefinirVisitanteActionPerformed(evt);
             }
         });
-
-        tabelaVisitantes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Crachá", "Nome ", "Tipo Doc", "Nº", "Destino", "Com Quem Falar", "Tel", "Tipo Visitante", "Data", "Hora Entrada", "Hora Saída"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabelaVisitantes.setToolTipText("");
-        tabelaVisitantes.setPreferredSize(new java.awt.Dimension(0, 0));
-        tabelaVisitantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaVisitantesMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tabelaVisitantes);
 
         definirHorarioSaidaVisitantes.setText("Definir horário de saída");
         definirHorarioSaidaVisitantes.addActionListener(new java.awt.event.ActionListener() {
@@ -376,7 +344,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel2.setText("Número Documento:");
         jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
-        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
+        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
         tipoDocumentoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoDocumentoVisitanteActionPerformed(evt);
@@ -386,7 +354,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         buttonGroup1.add(civil);
         civil.setText("Civil");
-        jPanel12.add(civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
+        jPanel12.add(civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         buttonGroup1.add(militar);
         militar.setText("Militar");
@@ -424,7 +392,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel12.add(destinoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 139, -1));
 
-        jLabel4.setText("Com quem deseja falar:");
+        jLabel4.setText("Com Quem Falar:");
         jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         comQuemFalarVisitante.addActionListener(new java.awt.event.ActionListener() {
@@ -561,7 +529,7 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(c1)
@@ -639,7 +607,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel12.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+        jPanel12.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 250, -1));
 
         fotoVisitante.setBackground(new java.awt.Color(0, 0, 0));
         fotoVisitante.setOpaque(true);
@@ -663,65 +631,85 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel12.add(capturarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, 38));
 
+        tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Crachá", "Nome", "Tipo Doc", "Nº", "Destino", "Com Quem Falar", "Telefone", "Tipo", "Data", "Hora Entrada", "Hora Saída"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaVisitantes.setPreferredSize(null);
+        tabelaVisitantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaVisitantesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaVisitantes);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ferramentas_adm_visitante)
+                        .addGap(5, 5, 5)
+                        .addComponent(sair_button))
+                    .addComponent(jScrollPane5))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(novoVisitante)
                     .addComponent(redefinirVisitante)
                     .addComponent(salvarVisitante)
                     .addComponent(associarVeiculo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(498, 498, 498)
-                .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1326, 1326, 1326)
-                .addComponent(ferramentas_adm_visitante)
-                .addGap(5, 5, 5)
-                .addComponent(sair_button)
-                .addGap(0, 6, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane5)
-                .addGap(6, 6, 6))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE))
+                .addGap(7, 7, 7))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(novoVisitante)
-                                .addGap(6, 6, 6)
-                                .addComponent(redefinirVisitante)
-                                .addGap(6, 6, 6)
-                                .addComponent(salvarVisitante)
-                                .addGap(6, 6, 6)
-                                .addComponent(associarVeiculo)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(novoVisitante)
+                        .addGap(6, 6, 6)
+                        .addComponent(redefinirVisitante)
+                        .addGap(6, 6, 6)
+                        .addComponent(salvarVisitante)
+                        .addGap(6, 6, 6)
+                        .addComponent(associarVeiculo))
+                    .addComponent(jScrollPane1))
                 .addGap(6, 6, 6)
                 .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(ferramentas_adm_visitante))
                     .addComponent(sair_button))
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13))
         );
@@ -762,7 +750,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(listaPesquisaSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 100));
 
-        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB" }));
+        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(postoGraduacaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
 
         jLabel11.setText("Posto/Graduação:");
@@ -775,7 +763,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel13.setText("Seção:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel4.add(sessaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 400, -1));
 
         jLabel14.setText("Motivo de Saída:");
@@ -819,30 +807,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(iniciarVideoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, 38));
 
-        tabelaSaida.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Posto/Grad", "Nome de Guerra", "Sessão", "Data", "Horário Saída", "Horário Entrada", "Motivo Saída"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabelaSaida.setPreferredSize(new java.awt.Dimension(1070, 0));
-        tabelaSaida.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaSaidaMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tabelaSaida);
-
         sair_controle.setText("Sair");
         sair_controle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -874,35 +838,60 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        tabelaSaida.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Posto/Grad", "Nome de Guerra", "Seção", "Data", "Horário Saída", "Horário Entrada", "Motivo Saída"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaSaida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaSaidaMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tabelaSaida);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(novoSaida)
-                    .addComponent(redefinirSaida)
-                    .addComponent(salvarSaida))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel9)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(ferramentas_adm_controle_saida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sair_controle))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1568, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ferramentas_adm_controle_saida)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sair_controle))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(novoSaida)
+                                    .addComponent(redefinirSaida)
+                                    .addComponent(salvarSaida))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE))))))
+                .addGap(10, 10, 10))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -911,28 +900,30 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(novoSaida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(redefinirSaida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(salvarSaida))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)))
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(novoSaida)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(redefinirSaida)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(salvarSaida)))
+                                .addGap(20, 20, 20)))
+                        .addGap(81, 81, 81))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ferramentas_adm_controle_saida)
-                    .addComponent(sair_controle))
-                .addGap(5, 5, 5)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ferramentas_adm_controle_saida)
+                            .addComponent(sair_controle))
+                        .addGap(5, 5, 5)))
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -972,7 +963,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(listaPesquisaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 90));
 
-        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
+        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
         jPanel9.add(postoGraduacaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 120, -1));
 
         jLabel18.setText("Posto/Graduação:");
@@ -985,7 +976,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel20.setText("Seção:");
         jPanel9.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel9.add(sessaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 400, -1));
 
         jLabel21.setText("Motivo de Entrada:");
@@ -1029,29 +1020,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(capturarVideoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, 38));
 
-        tabelaEntrada.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Posto/Grad", "Nome de Guerra", "Sessão", "Data", "Horário Entrada", "Horário Saída", "Motivo Saída"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabelaEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaEntradaMouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(tabelaEntrada);
-
         sair_controle1.setText("Sair");
         sair_controle1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1083,33 +1051,55 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        tabelaEntrada.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Posto/Grad", "Nome De Guerra", "Seção", "Data", "Horário Entrada", "Horário Saída", "Motivo Saída"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaEntradaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabelaEntrada);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane7)
-                .addContainerGap())
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ferramentas_adm_controle_entrada)
-                        .addGap(6, 6, 6)
-                        .addComponent(sair_controle1)
-                        .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane7)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(novoEntrada)
-                            .addComponent(redefinirEntrada)
-                            .addComponent(salvarEntrada))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)))))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(novoEntrada)
+                                    .addComponent(redefinirEntrada)
+                                    .addComponent(salvarEntrada))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(ferramentas_adm_controle_entrada)
+                                .addGap(6, 6, 6)
+                                .addComponent(sair_controle1)))))
+                .addGap(15, 15, 15))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1117,14 +1107,13 @@ public class Cadastro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ferramentas_adm_controle_entrada)
-                            .addComponent(sair_controle1))
-                        .addGap(6, 6, 6))
+                            .addComponent(sair_controle1)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1134,7 +1123,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(salvarEntrada))
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 26, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1143,7 +1132,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1);
 
-        setBounds(0, 0, 1622, 857);
+        setBounds(0, 0, 1422, 857);
     }// </editor-fold>//GEN-END:initComponents
 
     private void definirHorarioEntradaSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaSaidaActionPerformed
@@ -1178,7 +1167,7 @@ public class Cadastro extends javax.swing.JFrame {
             int id = selected.indexOf(" ");
             String grad_posto = selected.substring(0,id);
             String nome_guerra = selected.substring(id+1);
-            ResultadoPesquisa_controle(grad_posto, nome_guerra);
+            ResultadoPesquisaSaida(grad_posto, nome_guerra);
         } catch (SQLException ex) {
             System.err.println("Erro1");
         } catch (IOException ex) {
@@ -1193,22 +1182,6 @@ public class Cadastro extends javax.swing.JFrame {
         capturarVideoSaida.setEnabled(false);
         motivoSaida.setEnabled(false);
     }//GEN-LAST:event_listaPesquisaSaidaMouseClicked
-
-    private void tabelaSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSaidaMouseClicked
-        try {
-            Integer id2 = (Integer) tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(),0);
-            controleDAO cdao = new controleDAO();
-            if(tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 6).equals("")){
-                definirHorarioEntradaSaida.setEnabled(true);
-            }else{
-                definirHorarioEntradaSaida.setEnabled(false);
-            }
-            ControleExpedienteBEAN retorno = cdao.buscaImg_controle(id2);
-            exibirImagemLabel(retorno.getImagem(),fotoSaida);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_tabelaSaidaMouseClicked
 
     private void pesquisaSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaSaidaActionPerformed
         listaPesquisaSaida.setVisible(false);
@@ -1257,7 +1230,7 @@ public class Cadastro extends javax.swing.JFrame {
             int id = selected.indexOf(" ");
             String grad_posto = selected.substring(0,id);
             String nome_guerra = selected.substring(id+1);
-            ResultadoPesquisa_controlef(grad_posto, nome_guerra);
+            ResultadoPesquisaEntrada(grad_posto, nome_guerra);
         }catch (IOException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1270,22 +1243,6 @@ public class Cadastro extends javax.swing.JFrame {
         capturarVideoEntrada.setEnabled(false);
         motivoEntrada.setEnabled(false);
     }//GEN-LAST:event_listaPesquisaEntradaMouseClicked
-
-    private void tabelaEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEntradaMouseClicked
-        try {
-            Integer id2 = (Integer) tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(),0);
-            controlefDAO cfdao = new controlefDAO();
-            if(tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(), 6).equals("")){
-                definirHorarioEntradaEntrada.setEnabled(true);
-            }else{
-                definirHorarioEntradaEntrada.setEnabled(false);
-            }
-            ControleForaExpedienteBEAN retorno = cfdao.buscaImg_controlef(id2);
-            exibirImagemLabel(retorno.getImagem(),fotoEntrada);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_tabelaEntradaMouseClicked
 
     private void pesquisaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaEntradaActionPerformed
         listaPesquisaSaida.setVisible(false);
@@ -1417,7 +1374,7 @@ public class Cadastro extends javax.swing.JFrame {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        readJTable();
+        atualizaTabelaVisitantes();
         definirHorarioSaidaVisitantes.setEnabled(false);
         txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
         try {
@@ -1426,22 +1383,6 @@ public class Cadastro extends javax.swing.JFrame {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_definirHorarioSaidaVisitantesActionPerformed
-
-    private void tabelaVisitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVisitantesMouseClicked
-        try {
-            Integer id = (Integer) tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(),0);
-            cadastroDAO dao = new cadastroDAO();
-            if(tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(), 11) == null){
-                definirHorarioSaidaVisitantes.setEnabled(true);
-            }else{
-                definirHorarioSaidaVisitantes.setEnabled(false);
-            }
-            CadastroBEAN retorno = dao.buscaImg(id);
-            exibirImagemLabel(retorno.getFoto(),fotoVisitante);
-        } catch (SQLException ex) {
-            System.err.println("Erro tableMouseClicked!");
-        }
-    }//GEN-LAST:event_tabelaVisitantesMouseClicked
 
     private void capturarVideoRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturarVideoRegistroVisitantesActionPerformed
         try {
@@ -1534,6 +1475,12 @@ public class Cadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
             return;
         }else if(webcam_found){
+            try {
+                c.setFoto(getImgBytes(imageArrayVisitantes));
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(redefinirVisitantesAux == 1 && imageArrayVisitantes != null){
             try {
                 c.setFoto(getImgBytes(imageArrayVisitantes));
             } catch (IOException ex) {
@@ -1673,7 +1620,7 @@ public class Cadastro extends javax.swing.JFrame {
         dao.create(c);
         //----------------------------------------------------------------------
         //FAZ UPDATE NA TABELA VISITANTES---------------------------------------
-        readJTable();
+        atualizaTabelaVisitantes();
         //----------------------------------------------------------------------
         //CHAMA NOVO ESTADO DA TELA---------------------------------------------
         estadoInicialVisitantes();
@@ -1714,7 +1661,7 @@ public class Cadastro extends javax.swing.JFrame {
         listaPesquisaVisitantes.setVisible(false);   
         estadoInicialVisitantes();
         try {
-                ResultadoPesquisa();
+                ResultadoPesquisaVisistantes();
         } catch (SQLException ex) {
                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -1751,11 +1698,11 @@ public class Cadastro extends javax.swing.JFrame {
         if((hora >= 900 & hora <= 1700) & day != 6 & day != 7 & day != 1 ) {
             c.setData(sdf.format(new Date()));
             c.setHora_saida(sdh.format(new Date()));
-            c.setHora_entrada("");
+            c.setHora_entrada(null);
         }else if((day == 6) & (hora >= 800 & hora <= 1200)){
             c.setData(sdf.format(new Date()));
             c.setHora_saida(sdh.format(new Date()));
-            c.setHora_entrada("");
+            c.setHora_entrada(null);
         }else{
             JOptionPane.showMessageDialog(null, "Registro fora do horário de expediente.\n");
             return;
@@ -1797,7 +1744,13 @@ public class Cadastro extends javax.swing.JFrame {
             try {
                 c.setImagem(getImgBytes(imageArraySaida));
             } catch (IOException ex) {
-
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(redefinirSaidaAux == 1 && imageArraySaida != null){
+            try {
+                c.setImagem(getImgBytes(imageArraySaida));
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
@@ -1885,15 +1838,15 @@ public class Cadastro extends javax.swing.JFrame {
         if((hora > 1700 || hora < 900) & day != 6) {
             cf.setData(sdf.format(new Date()));
             cf.setHora_entrada(sdh.format(new Date()));
-            cf.setHora_saida("");
+            cf.setHora_saida(null);
         }else if((day == 6) & (hora > 1200 || hora < 800)){
             cf.setData(sdf.format(new Date()));
             cf.setHora_entrada(sdh.format(new Date()));
-            cf.setHora_saida("");
+            cf.setHora_saida(null);
         }else if(day == 7 || day == 1){
              cf.setData(sdf.format(new Date()));
             cf.setHora_entrada(sdh.format(new Date()));
-            cf.setHora_saida("");
+            cf.setHora_saida(null);
         }else{
             JOptionPane.showMessageDialog(null, "Registro dentro do horário de expediente.\n");
             return;
@@ -1931,13 +1884,18 @@ public class Cadastro extends javax.swing.JFrame {
         if(imageArrayEntrada == null && webcam_found == true){
             JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
             return;
-        }else if(webcam_found == true){
+        }else if(webcam_found){
             try {
                 cf.setImagem(getImgBytes(imageArrayEntrada));
             } catch (IOException ex) {
-
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+        }else if(redefinirEntradaAux == 1 && imageArrayEntrada != null){
+            try {
+                cf.setImagem(getImgBytes(imageArrayEntrada));
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
         }
@@ -1958,7 +1916,7 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialEntrada();
         //----------------------------------------------------------------------
         //ATUALIZA AS OBSERVAÇÕES-----------------------------------------------
-        if(webcam_found = true){
+        if(webcam_found == true){
             txt_info3.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + 
                 "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + 
                 " " + sdh.format(new Date()) + 
@@ -1998,6 +1956,54 @@ public class Cadastro extends javax.swing.JFrame {
             }
         }.start();
     }//GEN-LAST:event_capturarVideoEntradaActionPerformed
+
+    private void tabelaVisitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVisitantesMouseClicked
+        try {
+            Integer id2 = (Integer) tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(),0);
+            cadastroDAO cfdao = new cadastroDAO();
+            if(tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(), 11) == null){
+                definirHorarioSaidaVisitantes.setEnabled(true);
+            }else{
+                definirHorarioSaidaVisitantes.setEnabled(false);
+            }
+            CadastroBEAN retorno = cfdao.buscaImg(id2);
+            exibirImagemLabel(retorno.getFoto(), fotoVisitante);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tabelaVisitantesMouseClicked
+
+    private void tabelaEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEntradaMouseClicked
+        try {
+            Integer id2 = (Integer) tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(),0);
+            controlefDAO cfdao = new controlefDAO();
+            if(tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(), 6) == null){
+                definirHorarioEntradaEntrada.setEnabled(true);
+            }else{
+                definirHorarioEntradaEntrada.setEnabled(false);
+            }
+            ControleForaExpedienteBEAN retorno = cfdao.buscaImagemEntrada(id2);
+            exibirImagemLabel(retorno.getImagem(),fotoEntrada);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tabelaEntradaMouseClicked
+
+    private void tabelaSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSaidaMouseClicked
+        try {
+            Integer id2 = (Integer) tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(),0);
+            controlefDAO cfdao = new controlefDAO();
+            if(tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 6) == null){
+                definirHorarioEntradaSaida.setEnabled(true);
+            }else{
+                definirHorarioEntradaSaida.setEnabled(false);
+            }
+            ControleForaExpedienteBEAN retorno = cfdao.buscaImagemEntrada(id2);
+            exibirImagemLabel(retorno.getImagem(),fotoSaida);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tabelaSaidaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2107,9 +2113,9 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -2145,7 +2151,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> sessaoSaida;
     private javax.swing.JTable tabelaEntrada;
     private javax.swing.JTable tabelaSaida;
-    public static javax.swing.JTable tabelaVisitantes;
+    private javax.swing.JTable tabelaVisitantes;
     public static javax.swing.JFormattedTextField telefoneVisitante;
     public static javax.swing.JComboBox<String> tipoDocumentoVisitante;
     private javax.swing.JLabel txtVisitante;
@@ -2482,7 +2488,7 @@ public class Cadastro extends javax.swing.JFrame {
     
     
     
-    public void readJTable(){
+    public void atualizaTabelaVisitantes(){
         SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
         DefaultTableModel modelo = (DefaultTableModel) tabelaVisitantes.getModel();
         modelo.setNumRows(0);
@@ -2503,7 +2509,7 @@ public class Cadastro extends javax.swing.JFrame {
                 c.getHoraE(),
                 c.getHoraS()});
         }
-        corTabela();
+        corTabelaVisitantes();
     }
     
     public void readJTable_controle(){
@@ -2523,7 +2529,7 @@ public class Cadastro extends javax.swing.JFrame {
                 c.getHora_entrada(),
                 c.getMotivo_saida()});
         }
-        corTabela_controle();
+        corTabelaSaida();
     }
     
     public void readJTable_controlef(){
@@ -2543,7 +2549,7 @@ public class Cadastro extends javax.swing.JFrame {
                 cf.getHora_saida(),
                 cf.getMotivo_entrada()});
         }
-        corTabela_controlef();
+        corTabelaEntrada();
     }
     
     public void INICIALIZA(){
@@ -2600,7 +2606,7 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }
     
-    public void corTabela(){
+    public void corTabelaVisitantes(){
         tabelaVisitantes.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -2621,8 +2627,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
     }
     
-    public void corTabela_controle(){
-        String CLASS = "";
+    public void corTabelaSaida(){
         tabelaSaida.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -2632,7 +2637,7 @@ public class Cadastro extends javax.swing.JFrame {
             //***********************
             Color c = Color.WHITE;
             Object texto = table.getValueAt(row,6);
-            if(texto != null && CLASS.equals(texto.toString()))
+            if(texto == null)
                 c = Color.RED;
             label.setBackground(c);
             tabelaSaida.setSelectionForeground(Color.BLUE);
@@ -2643,8 +2648,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
     }
     
-    public void corTabela_controlef(){
-        String CLASS = "";
+    public void corTabelaEntrada(){
         tabelaEntrada.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -2654,7 +2658,7 @@ public class Cadastro extends javax.swing.JFrame {
             //***********************
             Color c = Color.WHITE;
             Object texto = table.getValueAt(row,6);
-            if(texto != null && CLASS.equals(texto.toString()))
+            if(texto == null)
                 c = Color.RED;
             label.setBackground(c);
             tabelaEntrada.setSelectionForeground(Color.BLUE);
@@ -2744,7 +2748,7 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }
     
-    public void ResultadoPesquisa() throws SQLException, IOException{
+    public void ResultadoPesquisaVisistantes() throws SQLException, IOException{
         String tipo_doc;
         String tipo_v;
         cadastroDAO dao = new cadastroDAO();
@@ -2762,15 +2766,20 @@ public class Cadastro extends javax.swing.JFrame {
             }if(tipo_v.equals("Fornecedor")){
                 fornecedor.setSelected(true);
             }
-            exibirImagemLabel(c.getFoto(), fotoVisitante);
-            InputStream input = new ByteArrayInputStream(c.getFoto());
-            BufferedImage imagem = ImageIO.read(input);
-            imageArrayVisitantes = imagem;
+            if(c.getFoto() == null){
+                fotoVisitante.setIcon(null);
+                imageArrayVisitantes = null;
+            }else{
+                exibirImagemLabel(c.getFoto(), fotoVisitante);
+                InputStream input = new ByteArrayInputStream(c.getFoto());
+                BufferedImage imagem = ImageIO.read(input);
+                imageArrayVisitantes = imagem; 
+            }
         }
         redefinirVisitante.setEnabled(true);
     }
     
-    public void ResultadoPesquisa_controle(String grad_posto, String nome_guerra) throws SQLException, IOException{
+    public void ResultadoPesquisaSaida(String grad_posto, String nome_guerra) throws SQLException, IOException{
         String posto_grad;
         String sessao;
         controleDAO cdao = new controleDAO();
@@ -2780,15 +2789,20 @@ public class Cadastro extends javax.swing.JFrame {
             sessao = c.getSessao();
             postoGraduacaoSaida.setSelectedItem(posto_grad);
             sessaoSaida.setSelectedItem(sessao);
-            exibirImagemLabel(c.getImagem(),fotoSaida);
-            InputStream input = new ByteArrayInputStream(c.getImagem());
-            BufferedImage imagem = ImageIO.read(input);
-            imageArraySaida = imagem;
+            if(c.getImagem() == null){
+                fotoSaida.setIcon(null);
+                imageArraySaida = null;
+            }else{
+                exibirImagemLabel(c.getImagem(),fotoSaida);
+                InputStream input = new ByteArrayInputStream(c.getImagem());
+                BufferedImage imagem = ImageIO.read(input);
+                imageArraySaida = imagem;
+            }
         }
         listaPesquisaSaida.setVisible(false);
     }
     
-    public void ResultadoPesquisa_controlef(String grad_posto, String nome_guerra) throws IOException{
+    public void ResultadoPesquisaEntrada(String grad_posto, String nome_guerra) throws IOException{
         String posto_grad;
         String sessao;
         controlefDAO cfdao = new controlefDAO();
@@ -2798,10 +2812,16 @@ public class Cadastro extends javax.swing.JFrame {
             sessao = cf.getSessao();
             postoGraduacaoEntrada.setSelectedItem(posto_grad);
             sessaoEntrada.setSelectedItem(sessao);
-            exibirImagemLabel(cf.getImagem(),fotoEntrada);
-            InputStream input = new ByteArrayInputStream(cf.getImagem());
-            BufferedImage imagem = ImageIO.read(input);
-            imageArrayEntrada = imagem;
+            if(cf.getImagem() == null){
+                fotoEntrada.setIcon(null);
+                imageArrayEntrada = null;
+            }else{
+                exibirImagemLabel(cf.getImagem(),fotoEntrada);
+                InputStream input = new ByteArrayInputStream(cf.getImagem());
+                BufferedImage imagem = ImageIO.read(input);
+                imageArrayEntrada = imagem;
+            }
+            
         }
         listaPesquisaEntrada.setVisible(false);
     }

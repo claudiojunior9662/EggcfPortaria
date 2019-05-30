@@ -104,7 +104,7 @@ public class controlefDAO {
             return controlev;
         }
     
-    public ControleForaExpedienteBEAN buscaImg_controlef(Integer id) throws SQLException{
+    public ControleForaExpedienteBEAN buscaImagemEntrada(Integer id) throws SQLException{
             ControleForaExpedienteBEAN retorno2 = null;
             Connection con = ConnectionFactory.getConnection();
             String sql = "SELECT id,imagem FROM controlef_saida WHERE id = ?";

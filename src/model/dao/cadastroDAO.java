@@ -59,8 +59,8 @@ public class cadastroDAO {
             stmt.setString(16, c.getPlaca_veiculo());
             
             stmt.executeUpdate();
+            stmt.close();
             
-             
            JOptionPane.showMessageDialog(null,"Salvo com sucesso!");  
         } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null,"Erro ao salvar:"+ex);
@@ -107,8 +107,8 @@ public class cadastroDAO {
                     c.setHoraE(rs.getString("HoraE"));
                     c.setHoraS(rs.getString("HoraS"));
                     cadastrov.add(c);
-                    
                 }
+                stmt.close();
             }catch(SQLException ex){
                 System.err.println("Não foi possível atualizar a tabela! "+ex);
             }finally{
@@ -146,6 +146,7 @@ public class cadastroDAO {
                     retorno.setId(rs.getInt("id"));
                     retorno.setFoto(rs.getBytes("imagem"));
                 }
+                stmt.close();
             }catch(SQLException e){
                     retorno = null;
             }finally{
@@ -168,6 +169,7 @@ public class cadastroDAO {
                 if(rs.next()){
                     retorno = true;
                 }
+                stmt.close();
             }catch(SQLException e){
                 retorno = false;
             }finally{
@@ -189,6 +191,7 @@ public class cadastroDAO {
                 if(rs.next()){
                     retorno = true;
                 }
+                stmt.close();
             }catch(SQLException e){
                 retorno = false;
             }finally{
@@ -219,6 +222,7 @@ public class cadastroDAO {
                     c.setComquemFalar(rs.getString("ComquemFalar"));
                     cadastrov.add(c);
                 }
+                stmt.close();
             }catch(SQLException ex){
                 System.err.println("Erro ao buscar data no banco!"+ex);
             }finally{
@@ -249,6 +253,7 @@ public class cadastroDAO {
                     c.setNomeCompleto(rs.getString("NomeCompleto"));
                     cadastrov.add(c);
                 }
+                stmt.close();
             }catch(SQLException ex){
                 System.err.println("Erro ao buscar data no banco!"+ex);
             }finally{
@@ -288,6 +293,7 @@ public class cadastroDAO {
                     c.setFoto(rs.getBytes("imagem"));
                     cadastrov.add(c);
                 }
+                stmt.close();
             }catch(SQLException ex){
                 System.err.println("Erro ao preencher pesquisa!"+ex);
             }finally{
@@ -308,6 +314,7 @@ public class cadastroDAO {
                 if(rs.next()){
                     retorno = true;
                 }
+                stmt.close();
             }catch(SQLException e){
                 retorno = false;
             }finally{
@@ -328,6 +335,7 @@ public class cadastroDAO {
                 if(rs.next()){
                     retorno = true;
                 }
+                stmt.close();
             }catch(SQLException e){
                 retorno = false;
             }finally{
