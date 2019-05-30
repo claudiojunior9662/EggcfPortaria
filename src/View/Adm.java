@@ -355,6 +355,12 @@ public class Adm extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
         }
+        
+        try {
+            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        }
     }
     
     public void emiteRelatorioForaExpediente(){
@@ -466,6 +472,13 @@ public class Adm extends javax.swing.JFrame {
             } catch (IOException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente"+sdf.format(this.data_rel.getDate())+".pdf"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        }
+        
     }
     
     public void emiteRelatorioHorarioExpediente(){
@@ -578,6 +591,12 @@ public class Adm extends javax.swing.JFrame {
             } catch (IOException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_CB-SD"+sdf.format(this.data_rel.getDate())+".pdf"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        }
     }
     
     public void emiteRelatorioVisitantes(){
@@ -681,6 +700,12 @@ public class Adm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!  " + ex);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
+        }
+        
+        try {
+            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Visitantes"+sdf.format(this.data_rel.getDate())+".pdf"));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
         }
     }
     
