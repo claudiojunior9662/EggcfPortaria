@@ -1078,14 +1078,13 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane7)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(novoEntrada)
@@ -1095,10 +1094,12 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(ferramentas_adm_controle_entrada)
                                 .addGap(6, 6, 6)
-                                .addComponent(sair_controle1)))))
+                                .addComponent(sair_controle1))))
+                    .addComponent(jScrollPane7))
                 .addGap(15, 15, 15))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1110,10 +1111,11 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ferramentas_adm_controle_entrada)
-                            .addComponent(sair_controle1)))
+                            .addComponent(sair_controle1))
+                        .addGap(6, 6, 6))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1786,6 +1788,23 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarSaidaActionPerformed
 
     private void capturarVideoSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturarVideoSaidaActionPerformed
+        try {
+            ByteArrayOutputStream buff = new ByteArrayOutputStream();
+            ImageIO.write(WEBCAM.getImage(), "JPEG", buff);
+            byte[] bytes = buff.toByteArray();
+
+            ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+            BufferedImage imagem = ImageIO.read(is);
+
+            int nova_largura = fotoSaida.getWidth(), nova_altura = fotoSaida.getHeight();
+            BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = new_img.createGraphics();
+            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            imageArraySaida = new_img;
+        } catch (IOException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         new Thread(){
             public void run(){
                 WEBCAM.close();
@@ -1948,6 +1967,23 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarVideoEntradaActionPerformed
 
     private void capturarVideoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturarVideoEntradaActionPerformed
+        try {
+            ByteArrayOutputStream buff = new ByteArrayOutputStream();
+            ImageIO.write(WEBCAM.getImage(), "JPEG", buff);
+            byte[] bytes = buff.toByteArray();
+
+            ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+            BufferedImage imagem = ImageIO.read(is);
+
+            int nova_largura = fotoEntrada.getWidth(), nova_altura = fotoEntrada.getHeight();
+            BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = new_img.createGraphics();
+            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            imageArrayEntrada = new_img;
+        } catch (IOException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         new Thread(){
             public void run(){
                 WEBCAM.close();
