@@ -2028,13 +2028,13 @@ public class Cadastro extends javax.swing.JFrame {
     private void tabelaSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSaidaMouseClicked
         try {
             Integer id2 = (Integer) tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(),0);
-            controlefDAO cfdao = new controlefDAO();
+            controleDAO cdao = new controleDAO();
             if(tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 6) == null){
                 definirHorarioEntradaSaida.setEnabled(true);
             }else{
                 definirHorarioEntradaSaida.setEnabled(false);
             }
-            ControleForaExpedienteBEAN retorno = cfdao.buscaImagemEntrada(id2);
+            ControleExpedienteBEAN retorno = cdao.buscaImg_controle(id2);
             exibirImagemLabel(retorno.getImagem(),fotoSaida);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
