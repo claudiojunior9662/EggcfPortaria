@@ -456,7 +456,7 @@ public class Adm extends javax.swing.JFrame {
                     table.addCell(c9);
                     table.addCell(c10);
                     table.addCell(c11);
-                    if(cf.getHora_saida().equals(null)){
+                    if(cf.getHora_saida() == null){
                         table.addCell("");
                     }else{
                         PdfPCell c12 = new PdfPCell(new Phrase(cf.getHora_saida(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
