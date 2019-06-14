@@ -58,7 +58,6 @@ public class Adm extends javax.swing.JFrame {
             iniciarServico.setEnabled(false);
             finalizarServico.setEnabled(true);
         }
-        System.out.println(retorno);
     }
 
     /**
@@ -232,9 +231,9 @@ public class Adm extends javax.swing.JFrame {
     public static javax.swing.JButton iniciarServico;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public boolean verifica_dir(String path){
+    public boolean verifica_dir(String data){
         boolean retorno = false;
-        File dir = new File(path);
+        File dir = new File("relatorios_portaria2/" + data);
         if(!dir.exists()){
             retorno = false;
         }else{
@@ -243,9 +242,9 @@ public class Adm extends javax.swing.JFrame {
         return retorno;
     }
     
-    public void cria_dir(String path){
+    public void cria_dir(String data){
         try{
-            File dir = new File(path);
+            File dir = new File("relatorios_portaria2/" + data);
             dir.mkdir();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao criar o diretorio");
@@ -254,7 +253,7 @@ public class Adm extends javax.swing.JFrame {
     
     public void emiteRelatorioVeiculos(){
         SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = sdh.format(this.data_rel.getDate());
+        String dataFormatada = sdh.format(data_rel.getDate());
         cadastroDAO dao = new cadastroDAO();
         try{
             boolean retorno;
@@ -269,20 +268,17 @@ public class Adm extends javax.swing.JFrame {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
-        String path = "relatorios_portaria/" + sdf.format(this.data_rel.getDate());
-
+        
         try{
-            if(verifica_dir(path)){
-                
-            }else{
-                cria_dir(path);
+            if(verifica_dir(dataFormatada) == false){
+                cria_dir(dataFormatada);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro!  " + e);
         }
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("relatorios_portaria2/" + "Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
             document.open();
 
             document.setMargins(20,20,20,20);
@@ -357,7 +353,7 @@ public class Adm extends javax.swing.JFrame {
         }
         
         try {
-            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
+            java.awt.Desktop.getDesktop().open( new File("relatorios_portaria2" + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
         }
