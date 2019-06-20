@@ -204,27 +204,31 @@ public class Adm extends javax.swing.JFrame {
         SimpleDateFormat normalFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatadaPath = pathFormat.format(data_rel.getDate());
         String dataFormatada = normalFormat.format(data_rel.getDate());
+        String caminhoAplicacao = null;
+        String caminho = null;
         
-        String path = "relatorios_portaria/" + dataFormatadaPath;
-        
-        try{
-            if(verifica_dir(path)){
-                
-            }else{
-                cria_dir(path);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro!  " + e);
+        try {
+            caminhoAplicacao = new File(".").getCanonicalPath();
+        } catch (IOException ex) {
+            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        emiteRelatorioVeiculos(dataFormatada, dataFormatadaPath, path);
-        emiteRelatorioForaExpediente(dataFormatada, dataFormatadaPath, path);
-        emiteRelatorioHorarioExpediente(dataFormatada, dataFormatadaPath, path);
-        emiteRelatorioVisitantes(dataFormatada, dataFormatadaPath, path);
+        caminho = caminhoAplicacao + "/relatorios_portaria/" + dataFormatadaPath;
+        
+        try{
+            cria_dir(caminhoAplicacao, dataFormatadaPath);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro!  " + e);
+        }
+        
+        emiteRelatorioVeiculos(dataFormatada, dataFormatadaPath, caminho);
+        emiteRelatorioForaExpediente(dataFormatada, dataFormatadaPath, caminho);
+        emiteRelatorioHorarioExpediente(dataFormatada, dataFormatadaPath, caminho);
+        emiteRelatorioVisitantes(dataFormatada, dataFormatadaPath, caminho);
         
         if(abrePasta.isSelected() == true){
             try {
-                abreDiretorio(path);
+                abreDiretorio(caminho);
             } catch (IOException ex) {
                 Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -286,10 +290,15 @@ public class Adm extends javax.swing.JFrame {
         return retorno;
     }
     
-    public void cria_dir(String path){
+    public void cria_dir(String caminhoAplicacao, String data){
         try{
-            File dir = new File(path);
-            dir.mkdir();
+            if(verifica_dir(caminhoAplicacao + "/relatorios_portaria") == false){
+                File dir = new File(caminhoAplicacao + "/relatorios_portaria");
+                dir.mkdir();
+            }if(verifica_dir(caminhoAplicacao + "/relatorios_portaria/" + data) == false){
+                File dir = new File(caminhoAplicacao + "/relatorios_portaria/" + data);
+                dir.mkdir();
+            }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao criar o diretorio");
         }
@@ -317,7 +326,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance("rel.bmp");
+            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -388,7 +397,7 @@ public class Adm extends javax.swing.JFrame {
         
         if(abreRelatorios.isSelected() == true){
            try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf" + "/Relatorio-Veiculos" + dataFormatadaPath +".pdf"));
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf"));
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
             } 
@@ -422,7 +431,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance("rel.bmp");
+            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -493,7 +502,7 @@ public class Adm extends javax.swing.JFrame {
         
         if(abreRelatorios.isSelected() == true){
            try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf" + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
             } 
@@ -529,7 +538,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance("rel.bmp");
+            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -629,7 +638,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance("rel.bmp");
+            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -710,6 +719,7 @@ public class Adm extends javax.swing.JFrame {
         os = os.toLowerCase();
         if(os.contains("win") && !path.equals("")){
             try{
+                path = path.replace("/", "\\");
                 Runtime.getRuntime().exec("explorer.exe " + path);
             }catch(IOException ex){
                 System.out.println("Falha ao abrir o diretório");

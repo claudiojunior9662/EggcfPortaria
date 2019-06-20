@@ -378,6 +378,7 @@ public class Cadastro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        telefoneVisitante.setToolTipText("COLOCAR O 9º DÍGITO MESMO SE FOR TELEFONE FIXO");
         telefoneVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telefoneVisitanteActionPerformed(evt);
