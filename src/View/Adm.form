@@ -67,6 +67,11 @@
                           <Component id="finalizarServico" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="emitirRelatorios" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="abrePasta" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="abreRelatorios" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -79,7 +84,12 @@
                       <Component id="data_rel" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="emitirRelatorios" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="abrePasta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="abreRelatorios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="iniciarServico" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="finalizarServico" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -126,6 +136,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emitirRelatoriosActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="abrePasta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ABRE PASTA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="abreRelatorios">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ABRE RELAT&#xd3;RIOS"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

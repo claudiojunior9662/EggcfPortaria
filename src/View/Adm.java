@@ -52,12 +52,15 @@ public class Adm extends javax.swing.JFrame {
         PreencheServicoDAO psDAO = new PreencheServicoDAO();
         int retorno = psDAO.verificaServicoEmAberto();
         if(retorno == 0){
-            iniciarServico.setEnabled(true);
+            iniciarServico.setEnabled(false);
             finalizarServico.setEnabled(false);
         }else{
             iniciarServico.setEnabled(false);
-            finalizarServico.setEnabled(true);
+            finalizarServico.setEnabled(false);
         }
+        
+        abreRelatorios.setSelected(false);
+        abrePasta.setSelected(true);
     }
 
     /**
@@ -74,6 +77,8 @@ public class Adm extends javax.swing.JFrame {
         iniciarServico = new javax.swing.JButton();
         finalizarServico = new javax.swing.JButton();
         emitirRelatorios = new javax.swing.JButton();
+        abrePasta = new javax.swing.JCheckBox();
+        abreRelatorios = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
@@ -101,6 +106,10 @@ public class Adm extends javax.swing.JFrame {
             }
         });
 
+        abrePasta.setText("ABRE PASTA");
+
+        abreRelatorios.setText("ABRE RELATÓRIOS");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,7 +123,11 @@ public class Adm extends javax.swing.JFrame {
                         .addComponent(iniciarServico)
                         .addGap(97, 97, 97)
                         .addComponent(finalizarServico))
-                    .addComponent(emitirRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(emitirRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(abrePasta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(abreRelatorios))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +137,11 @@ public class Adm extends javax.swing.JFrame {
                     .addComponent(data_rel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(emitirRelatorios)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(abrePasta)
+                            .addComponent(abreRelatorios))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(iniciarServico)
                             .addComponent(finalizarServico))))
@@ -183,10 +200,35 @@ public class Adm extends javax.swing.JFrame {
     }//GEN-LAST:event_finalizarServicoActionPerformed
 
     private void emitirRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emitirRelatoriosActionPerformed
-        emiteRelatorioVeiculos();
-        emiteRelatorioForaExpediente();
-        emiteRelatorioHorarioExpediente();
-        emiteRelatorioVisitantes();
+        SimpleDateFormat pathFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat normalFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatadaPath = pathFormat.format(data_rel.getDate());
+        String dataFormatada = normalFormat.format(data_rel.getDate());
+        
+        String path = "relatorios_portaria/" + dataFormatadaPath;
+        
+        try{
+            if(verifica_dir(path)){
+                
+            }else{
+                cria_dir(path);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Erro!  " + e);
+        }
+        
+        emiteRelatorioVeiculos(dataFormatada, dataFormatadaPath, path);
+        emiteRelatorioForaExpediente(dataFormatada, dataFormatadaPath, path);
+        emiteRelatorioHorarioExpediente(dataFormatada, dataFormatadaPath, path);
+        emiteRelatorioVisitantes(dataFormatada, dataFormatadaPath, path);
+        
+        if(abrePasta.isSelected() == true){
+            try {
+                abreDiretorio(path);
+            } catch (IOException ex) {
+                Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_emitirRelatoriosActionPerformed
 
     /**
@@ -225,15 +267,17 @@ public class Adm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox abrePasta;
+    private javax.swing.JCheckBox abreRelatorios;
     public static com.toedter.calendar.JCalendar data_rel;
     private javax.swing.JButton emitirRelatorios;
     public static javax.swing.JButton finalizarServico;
     public static javax.swing.JButton iniciarServico;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public boolean verifica_dir(String data){
+    public boolean verifica_dir(String path){
         boolean retorno = false;
-        File dir = new File("relatorios_portaria/" + data);
+        File dir = new File(path);
         if(!dir.exists()){
             retorno = false;
         }else{
@@ -242,22 +286,18 @@ public class Adm extends javax.swing.JFrame {
         return retorno;
     }
     
-    public void cria_dir(String data){
+    public void cria_dir(String path){
         try{
-            File dir = new File("relatorios_portaria/" + data);
-            System.out.println(data);
+            File dir = new File(path);
             dir.mkdir();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Erro ao criar o diretorio");
         }
     }
     
-    public void emiteRelatorioVeiculos(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat pathFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String dataFormatadaPath = pathFormat.format(data_rel.getDate());
-        String dataFormatada = sdh.format(data_rel.getDate());
+    public void emiteRelatorioVeiculos(String dataFormatada, String dataFormatadaPath, String path){
         cadastroDAO dao = new cadastroDAO();
+        
         try{
             boolean retorno;
             retorno = dao.busca_data_nome(dataFormatada);
@@ -268,20 +308,11 @@ public class Adm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
         
-        try{
-            if(verifica_dir(dataFormatadaPath) == false){
-                cria_dir(dataFormatadaPath);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro!  " + e);
-        }
+        Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("relatorios_portaria/" + dataFormatadaPath + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf"));
             document.open();
 
             document.setMargins(20,20,20,20);
@@ -297,7 +328,7 @@ public class Adm extends javax.swing.JFrame {
             table.setWidthPercentage(105);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Veículos do dia "+dataFormatada+":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Veículos do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
@@ -355,17 +386,17 @@ public class Adm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
         }
         
-        try {
-            java.awt.Desktop.getDesktop().open( new File("relatorios_portaria/" + dataFormatadaPath + "/Relatorio-Veiculos"+sdf.format(this.data_rel.getDate())+".pdf"));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        if(abreRelatorios.isSelected() == true){
+           try {
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf" + "/Relatorio-Veiculos" + dataFormatadaPath +".pdf"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+            } 
         }
     }
     
-    public void emiteRelatorioForaExpediente(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = sdh.format(this.data_rel.getDate());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    public void emiteRelatorioForaExpediente(String dataFormatada, String dataFormatadaPath, String path){
+        
         controlefDAO cfdao = new controlefDAO();
           
         try{
@@ -378,24 +409,12 @@ public class Adm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        String path = "relatorios_portaria/" + sdf.format(this.data_rel.getDate());
-
-        try{
-            if(verifica_dir(path)){
-                
-            }else{
-                cria_dir(path);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro!  " + e);
-        }
 
         Document document = new Document(PageSize.A4, 30, 20, 20, 30);
         
         try {
             try{
-                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_Entrada_ForaDoExpediente"+sdf.format(this.data_rel.getDate())+".pdf"));
+                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!" + ex);
             }
@@ -472,18 +491,19 @@ public class Adm extends javax.swing.JFrame {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        try {
-            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente"+sdf.format(this.data_rel.getDate())+".pdf"));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        if(abreRelatorios.isSelected() == true){
+           try {
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf" + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+            } 
         }
+        
         
     }
     
-    public void emiteRelatorioHorarioExpediente(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String dataFormatada = sdh.format(this.data_rel.getDate());
+    public void emiteRelatorioHorarioExpediente(String dataFormatada, String dataFormatadaPath, String path){
+        
         controleDAO cdao = new controleDAO();
           
         try{
@@ -496,25 +516,12 @@ public class Adm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        String path = "relatorios_portaria/" + sdf.format(this.data_rel.getDate());
-
-        try{
-            if(verifica_dir(path)){
-                
-            }else{
-                cria_dir(path);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro!  " + e);
-        }
 
         Document document = new Document(PageSize.A4, 30, 20, 20, 30);
         
         try {
             try{
-                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_CB-SD"+sdf.format(this.data_rel.getDate())+".pdf"));
+                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_CB-SD" + dataFormatadaPath +".pdf"));
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!" + ex);
             }
@@ -534,7 +541,7 @@ public class Adm extends javax.swing.JFrame {
             table.setHorizontalAlignment(Element.ALIGN_CENTER);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Saída de CB/SD no horário de expediente do dia "+dataFormatada+":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Saída de CB/SD no horário de expediente do dia "+ dataFormatada + ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
@@ -591,16 +598,17 @@ public class Adm extends javax.swing.JFrame {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        try {
-            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_CB-SD"+sdf.format(this.data_rel.getDate())+".pdf"));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        if(abreRelatorios.isSelected() == true){
+           try {
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_CB-SD" + dataFormatadaPath +".pdf"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+            } 
         }
     }
     
-    public void emiteRelatorioVisitantes(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = sdh.format(this.data_rel.getDate());
+    public void emiteRelatorioVisitantes(String dataFormatada, String dataFormatadaPath, String path){
+        
         cadastroDAO dao = new cadastroDAO();
         try{
             boolean retorno;
@@ -612,24 +620,11 @@ public class Adm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
         Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
 
-        String path = "relatorios_portaria/" + sdf.format(this.data_rel.getDate());
-
-        try{
-            if(verifica_dir(path)){
-                
-            }else{
-                cria_dir(path);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro!  " + e);
-        }
-
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Visitantes"+sdf.format(this.data_rel.getDate())+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Visitantes"+ dataFormatadaPath +".pdf"));
             document.open();
 
             document.setMargins(20,20,20,20);
@@ -645,7 +640,7 @@ public class Adm extends javax.swing.JFrame {
             table.setWidthPercentage(105);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Visitantes do dia "+dataFormatada+":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Visitantes do dia " + dataFormatada+ ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
@@ -701,18 +696,30 @@ public class Adm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
         }
         
-        try {
-            java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Visitantes"+sdf.format(this.data_rel.getDate())+".pdf"));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+        if(abreRelatorios.isSelected() == true){
+           try {
+                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Visitantes" + dataFormatadaPath +".pdf"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
+            } 
         }
     }
     
     public void abreDiretorio(String path) throws IOException{
         String os = System.getProperty("os.name");
         os = os.toLowerCase();
-        if(os.contains("win")){
-            Runtime.getRuntime().exec("explorer relatorios_porta");
+        if(os.contains("win") && !path.equals("")){
+            try{
+                Runtime.getRuntime().exec("explorer.exe " + path);
+            }catch(IOException ex){
+                System.out.println("Falha ao abrir o diretório");
+            }
+        }else if(!path.equals("")){
+            try{
+                Runtime.getRuntime().exec("nautilus " + path);
+            }catch(IOException ex){
+                System.out.println("Falha ao abrir o diretório");
+            }
         }
     }
 
