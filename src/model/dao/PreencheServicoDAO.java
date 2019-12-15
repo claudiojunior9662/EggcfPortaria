@@ -5,7 +5,7 @@
  */
 package model.dao;
 
-import Connection.ConnectionFactory;
+import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +41,7 @@ public class PreencheServicoDAO {
                stmt.executeUpdate();
                stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                 ConnectionFactory.closeConnection(con, stmt);
             }
@@ -61,7 +61,7 @@ public class PreencheServicoDAO {
                 }
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
                 retorno = 0;
             }finally{
                 ConnectionFactory.closeConnection(con, stmt, rs);

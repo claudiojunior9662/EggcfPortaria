@@ -5,7 +5,7 @@
  */
 package model.dao;
 
-import Connection.ConnectionFactory;
+import connection.ConnectionFactory;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -30,40 +30,37 @@ import model.bean.PreencheServicoBEAN;
  *
  * @author claud
  */
-public class cadastroDAO {
+public class CadastroDAO {
     public Statement st;
     public ResultSet rs2;
     
-    public void create(CadastroBEAN c){
+    public static void create(CadastroBEAN cadastroBEAN) throws SQLException{
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
         try {
             stmt = con.prepareStatement("INSERT INTO cadastro(n_cracha,NomeCompleto,TipoDocumento, DocumentoIden, Destino, ComquemFalar, Telefone, TipoVisitante, Data, HoraE, HoraS, imagem, marca_veiculo, modelo_veiculo, cor_veiculo, placa_veiculo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setInt(1,c.getN_cracha());
-            stmt.setString(2,c.getNomeCompleto());
-            stmt.setString(3,c.getTipoDocumento());
-            stmt.setString(4,c.getDocumentoIden());
-            stmt.setString(5,c.getDestino());
-            stmt.setString(6,c.getComquemFalar());
-            stmt.setString(7,c.getTelefone());
-            stmt.setString(8,c.getTipoVisitante());
-            stmt.setString(9,c.getData());
-            stmt.setString(10,c.getHoraE());
-            stmt.setString(11,c.getHoraS());
-            stmt.setBytes(12, c.getFoto());
-            stmt.setString(13, c.getMarca_veiculo());
-            stmt.setString(14, c.getModelo_veiculo());
-            stmt.setString(15, c.getCor_veiculo());
-            stmt.setString(16, c.getPlaca_veiculo());
+            stmt.setInt(1,cadastroBEAN.getN_cracha());
+            stmt.setString(2,cadastroBEAN.getNomeCompleto());
+            stmt.setString(3,cadastroBEAN.getTipoDocumento());
+            stmt.setString(4,cadastroBEAN.getDocumentoIden());
+            stmt.setString(5,cadastroBEAN.getDestino());
+            stmt.setString(6,cadastroBEAN.getComquemFalar());
+            stmt.setString(7,cadastroBEAN.getTelefone());
+            stmt.setString(8,cadastroBEAN.getTipoVisitante());
+            stmt.setString(9,cadastroBEAN.getData());
+            stmt.setString(10,cadastroBEAN.getHoraE());
+            stmt.setString(11,cadastroBEAN.getHoraS());
+            stmt.setBytes(12, cadastroBEAN.getFoto());
+            stmt.setString(13, cadastroBEAN.getMarca_veiculo());
+            stmt.setString(14, cadastroBEAN.getModelo_veiculo());
+            stmt.setString(15, cadastroBEAN.getCor_veiculo());
+            stmt.setString(16, cadastroBEAN.getPlaca_veiculo());
             
             stmt.executeUpdate();
-            stmt.close();
-            
-           JOptionPane.showMessageDialog(null,"Salvo com sucesso!");  
         } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null,"Erro ao salvar:"+ex);
+             throw new SQLException(ex);
         }finally{
             ConnectionFactory.closeConnection(con,stmt);
         }
@@ -75,7 +72,7 @@ public class cadastroDAO {
         try {
             ImageIO.write(image, "JPEG", baos);
         } catch (IOException ex) {
-            Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
         return baos.toByteArray();
@@ -272,7 +269,7 @@ public class cadastroDAO {
         }
     }
         
-        public List<CadastroBEAN> preenche_pesquisa(String nome){
+        public static List<CadastroBEAN> preenchePesquisa(String nome){
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -302,7 +299,7 @@ public class cadastroDAO {
             return cadastrov;
         }
         
-        public boolean busca_nome (String nome) throws SQLException{
+        public static boolean buscaNome (String nome) throws SQLException{
             boolean retorno = false;
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
@@ -372,7 +369,7 @@ public class cadastroDAO {
                 }
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                 ConnectionFactory.closeConnection(con, stmt, rs);
             }
@@ -402,7 +399,7 @@ public class cadastroDAO {
                 }
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                 ConnectionFactory.closeConnection(con, stmt, rs);
             }
@@ -425,7 +422,7 @@ public class cadastroDAO {
                 }
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
                 retorno = 0;
             }finally{
                 ConnectionFactory.closeConnection(con, stmt, rs);
@@ -449,7 +446,7 @@ public class cadastroDAO {
                 }
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
                 retorno = 0;
             }finally{
                 ConnectionFactory.closeConnection(con, stmt, rs);
@@ -471,7 +468,7 @@ public class cadastroDAO {
                 stmt.executeUpdate();
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                 ConnectionFactory.closeConnection(con, stmt);
             }
@@ -493,7 +490,7 @@ public class cadastroDAO {
                 stmt.executeUpdate();
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(cadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CadastroDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                 ConnectionFactory.closeConnection(con, stmt);
             }

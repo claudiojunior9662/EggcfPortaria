@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.CadastroBEAN;
 import model.bean.ControleExpedienteBEAN;
-import model.dao.cadastroDAO;
+import model.dao.CadastroDAO;
 import model.dao.controlefDAO;
 import model.dao.controleDAO;
 import com.itextpdf.text.Font;
@@ -116,7 +116,7 @@ public class Adm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(data_rel, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(data_rel, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -305,7 +305,7 @@ public class Adm extends javax.swing.JFrame {
     }
     
     public void emiteRelatorioVeiculos(String dataFormatada, String dataFormatadaPath, String path){
-        cadastroDAO dao = new cadastroDAO();
+        CadastroDAO dao = new CadastroDAO();
         
         try{
             boolean retorno;
@@ -618,7 +618,7 @@ public class Adm extends javax.swing.JFrame {
     
     public void emiteRelatorioVisitantes(String dataFormatada, String dataFormatadaPath, String path){
         
-        cadastroDAO dao = new cadastroDAO();
+        CadastroDAO dao = new CadastroDAO();
         try{
             boolean retorno;
             retorno = dao.busca_data(dataFormatada);

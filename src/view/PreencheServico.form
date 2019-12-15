@@ -51,9 +51,6 @@
           </Border>
         </Property>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="GUARNI&#xc7;&#xc3;O PORTARIA"/>
-      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -143,8 +143,6 @@ public class PreencheServico extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("GUARNIÇÃO PORTARIA");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
