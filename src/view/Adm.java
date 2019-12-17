@@ -30,8 +30,8 @@ import javax.swing.JOptionPane;
 import model.bean.CadastroBEAN;
 import model.bean.ControleExpedienteBEAN;
 import model.dao.CadastroDAO;
-import model.dao.controlefDAO;
-import model.dao.controleDAO;
+import model.dao.ControleFDAO;
+import model.dao.ControleDAO;
 import com.itextpdf.text.Font;
 import java.util.Date;
 import model.bean.ControleForaExpedienteBEAN;
@@ -406,7 +406,7 @@ public class Adm extends javax.swing.JFrame {
     
     public void emiteRelatorioForaExpediente(String dataFormatada, String dataFormatadaPath, String path){
         
-        controlefDAO cfdao = new controlefDAO();
+        ControleFDAO cfdao = new ControleFDAO();
           
         try{
             boolean retorno2;
@@ -513,7 +513,7 @@ public class Adm extends javax.swing.JFrame {
     
     public void emiteRelatorioHorarioExpediente(String dataFormatada, String dataFormatadaPath, String path){
         
-        controleDAO cdao = new controleDAO();
+        ControleDAO cdao = new ControleDAO();
           
         try{
             boolean retorno2;

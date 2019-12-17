@@ -16,4 +16,5 @@ import javax.swing.border.Border;
 public class Controle {
     public static Border bordaLinhaVermelha = BorderFactory.createLineBorder(Color.red);
     public static Border bordaLinhaVerde = BorderFactory.createLineBorder(Color.green);
+    public static Border bordaLinhaPadrao = BorderFactory.createLineBorder(Color.lightGray);
 }

@@ -21,10 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 import model.bean.CadastroBEAN;
 import model.bean.ControleForaExpedienteBEAN;
-import model.bean.PreencheServicoBEAN;
 
 /**
  *
@@ -494,5 +492,26 @@ public class CadastroDAO {
             }finally{
                 ConnectionFactory.closeConnection(con, stmt);
             }
+        }
+        
+        public static Boolean verificaDocumento(String tipoDocumento, String numeroDocumento) throws SQLException{
+            Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            Boolean retorno = false;
+            
+            try{
+                stmt = con.prepareStatement("SELECT TipoDocumento, DocumentoIden FROM cadastro WHERE TipoDocumento = ? AND DocumentoIden = ?");
+                stmt.setString(1, tipoDocumento);
+                stmt.setString(2, numeroDocumento);
+                if((rs = stmt.executeQuery()).next()){
+                    retorno = true;
+                }
+            }catch(SQLException ex){
+                throw new SQLException(ex);
+            }finally{
+                ConnectionFactory.closeConnection(con, stmt, rs);
+            }
+            return retorno;
         }
 }

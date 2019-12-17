@@ -20,7 +20,7 @@ import model.bean.ControleForaExpedienteBEAN;
  *
  * @author claud
  */
-public class controlefDAO {
+public class ControleFDAO {
     public Statement st2;
     public ResultSet rs3;
     

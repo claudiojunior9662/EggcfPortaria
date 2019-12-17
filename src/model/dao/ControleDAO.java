@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.ControleExpedienteBEAN;
@@ -20,7 +22,7 @@ import model.bean.ControleExpedienteBEAN;
  *
  * @author claud
  */
-public class controleDAO {
+public class ControleDAO {
     public Statement st2;
     public ResultSet rs3;
     
@@ -231,6 +233,60 @@ public class controleDAO {
             }
             return controlev;
         }
+    
+    public static Boolean horarioExpediente(Time horario, Boolean especial) throws SQLException{
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Boolean retorno = false;
+        
+        try{
+            if(especial){
+                stmt = con.prepareStatement("SELECT inicio_expediente_especial, fim_expediente_especial"
+                        + " FROM controle");
+            }else{
+                stmt = con.prepareStatement("SELECT inicio_expediente, fim_expediente"
+                        + " FROM controle");
+            }
+            if((rs = stmt.executeQuery()).next()){
+                System.out.println(horario.after(rs.getTime("inicio_expediente")));
+                System.out.println(horario.before(rs.getTime("fim_expediente")));
+                if(especial){
+                    if(horario.after(rs.getTime("inicio_expediente_especial")) && horario.before(rs.getTime("fim_expediente_especial"))){
+                        retorno = true;
+                    }
+                }else{
+                    if(horario.after(rs.getTime("inicio_expediente")) && horario.before(rs.getTime("fim_expediente"))){
+                        retorno = true;
+                    }
+                }
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return retorno;
+    }
+    
+    public static byte retornaDiaEspecial() throws SQLException{
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        byte retorno = 0;
+        
+        try{
+            stmt = con.prepareStatement("SELECT dia_expediente_especial FROM controle");
+            if((rs = stmt.executeQuery()).next()){
+                retorno = (byte) rs.getInt("dia_expediente_especial");
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return retorno;
+    }
     
     
 }
