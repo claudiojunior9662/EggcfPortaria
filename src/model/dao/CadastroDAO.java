@@ -76,12 +76,12 @@ public class CadastroDAO {
         return baos.toByteArray();
     }
       
-        public List<CadastroBEAN> read(String date){
+        public List<CadastroBEAN> read(String date) throws SQLException{
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            List<CadastroBEAN> cadastrov = new ArrayList<>();
+            List<CadastroBEAN> retorno = new ArrayList<>();
             
             try{
                 stmt = con.prepareStatement("SELECT * FROM cadastro WHERE data = ?");
@@ -101,15 +101,14 @@ public class CadastroDAO {
                     c.setData(rs.getString("Data"));
                     c.setHoraE(rs.getString("HoraE"));
                     c.setHoraS(rs.getString("HoraS"));
-                    cadastrov.add(c);
+                    retorno.add(c);
                 }
-                stmt.close();
             }catch(SQLException ex){
-                System.err.println("Não foi possível atualizar a tabela! "+ex);
+                throw new SQLException(ex);
             }finally{
                 ConnectionFactory.closeConnection(con,stmt,rs);
             }
-            return cadastrov;
+            return retorno;
         }
         
         public void altera(CadastroBEAN c) throws SQLException {

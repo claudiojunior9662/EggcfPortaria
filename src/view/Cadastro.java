@@ -5,7 +5,6 @@
  */
 package view;
 
-import connection.ConnectionFactory;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamException;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -19,7 +18,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -70,25 +68,9 @@ public class Cadastro extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        try{
-                Connection con = ConnectionFactory.getConnection();
-                ConnectionFactory.closeConnection(con);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Erro ao obter conexão com o banco de dados! " + e);
-            }
-        
-        try{
-            INICIALIZA();
-            webcam_found = true;
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Nao foi detectado nenhum dispositivo de video!\n O programa nao ira ser capaz de capturar imagens!\n Favor conecte um dispositivo de video e abra o programa novamente! "+ e);
-            iniciarVideoRegistroVisitantes.setEnabled(false);
-            iniciarVideoSaida.setEnabled(false);
-            webcam_found = false;
-        }
         
         atualizaTabelaVisitantes();
-        readJTable_controle();
+        readJTableControle();
         readJTable_controlef();
         
         //Modela a lista de pesquisa do Registro de Visitantes
@@ -113,12 +95,7 @@ public class Cadastro extends javax.swing.JFrame {
         carregando.setVisible(false);
         
         
-        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
-        Date data = dtI.getTime();
-        data.setHours(data.getHours() - 1);
-        dtI.setTime(data);
-        Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+        
 }
 
     /**
@@ -1189,10 +1166,17 @@ public class Cadastro extends javax.swing.JFrame {
             int l = tabelaSaida.getSelectedRow();
             ControleExpedienteBEAN c = new ControleExpedienteBEAN();
             ControleDAO cdao = new ControleDAO();
-            c.setHora_entrada(sdh.format(new Date()));
+            
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            Date data = dtI.getTime();
+            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            dtI.setTime(data);
+            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+            c.setHora_entrada(sdh.format(dtIni));
+            
             c.setId((int)tabelaSaida.getValueAt(l, 0));
             cdao.altera_controle(c);
-            readJTable_controle();
+            readJTableControle();
             definirHorarioEntradaSaida.setEnabled(false);
             txt_info2.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
         }catch(SQLException ex){
@@ -1253,7 +1237,14 @@ public class Cadastro extends javax.swing.JFrame {
             int l = tabelaEntrada.getSelectedRow();
             ControleForaExpedienteBEAN cf = new ControleForaExpedienteBEAN();
             ControleFDAO cfdao = new ControleFDAO();
-            cf.setHora_saida(sdh.format(new Date()));
+            
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            Date data = dtI.getTime();
+            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            dtI.setTime(data);
+            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+            cf.setHora_saida(sdh.format(dtIni));
+            
             cf.setId((int)tabelaEntrada.getValueAt(l, 0));
             cfdao.altera_controlef(cf);
             readJTable_controlef();
@@ -1396,7 +1387,7 @@ public class Cadastro extends javax.swing.JFrame {
                 fotoVisitante.setText("Iniciando...");
                 WEBCAM.open();
                 fotoVisitante.setText("");
-                INICIALIZA_VIDEO(fotoVisitante);
+                inicializaVideoWebcam(fotoVisitante);
                 capturarVideoRegistroVisitantes.setEnabled(true);
             }
         }.start();
@@ -1410,12 +1401,21 @@ public class Cadastro extends javax.swing.JFrame {
         SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         int l = tabelaVisitantes.getSelectedRow();
-        CadastroBEAN c = new CadastroBEAN();
+        CadastroBEAN cadastro = new CadastroBEAN();
         CadastroDAO cadastroDAO = new CadastroDAO();
-        c.setHoraS(sdh.format(new Date()));
-        c.setId((int)tabelaVisitantes.getValueAt(l, 0));
+        
+        
         try {
-            cadastroDAO.altera(c);
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            Date data = dtI.getTime();
+            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            dtI.setTime(data);
+            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+            cadastro.setHoraS(sdh.format(dtIni));
+
+            cadastro.setId((int)tabelaVisitantes.getValueAt(l, 0));
+            
+            cadastroDAO.altera(cadastro);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1647,10 +1647,10 @@ public class Cadastro extends javax.swing.JFrame {
                 cadastroBEAN.setDestino(destinoVisitante.getText().toUpperCase());
                 cadastroBEAN.setComquemFalar(comQuemFalarVisitante.getText().toUpperCase());
                 cadastroBEAN.setTelefone(telefoneVisitante.getText());
-                cadastroBEAN.setTipoDocumento(tipoDocumentoVisitante.getSelectedItem().toString()); 
-                cadastroBEAN.setData(sdf.format(dtI.getTime()));
-                cadastroBEAN.setHoraE(sdh.format(dtI.getTime()));
-                cadastroBEAN.setHoraS(null);
+                cadastroBEAN.setTipoDocumento(tipoDocumentoVisitante.getSelectedItem().toString());
+                
+                
+                
                 cadastroBEAN.setCor_veiculo(VeiculosFrame.cor);
                 cadastroBEAN.setModelo_veiculo(VeiculosFrame.modelo);
                 cadastroBEAN.setMarca_veiculo(VeiculosFrame.marca);
@@ -1662,6 +1662,14 @@ public class Cadastro extends javax.swing.JFrame {
                 VeiculosFrame.marca = null;
                 VeiculosFrame.placa2 = null;
                     try {
+                        dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+                        Date data = dtI.getTime();
+                        data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+                        dtI.setTime(data);
+                        Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+                        cadastroBEAN.setData(sdf.format(dtIni));
+                        cadastroBEAN.setHoraE(sdh.format(dtIni));
+                        cadastroBEAN.setHoraS(null);
                         //----------------------------------------------------------------------
                         //INSERE REGISTRO NO BANCO DE DADOS-------------------------------------
                         CadastroDAO.create(cadastroBEAN);
@@ -1734,24 +1742,22 @@ public class Cadastro extends javax.swing.JFrame {
     private void salvarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarSaidaActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        Date data = new Date();
         ControleDAO cdao = new ControleDAO();
         ControleExpedienteBEAN c = new ControleExpedienteBEAN();
-        String hora_saida;
-        String aux;
-        int hora;
-        int minuto;
 
         //VERIFICA O HORÁRIO DO REGISTRO----------------------------------------
-        hora_saida = sdh.format(dtI.getTime());
-        aux = hora_saida.substring(0,2) + hora_saida.substring(3,5);
-        hora = Integer.parseInt(String.valueOf(aux));
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
+        
         
         try{
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            Date data = dtI.getTime();
+            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            dtI.setTime(data);
+            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
             if(ControleDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)){
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true)){
+                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, false)){
                     c.setData(sdf.format(new Date()));
                     c.setHora_saida(sdh.format(dtI.getTime()));
                     c.setHora_entrada(null);
@@ -1760,7 +1766,7 @@ public class Cadastro extends javax.swing.JFrame {
                     return;
                 }
             }else{
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false)){
+                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, false)){
                     c.setData(sdf.format(new Date()));
                     c.setHora_saida(sdh.format(dtI.getTime()));
                     c.setHora_entrada(null);
@@ -1832,7 +1838,7 @@ public class Cadastro extends javax.swing.JFrame {
         cdao.create(c);
         //----------------------------------------------------------------------
         //FAZ UPDATE NA TABELA SAÍDA--------------------------------------------
-        readJTable_controle();
+        readJTableControle();
         //----------------------------------------------------------------------
         //SETA O ESTADO ATUAL DA TELA-------------------------------------------
         estadoInicialSaida();
@@ -1886,7 +1892,7 @@ public class Cadastro extends javax.swing.JFrame {
                 fotoSaida.setText("Iniciando...");
                 WEBCAM.open();
                 fotoSaida.setText("");
-                INICIALIZA_VIDEO(fotoSaida);
+                inicializaVideoWebcam(fotoSaida);
                 capturarVideoSaida.setEnabled(true);
             }
         }.start();
@@ -1910,29 +1916,40 @@ public class Cadastro extends javax.swing.JFrame {
         String aux;
         int hora;
         int minuto;
-        Date data = new Date();
         
         //VERIFICA O HORÁRIO DO REGISTRO----------------------------------------
-        hora_saida = sdh.format(dtI.getTime());
-        aux = hora_saida.substring(0,2) + hora_saida.substring(3,5);
-        hora = Integer.parseInt(String.valueOf(aux));
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        if((hora > 1700 || hora < 900) & day != 6) {
-            cf.setData(sdf.format(new Date()));
-            cf.setHora_entrada(sdh.format(dtI.getTime()));
-            cf.setHora_saida(null);
-        }else if((day == 6) & (hora > 1200 || hora < 800)){
-            cf.setData(sdf.format(new Date()));
-            cf.setHora_entrada(sdh.format(dtI.getTime()));
-            cf.setHora_saida(null);
-        }else if(day == 7 || day == 1){
-             cf.setData(sdf.format(new Date()));
-            cf.setHora_entrada(sdh.format(dtI.getTime()));
-            cf.setHora_saida(null);
-        }else{
-            JOptionPane.showMessageDialog(null, "Registro dentro do horário de expediente.\n");
+        
+        
+        
+        try{
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            Date data = dtI.getTime();
+            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            dtI.setTime(data);
+            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
+            if(ControleDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)){
+                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, true)){
+                    cf.setData(sdf.format(new Date()));
+                    cf.setHora_saida(null);
+                    cf.setHora_entrada(sdh.format(dtI.getTime()));
+                }else{
+                    JOptionPane.showMessageDialog(null, "HORÁRIO DENTRO DO EXPEDIENTE", "ERRO", 0);
+                    return;
+                }
+            }else{
+                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, true)){
+                    cf.setData(sdf.format(new Date()));
+                    cf.setHora_saida(null);
+                    cf.setHora_entrada(sdh.format(dtI.getTime()));
+                }else{
+                    JOptionPane.showMessageDialog(null, "HORÁRIO DENTRO DO EXPEDIENTE", "ERRO", 0);
+                    return;
+                }
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
         //----------------------------------------------------------------------
@@ -2025,7 +2042,7 @@ public class Cadastro extends javax.swing.JFrame {
                 fotoEntrada.setText("Iniciando...");
                 WEBCAM.open();
                 fotoEntrada.setText("");
-                INICIALIZA_VIDEO(fotoEntrada);
+                inicializaVideoWebcam(fotoEntrada);
                 capturarVideoEntrada.setEnabled(true);
             }
         }.start();
@@ -2621,70 +2638,87 @@ public class Cadastro extends javax.swing.JFrame {
     
     
     public void atualizaTabelaVisitantes(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        DefaultTableModel modelo = (DefaultTableModel) tabelaVisitantes.getModel();
-        modelo.setNumRows(0);
-        CadastroDAO cdao = new CadastroDAO();
-        
-        for(CadastroBEAN c: cdao.read(sdh.format(new Date()))){
-            modelo.addRow(new Object[]{
-                c.getId(),
-                c.getN_cracha(),
-                c.getNomeCompleto(),
-                c.getTipoDocumento(),
-                c.getDocumentoIden(),
-                c.getDestino(),
-                c.getComquemFalar(),
-                c.getTelefone(),
-                c.getTipoVisitante(),
-                c.getData(),
-                c.getHoraE(),
-                c.getHoraS()});
+        try{
+            SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
+            DefaultTableModel modelo = (DefaultTableModel) tabelaVisitantes.getModel();
+            modelo.setNumRows(0);
+            CadastroDAO cadastroDAO = new CadastroDAO();
+
+            for(CadastroBEAN cadastroBEAN: cadastroDAO.read(sdh.format(new Date()))){
+                modelo.addRow(new Object[]{
+                    cadastroBEAN.getId(),
+                    cadastroBEAN.getN_cracha(),
+                    cadastroBEAN.getNomeCompleto(),
+                    cadastroBEAN.getTipoDocumento(),
+                    cadastroBEAN.getDocumentoIden(),
+                    cadastroBEAN.getDestino(),
+                    cadastroBEAN.getComquemFalar(),
+                    cadastroBEAN.getTelefone(),
+                    cadastroBEAN.getTipoVisitante(),
+                    cadastroBEAN.getData(),
+                    cadastroBEAN.getHoraE(),
+                    cadastroBEAN.getHoraS()});
+            }
+            corTabelaVisitantes();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
+            return;
         }
-        corTabelaVisitantes();
+        
     }
     
-    public void readJTable_controle(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        DefaultTableModel modelo2 = (DefaultTableModel) tabelaSaida.getModel();
-        modelo2.setNumRows(0);
-        ControleDAO cdao = new ControleDAO();
-        
-        for(ControleExpedienteBEAN c: cdao.read_controle(sdh.format(new Date()))){
-            modelo2.addRow(new Object[]{
-                c.getId(),
-                c.getGrad_posto(),
-                c.getNome_guerra(),
-                c.getSessao(),
-                c.getData(),
-                c.getHora_saida(),
-                c.getHora_entrada(),
-                c.getMotivo_saida()});
+    public void readJTableControle(){
+        try{
+            SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
+            DefaultTableModel modelo2 = (DefaultTableModel) tabelaSaida.getModel();
+            modelo2.setNumRows(0);
+            ControleDAO controleDAO = new ControleDAO();
+
+            for(ControleExpedienteBEAN controleExpedienteBEAN: controleDAO.readControle(sdh.format(new Date()))){
+                modelo2.addRow(new Object[]{
+                    controleExpedienteBEAN.getId(),
+                    controleExpedienteBEAN.getGrad_posto(),
+                    controleExpedienteBEAN.getNome_guerra(),
+                    controleExpedienteBEAN.getSessao(),
+                    controleExpedienteBEAN.getData(),
+                    controleExpedienteBEAN.getHora_saida(),
+                    controleExpedienteBEAN.getHora_entrada(),
+                    controleExpedienteBEAN.getMotivo_saida()});
+            }
+            corTabelaSaida();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
+            return;
         }
-        corTabelaSaida();
     }
     
     public void readJTable_controlef(){
-        SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
-        DefaultTableModel modelo2 = (DefaultTableModel) tabelaEntrada.getModel();
-        modelo2.setNumRows(0);
-        ControleFDAO cfdao = new ControleFDAO();
-        
-        for(ControleForaExpedienteBEAN cf: cfdao.read_controlef(sdh.format(new Date()))){
-            modelo2.addRow(new Object[]{
-                cf.getId(),
-                cf.getGrad_posto(),
-                cf.getNome_guerra(),
-                cf.getSessao(),
-                cf.getData(),
-                cf.getHora_entrada(),
-                cf.getHora_saida(),
-                cf.getMotivo_entrada()});
+        try{
+            SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
+            DefaultTableModel modelo2 = (DefaultTableModel) tabelaEntrada.getModel();
+            modelo2.setNumRows(0);
+            ControleFDAO controleFDAO = new ControleFDAO();
+
+            for(ControleForaExpedienteBEAN controleForaExpedienteBEAN: controleFDAO.readControleF(sdh.format(new Date()))){
+                modelo2.addRow(new Object[]{
+                    controleForaExpedienteBEAN.getId(),
+                    controleForaExpedienteBEAN.getGrad_posto(),
+                    controleForaExpedienteBEAN.getNome_guerra(),
+                    controleForaExpedienteBEAN.getSessao(),
+                    controleForaExpedienteBEAN.getData(),
+                    controleForaExpedienteBEAN.getHora_entrada(),
+                    controleForaExpedienteBEAN.getHora_saida(),
+                    controleForaExpedienteBEAN.getMotivo_entrada()});
+            }
+            corTabelaEntrada();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
+            return;
         }
-        corTabelaEntrada();
+        
     }
     
-    public void INICIALIZA(){
+    public void inicializaWebcam(){
         try{
             dimensao_default = WebcamResolution.VGA.getSize();
             WEBCAM = Webcam.getDefault();
@@ -2694,7 +2728,7 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }
     
-    private void INICIALIZA_VIDEO(JLabel label){
+    private void inicializaVideoWebcam(JLabel label){
         new Thread(){
             @Override
             public void run(){
@@ -2744,7 +2778,7 @@ public class Cadastro extends javax.swing.JFrame {
             public Component getTableCellRendererComponent(JTable table, Object value,
                                                            boolean isSelected, boolean hasFocus,
                                                            int row, int column){
-                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             //***********************
             Color c = Color.WHITE;
             Object texto = table.getValueAt(row,11);

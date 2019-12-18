@@ -72,36 +72,35 @@ public class ControleFDAO {
         return retorno;
         }
     
-    public List<ControleForaExpedienteBEAN> read_controlef(String date){
+    public List<ControleForaExpedienteBEAN> readControleF(String date) throws SQLException{
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            List<ControleForaExpedienteBEAN> controlev = new ArrayList<>();
+            List<ControleForaExpedienteBEAN> retorno = new ArrayList<>();
             
             try{
                 stmt = con.prepareStatement("SELECT * FROM controlef_saida WHERE data = ?");
                 stmt.setString(1, date);
                 rs = stmt.executeQuery();
                 while(rs.next()){
-                    ControleForaExpedienteBEAN cf = new ControleForaExpedienteBEAN();
-                    cf.setId(rs.getInt("id"));
-                    cf.setGrad_posto(rs.getString("grad_posto"));
-                    cf.setNome_guerra(rs.getString("nome_guerra"));
-                    cf.setSessao(rs.getString("sessao"));
-                    cf.setData(rs.getString("data"));
-                    cf.setHora_saida(rs.getString("hora_saida"));
-                    cf.setHora_entrada(rs.getString("hora_entrada"));
-                    cf.setMotivo_entrada(rs.getString("motivo_entrada"));
-                    controlev.add(cf);
-                    
+                    ControleForaExpedienteBEAN controleForaExpedienteBEAN = new ControleForaExpedienteBEAN();
+                    controleForaExpedienteBEAN.setId(rs.getInt("id"));
+                    controleForaExpedienteBEAN.setGrad_posto(rs.getString("grad_posto"));
+                    controleForaExpedienteBEAN.setNome_guerra(rs.getString("nome_guerra"));
+                    controleForaExpedienteBEAN.setSessao(rs.getString("sessao"));
+                    controleForaExpedienteBEAN.setData(rs.getString("data"));
+                    controleForaExpedienteBEAN.setHora_saida(rs.getString("hora_saida"));
+                    controleForaExpedienteBEAN.setHora_entrada(rs.getString("hora_entrada"));
+                    controleForaExpedienteBEAN.setMotivo_entrada(rs.getString("motivo_entrada"));
+                    retorno.add(controleForaExpedienteBEAN);
                 }
             }catch(SQLException ex){
-                System.err.println("Não foi possível atualizar a tabela! "+ex);
+                throw new SQLException(ex);
             }finally{
                 ConnectionFactory.closeConnection(con,stmt,rs);
             }
-            return controlev;
+            return retorno;
         }
     
     public ControleForaExpedienteBEAN buscaImagemEntrada(Integer id) throws SQLException{

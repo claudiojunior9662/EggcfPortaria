@@ -74,12 +74,12 @@ public class ControleDAO {
         return retorno;
         }
     
-    public List<ControleExpedienteBEAN> read_controle(String date){
+    public List<ControleExpedienteBEAN> readControle(String date) throws SQLException{
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            List<ControleExpedienteBEAN> controlev = new ArrayList<>();
+            List<ControleExpedienteBEAN> retorno = new ArrayList<>();
             
             try{
                 stmt = con.prepareStatement("SELECT * FROM controle_saida WHERE data = ?");
@@ -95,15 +95,14 @@ public class ControleDAO {
                     c.setHora_saida(rs.getString("hora_saida"));
                     c.setHora_entrada(rs.getString("hora_entrada"));
                     c.setMotivo_saida(rs.getString("motivo_saida"));
-                    controlev.add(c);
-                    
+                    retorno.add(c);
                 }
             }catch(SQLException ex){
-                System.err.println("Não foi possível atualizar a tabela! "+ex);
+                throw new SQLException(ex);
             }finally{
                 ConnectionFactory.closeConnection(con,stmt,rs);
             }
-            return controlev;
+            return retorno;
         }
     
     public ControleExpedienteBEAN buscaImg_controle(Integer id) throws SQLException{
@@ -234,7 +233,7 @@ public class ControleDAO {
             return controlev;
         }
     
-    public static Boolean horarioExpediente(Time horario, Boolean especial) throws SQLException{
+    public static Boolean horarioExpediente(Time horario, Boolean especial, Boolean entrada) throws SQLException{
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -249,14 +248,16 @@ public class ControleDAO {
                         + " FROM controle");
             }
             if((rs = stmt.executeQuery()).next()){
-                System.out.println(horario.after(rs.getTime("inicio_expediente")));
-                System.out.println(horario.before(rs.getTime("fim_expediente")));
                 if(especial){
-                    if(horario.after(rs.getTime("inicio_expediente_especial")) && horario.before(rs.getTime("fim_expediente_especial"))){
+                    if(horario.after(rs.getTime("inicio_expediente_especial")) && rs.getTime("fim_expediente_especial").before(horario) && !entrada){
+                        retorno = true;
+                    }else if(horario.after(rs.getTime("fim_expediente_especial")) && rs.getTime("inicio_expediente_especial").before(horario) && entrada){
                         retorno = true;
                     }
                 }else{
-                    if(horario.after(rs.getTime("inicio_expediente")) && horario.before(rs.getTime("fim_expediente"))){
+                    if(horario.after(rs.getTime("inicio_expediente")) && rs.getTime("fim_expediente").before(horario) && !entrada){
+                        retorno = true;
+                    }else if(horario.after(rs.getTime("fim_expediente")) && rs.getTime("inicio_expediente").before(horario) && entrada){
                         retorno = true;
                     }
                 }
@@ -279,6 +280,25 @@ public class ControleDAO {
             stmt = con.prepareStatement("SELECT dia_expediente_especial FROM controle");
             if((rs = stmt.executeQuery()).next()){
                 retorno = (byte) rs.getInt("dia_expediente_especial");
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return retorno;
+    }
+    
+    public static byte retornaHorarioVerao() throws SQLException{
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        byte retorno = 0;
+        
+        try{
+            stmt = con.prepareStatement("SELECT horario_verao FROM controle");
+            if((rs = stmt.executeQuery()).next()){
+                retorno = rs.getByte("horario_verao");
             }
         }catch(SQLException ex){
             throw new SQLException(ex);
