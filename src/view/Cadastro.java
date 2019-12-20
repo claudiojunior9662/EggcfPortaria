@@ -61,13 +61,23 @@ public class Cadastro extends javax.swing.JFrame {
         int redefinirVisitantesAux = 0;
         int redefinirSaidaAux = 0;
         int redefinirEntradaAux = 0;
-        boolean webcam_found = false;
+        boolean webcamFound = false;
         public static GregorianCalendar dtI;
         
     public Cadastro() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        
+        try{
+            inicializaWebcam();
+            webcamFound = true;
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Nao foi detectado nenhum dispositivo de video!\n O programa nao ira ser capaz de capturar imagens!\n Favor conecte um dispositivo de video e abra o programa novamente! "+ ex);
+            iniciarVideoRegistroVisitantes.setEnabled(false);
+            iniciarVideoSaida.setEnabled(false);
+            webcamFound = false;
+        }
         
         atualizaTabelaVisitantes();
         readJTableControle();
@@ -93,8 +103,6 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialEntrada();
         
         carregando.setVisible(false);
-        
-        
         
 }
 
@@ -1517,10 +1525,10 @@ public class Cadastro extends javax.swing.JFrame {
                 }
                 //----------------------------------------------------------------------
                 //VERIFICA SE A IMAGEM DO USUÁRIO FOI CAPTURADA-------------------------
-                if(imageArrayVisitantes == null && webcam_found){
+                if(imageArrayVisitantes == null && webcamFound){
                     JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
                     return;
-                }else if(webcam_found){
+                }else if(webcamFound){
                     try {
                         cadastroBEAN.setFoto(getImgBytes(imageArrayVisitantes));
                     } catch (IOException ex) {
@@ -1685,7 +1693,7 @@ public class Cadastro extends javax.swing.JFrame {
                 estadoInicialVisitantes();
                 //----------------------------------------------------------------------
                 //COLOCA TEXTO DE OBSERVAÇÃO--------------------------------------------
-                if(webcam_found == true){
+                if(webcamFound == true){
                     txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
                 }else{
                     txt_info.setText("Dispositivo de vídeo:" + " Nenhum" + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
@@ -1810,10 +1818,10 @@ public class Cadastro extends javax.swing.JFrame {
         }
         //----------------------------------------------------------------------
         //VERIFICA SE A IMAGEM DO USUÁRIO FOI CAPTURADA-------------------------
-        if(imageArraySaida == null && webcam_found == true){
+        if(imageArraySaida == null && webcamFound == true){
             JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
             return;
-        }else if(webcam_found == true){
+        }else if(webcamFound == true){
             try {
                 c.setImagem(getImgBytes(imageArraySaida));
             } catch (IOException ex) {
@@ -1844,7 +1852,7 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialSaida();
         //----------------------------------------------------------------------
         //COLOCA TEXTO DE OBSERVAÇÃO--------------------------------------------
-        if(webcam_found = true){
+        if(webcamFound = true){
             txt_info2.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date())+
                 "\n\nObservações: O registro de saída de CB/SD só deve ser feito durante o horário de expediente;"
                 + "\nCaso o expediente acabe e o militar não tenha retornado, o horário de entrada deve ficar em branco;"
@@ -1982,10 +1990,10 @@ public class Cadastro extends javax.swing.JFrame {
         }
         //----------------------------------------------------------------------
         //VERIFICA SE A FOTO DO USUÁRIO FOI CAPTURADA---------------------------
-        if(imageArrayEntrada == null && webcam_found == true){
+        if(imageArrayEntrada == null && webcamFound == true){
             JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
             return;
-        }else if(webcam_found){
+        }else if(webcamFound){
             try {
                 cf.setImagem(getImgBytes(imageArrayEntrada));
             } catch (IOException ex) {
@@ -2017,7 +2025,7 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialEntrada();
         //----------------------------------------------------------------------
         //ATUALIZA AS OBSERVAÇÕES-----------------------------------------------
-        if(webcam_found == true){
+        if(webcamFound == true){
             txt_info3.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + 
                 "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + 
                 " " + sdh.format(new Date()) + 
