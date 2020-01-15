@@ -326,7 +326,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -431,7 +431,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -538,7 +538,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -638,7 +638,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/View/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
