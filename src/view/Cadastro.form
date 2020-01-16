@@ -69,8 +69,6 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="carregando" min="-2" pref="482" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ferramentas_adm_visitante" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="sair_button" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -91,7 +89,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="definirHorarioSaidaVisitantes" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="897" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="899" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   </Group>
@@ -120,10 +118,7 @@
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               <Component id="definirHorarioSaidaVisitantes" min="-2" pref="39" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="ferramentas_adm_visitante" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sair_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="sair_button" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -177,14 +172,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoVisitanteActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="ferramentas_adm_visitante">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ferramentas de Administrador"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ferramentas_adm_visitanteActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane5">
@@ -842,6 +829,19 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="240" y="150" width="170" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="ferramentas_adm_visitante">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ferramentas de Administrador"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ferramentas_adm_visitanteActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="300" y="560" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

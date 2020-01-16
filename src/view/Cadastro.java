@@ -123,7 +123,6 @@ public class Cadastro extends javax.swing.JFrame {
         redefinirVisitante = new javax.swing.JButton();
         definirHorarioSaidaVisitantes = new javax.swing.JButton();
         novoVisitante = new javax.swing.JButton();
-        ferramentas_adm_visitante = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         txt_info = new javax.swing.JTextPane();
         sair_button = new javax.swing.JButton();
@@ -173,6 +172,7 @@ public class Cadastro extends javax.swing.JFrame {
         iniciarVideoRegistroVisitantes = new javax.swing.JButton();
         capturarVideoRegistroVisitantes = new javax.swing.JButton();
         numeroDocumentoVisitante = new javax.swing.JFormattedTextField();
+        ferramentas_adm_visitante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaVisitantes = new javax.swing.JTable();
         carregando = new javax.swing.JLabel();
@@ -274,13 +274,6 @@ public class Cadastro extends javax.swing.JFrame {
         novoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoVisitanteActionPerformed(evt);
-            }
-        });
-
-        ferramentas_adm_visitante.setText("Ferramentas de Administrador");
-        ferramentas_adm_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ferramentas_adm_visitanteActionPerformed(evt);
             }
         });
 
@@ -640,6 +633,14 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel12.add(numeroDocumentoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, -1));
 
+        ferramentas_adm_visitante.setText("Ferramentas de Administrador");
+        ferramentas_adm_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ferramentas_adm_visitanteActionPerformed(evt);
+            }
+        });
+        jPanel12.add(ferramentas_adm_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, -1, -1));
+
         tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -679,8 +680,6 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(carregando, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ferramentas_adm_visitante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sair_button)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -697,7 +696,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
                 .addGap(7, 7, 7))
         );
         jPanel1Layout.setVerticalGroup(
@@ -721,9 +720,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ferramentas_adm_visitante)
-                            .addComponent(sair_button)))
+                        .addComponent(sair_button))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(carregando, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
