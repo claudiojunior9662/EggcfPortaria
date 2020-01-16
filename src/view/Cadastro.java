@@ -125,7 +125,6 @@ public class Cadastro extends javax.swing.JFrame {
         novoVisitante = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         txt_info = new javax.swing.JTextPane();
-        sair_button = new javax.swing.JButton();
         associarVeiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -172,7 +171,6 @@ public class Cadastro extends javax.swing.JFrame {
         iniciarVideoRegistroVisitantes = new javax.swing.JButton();
         capturarVideoRegistroVisitantes = new javax.swing.JButton();
         numeroDocumentoVisitante = new javax.swing.JFormattedTextField();
-        ferramentas_adm_visitante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaVisitantes = new javax.swing.JTable();
         carregando = new javax.swing.JLabel();
@@ -180,7 +178,6 @@ public class Cadastro extends javax.swing.JFrame {
         definirHorarioEntradaSaida = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         txt_info2 = new javax.swing.JTextPane();
-        ferramentas_adm_controle_saida = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         listaPesquisaSaida = new javax.swing.JList<String>();
         postoGraduacaoSaida = new javax.swing.JComboBox<String>();
@@ -197,7 +194,6 @@ public class Cadastro extends javax.swing.JFrame {
         capturarVideoSaida = new javax.swing.JButton();
         iniciarVideoSaida = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        sair_controle = new javax.swing.JButton();
         redefinirSaida = new javax.swing.JButton();
         salvarSaida = new javax.swing.JButton();
         novoSaida = new javax.swing.JButton();
@@ -208,7 +204,6 @@ public class Cadastro extends javax.swing.JFrame {
         definirHorarioEntradaEntrada = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         txt_info3 = new javax.swing.JTextPane();
-        ferramentas_adm_controle_entrada = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         listaPesquisaEntrada = new javax.swing.JList<String>();
         postoGraduacaoEntrada = new javax.swing.JComboBox<String>();
@@ -224,13 +219,15 @@ public class Cadastro extends javax.swing.JFrame {
         fotoEntrada = new javax.swing.JLabel();
         iniciarVideoEntrada = new javax.swing.JButton();
         capturarVideoEntrada = new javax.swing.JButton();
-        carregando2 = new javax.swing.JLabel();
-        sair_controle1 = new javax.swing.JButton();
         novoEntrada = new javax.swing.JButton();
         redefinirEntrada = new javax.swing.JButton();
         salvarEntrada = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaEntrada = new javax.swing.JTable();
+        carregando2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        ferramentasAdministrador = new javax.swing.JMenu();
+        sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EGGCF Portaria");
@@ -278,13 +275,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         jScrollPane5.setViewportView(txt_info);
-
-        sair_button.setText("Sair");
-        sair_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sair_buttonActionPerformed(evt);
-            }
-        });
 
         associarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/associarVeiculo.png"))); // NOI18N
         associarVeiculo.setToolTipText("Associar Veículo");
@@ -633,14 +623,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel12.add(numeroDocumentoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, -1));
 
-        ferramentas_adm_visitante.setText("Ferramentas de Administrador");
-        ferramentas_adm_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ferramentas_adm_visitanteActionPerformed(evt);
-            }
-        });
-        jPanel12.add(ferramentas_adm_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, -1, -1));
-
         tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -674,18 +656,9 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(carregando, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sair_button)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,9 +668,17 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(associarVeiculo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE))
-                .addGap(7, 7, 7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                        .addGap(7, 7, 7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(carregando, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -705,28 +686,27 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(novoVisitante)
-                        .addGap(6, 6, 6)
-                        .addComponent(redefinirVisitante)
-                        .addGap(6, 6, 6)
-                        .addComponent(salvarVisitante)
-                        .addGap(6, 6, 6)
-                        .addComponent(associarVeiculo))
-                    .addComponent(jScrollPane1))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(novoVisitante)
+                                .addGap(6, 6, 6)
+                                .addComponent(redefinirVisitante)
+                                .addGap(6, 6, 6)
+                                .addComponent(salvarVisitante)
+                                .addGap(6, 6, 6)
+                                .addComponent(associarVeiculo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sair_button))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(carregando, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                        .addComponent(carregando)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
@@ -746,13 +726,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         jScrollPane6.setViewportView(txt_info2);
-
-        ferramentas_adm_controle_saida.setText("Ferramentas de Administrador");
-        ferramentas_adm_controle_saida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ferramentas_adm_controle_saidaActionPerformed(evt);
-            }
-        });
 
         jPanel4.setBorder(null);
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -822,13 +795,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(iniciarVideoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, 38));
 
-        sair_controle.setText("Sair");
-        sair_controle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sair_controleActionPerformed(evt);
-            }
-        });
-
         redefinirSaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/redefinir.png"))); // NOI18N
         redefinirSaida.setToolTipText("Redefinir");
         redefinirSaida.addActionListener(new java.awt.event.ActionListener() {
@@ -885,33 +851,26 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jLabel9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(carregando1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ferramentas_adm_controle_saida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sair_controle))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(novoSaida)
-                                    .addComponent(redefinirSaida)
-                                    .addComponent(salvarSaida))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE))))))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(novoSaida)
+                            .addComponent(redefinirSaida)
+                            .addComponent(salvarSaida))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carregando1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                            .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
         );
         jPanel2Layout.setVerticalGroup(
@@ -919,35 +878,30 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(novoSaida)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(redefinirSaida)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(salvarSaida)))
-                                .addGap(20, 20, 20)))
-                        .addGap(29, 29, 29)
-                        .addComponent(carregando1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(108, 108, 108))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ferramentas_adm_controle_saida)
-                            .addComponent(sair_controle))))
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(novoSaida)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(redefinirSaida)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(salvarSaida)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(carregando1)
+                        .addGap(15, 15, 15)))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
 
         jTabbedPane1.addTab("Controle de saída de CB/SD", jPanel2);
@@ -966,13 +920,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         jScrollPane7.setViewportView(txt_info3);
-
-        ferramentas_adm_controle_entrada.setText("Ferramentas de Administrador");
-        ferramentas_adm_controle_entrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ferramentas_adm_controle_entradaActionPerformed(evt);
-            }
-        });
 
         jPanel9.setBorder(null);
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1042,18 +989,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(capturarVideoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, 38));
 
-        carregando2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        carregando2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ezgif.com-resize.gif"))); // NOI18N
-        carregando2.setText("CARREGANDO...");
-        jPanel9.add(carregando2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 480, -1));
-
-        sair_controle1.setText("Sair");
-        sair_controle1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sair_controle1ActionPerformed(evt);
-            }
-        });
-
         novoEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/adicionar.png"))); // NOI18N
         novoEntrada.setToolTipText("Novo Cadastro");
         novoEntrada.addActionListener(new java.awt.event.ActionListener() {
@@ -1101,48 +1036,39 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelaEntrada);
 
+        carregando2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        carregando2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/ezgif.com-resize.gif"))); // NOI18N
+        carregando2.setText("CARREGANDO...");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(novoEntrada)
-                                    .addComponent(redefinirEntrada)
-                                    .addComponent(salvarEntrada))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(ferramentas_adm_controle_entrada)
-                                .addGap(6, 6, 6)
-                                .addComponent(sair_controle1))))
-                    .addComponent(jScrollPane7))
+                            .addComponent(novoEntrada)
+                            .addComponent(redefinirEntrada)
+                            .addComponent(salvarEntrada))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                            .addComponent(carregando2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane7)))
                 .addGap(15, 15, 15))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ferramentas_adm_controle_entrada)
-                            .addComponent(sair_controle1))
-                        .addGap(6, 6, 6))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1151,17 +1077,43 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(redefinirEntrada)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(salvarEntrada))
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)))
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(carregando2))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Controle de Entrada Fora do Expediente de Militares", jPanel7);
 
         getContentPane().add(jTabbedPane1);
 
-        setBounds(0, 0, 1422, 839);
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        ferramentasAdministrador.setText("Ferramentas de Administrador");
+        ferramentasAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ferramentasAdministradorMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(ferramentasAdministrador);
+
+        sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(sair);
+
+        setJMenuBar(jMenuBar1);
+
+        setBounds(0, 0, 1422, 786);
     }// </editor-fold>//GEN-END:initComponents
 
     private void definirHorarioEntradaSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaSaidaActionPerformed
@@ -1189,13 +1141,6 @@ public class Cadastro extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_definirHorarioEntradaSaidaActionPerformed
-
-    private void ferramentas_adm_controle_saidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferramentas_adm_controle_saidaActionPerformed
-        Login login = new Login();
-        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-    }//GEN-LAST:event_ferramentas_adm_controle_saidaActionPerformed
 
     private void listaPesquisaSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPesquisaSaidaMouseClicked
         try {
@@ -1231,10 +1176,6 @@ public class Cadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pesquisaSaidaKeyReleased
 
-    private void sair_controleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_controleActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_sair_controleActionPerformed
-
     private void definirHorarioEntradaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaEntradaActionPerformed
         try{
             SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
@@ -1259,13 +1200,6 @@ public class Cadastro extends javax.swing.JFrame {
             System.err.println("Erro na atualização!"+ex);
         }
     }//GEN-LAST:event_definirHorarioEntradaEntradaActionPerformed
-
-    private void ferramentas_adm_controle_entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferramentas_adm_controle_entradaActionPerformed
-        Login login = new Login();
-        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-    }//GEN-LAST:event_ferramentas_adm_controle_entradaActionPerformed
 
     private void listaPesquisaEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPesquisaEntradaMouseClicked
         try {
@@ -1295,10 +1229,6 @@ public class Cadastro extends javax.swing.JFrame {
         ListaPesquisaEntradaAux();
     }//GEN-LAST:event_pesquisaEntradaKeyReleased
 
-    private void sair_controle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_controle1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_sair_controle1ActionPerformed
-
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         listaPesquisaSaida.setVisible(false);
     }//GEN-LAST:event_jPanel2MouseClicked
@@ -1317,10 +1247,6 @@ public class Cadastro extends javax.swing.JFrame {
         vf.setLocationRelativeTo(null);
         vf.setVisible(true);
     }//GEN-LAST:event_associarVeiculoActionPerformed
-
-    private void sair_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_buttonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_sair_buttonActionPerformed
 
     private void c13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c13ActionPerformed
         // TODO add your handling code here:
@@ -1369,13 +1295,6 @@ public class Cadastro extends javax.swing.JFrame {
     private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_c4ActionPerformed
-
-    private void ferramentas_adm_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferramentas_adm_visitanteActionPerformed
-        Login login = new Login();
-        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-    }//GEN-LAST:event_ferramentas_adm_visitanteActionPerformed
 
     private void novoVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoVisitanteActionPerformed
         novoVisitante();
@@ -2150,6 +2069,17 @@ public class Cadastro extends javax.swing.JFrame {
         }.start();
     }//GEN-LAST:event_numeroDocumentoVisitanteFocusLost
 
+    private void ferramentasAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ferramentasAdministradorMouseClicked
+        Login login = new Login();
+        login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+    }//GEN-LAST:event_ferramentasAdministradorMouseClicked
+
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_sairMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2225,9 +2155,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton definirHorarioEntradaSaida;
     private javax.swing.JButton definirHorarioSaidaVisitantes;
     private javax.swing.JTextField destinoVisitante;
-    private javax.swing.JButton ferramentas_adm_controle_entrada;
-    private javax.swing.JButton ferramentas_adm_controle_saida;
-    private javax.swing.JButton ferramentas_adm_visitante;
+    private javax.swing.JMenu ferramentasAdministrador;
     public static javax.swing.JRadioButton fornecedor;
     public static javax.swing.JLabel fotoEntrada;
     public static javax.swing.JLabel fotoSaida;
@@ -2253,6 +2181,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
@@ -2289,9 +2218,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton redefinirEntrada;
     private javax.swing.JButton redefinirSaida;
     private javax.swing.JButton redefinirVisitante;
-    private javax.swing.JButton sair_button;
-    private javax.swing.JButton sair_controle;
-    private javax.swing.JButton sair_controle1;
+    private javax.swing.JMenu sair;
     private javax.swing.JButton salvarEntrada;
     private javax.swing.JButton salvarSaida;
     private javax.swing.JButton salvarVisitante;

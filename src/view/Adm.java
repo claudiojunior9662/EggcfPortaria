@@ -203,19 +203,14 @@ public class Adm extends javax.swing.JFrame {
         SimpleDateFormat normalFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatadaPath = pathFormat.format(data_rel.getDate());
         String dataFormatada = normalFormat.format(data_rel.getDate());
-        String caminhoAplicacao = null;
         String caminho = null;
-        
-        try {
-            caminhoAplicacao = new File(".").getCanonicalPath();
-        } catch (IOException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        caminho = caminhoAplicacao + "/relatorios_portaria/" + dataFormatadaPath;
-        
+                
         try{
-            cria_dir(caminhoAplicacao, dataFormatadaPath);
+            caminho = System.getProperty("java.io.tmpdir") + "/relatorios_portaria";
+            criaDiretorio(caminho);
+            caminho = caminho + dataFormatadaPath;
+            criaDiretorio(caminho);
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro!  " + e);
         }
@@ -278,9 +273,9 @@ public class Adm extends javax.swing.JFrame {
     public static javax.swing.JButton iniciarServico;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public boolean verifica_dir(String path){
+    public boolean verificaDiretorio(String caminho){
         boolean retorno = false;
-        File dir = new File(path);
+        File dir = new File(caminho);
         if(!dir.exists()){
             retorno = false;
         }else{
@@ -289,13 +284,10 @@ public class Adm extends javax.swing.JFrame {
         return retorno;
     }
     
-    public void cria_dir(String caminhoAplicacao, String data){
+    public void criaDiretorio(String caminho){
         try{
-            if(verifica_dir(caminhoAplicacao + "/relatorios_portaria") == false){
-                File dir = new File(caminhoAplicacao + "/relatorios_portaria");
-                dir.mkdir();
-            }if(verifica_dir(caminhoAplicacao + "/relatorios_portaria/" + data) == false){
-                File dir = new File(caminhoAplicacao + "/relatorios_portaria/" + data);
+            if(!verificaDiretorio(caminho)){
+                File dir = new File(caminho);
                 dir.mkdir();
             }
         }catch(Exception ex){
@@ -325,7 +317,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -430,7 +422,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -537,7 +529,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -637,7 +629,7 @@ public class Adm extends javax.swing.JFrame {
 
             document.setMargins(20,20,20,20);
 
-            Image imagem = Image.getInstance(getClass().getResource("/view/rel.bmp"));
+            Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
             imagem.scaleToFit(570, 600);
             document.add(imagem);
@@ -713,21 +705,21 @@ public class Adm extends javax.swing.JFrame {
         }
     }
     
-    public void abreDiretorio(String path) throws IOException{
+    public void abreDiretorio(String caminho) throws IOException{
         String os = System.getProperty("os.name");
         os = os.toLowerCase();
-        if(os.contains("win") && !path.equals("")){
+        if(os.contains("win") && !caminho.equals("")){
             try{
-                path = path.replace("/", "\\");
-                Runtime.getRuntime().exec("explorer.exe " + path);
+                caminho = caminho.replace("/", "\\");
+                Runtime.getRuntime().exec("explorer.exe " + caminho);
             }catch(IOException ex){
-                System.out.println("Falha ao abrir o diretório");
+                JOptionPane.showMessageDialog(null, "FALHA AO ABRIR O DIRETÓRIO: " + ex, "ERRO INTERNO", 0);
             }
-        }else if(!path.equals("")){
+        }else if(!caminho.equals("")){
             try{
-                Runtime.getRuntime().exec("nautilus " + path);
+                Runtime.getRuntime().exec("nautilus " + caminho);
             }catch(IOException ex){
-                System.out.println("Falha ao abrir o diretório");
+                JOptionPane.showMessageDialog(null, "FALHA AO ABRIR O DIRETÓRIO: " + ex, "ERRO INTERNO", 0);
             }
         }
     }
