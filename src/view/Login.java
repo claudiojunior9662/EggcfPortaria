@@ -5,18 +5,23 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author claud
  */
 public class Login extends javax.swing.JFrame {
-
+    public static boolean execucao = false;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        user_txt.setEnabled(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,9 +37,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        user_txt = new javax.swing.JTextField();
+        usuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        password_txt = new javax.swing.JPasswordField();
+        senha = new javax.swing.JPasswordField();
         autenticar_button = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -60,8 +65,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("Usuário:");
 
-        user_txt.setText("Administrador");
-
         jLabel2.setText("Senha:");
 
         autenticar_button.setText("Autenticar");
@@ -78,13 +81,11 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 165, Short.MAX_VALUE)
-                        .addComponent(autenticar_button))
-                    .addComponent(user_txt)
-                    .addComponent(password_txt)
+                    .addComponent(autenticar_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -96,11 +97,11 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(user_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(autenticar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(92, Short.MAX_VALUE))
@@ -125,18 +126,37 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 270));
 
+        getAccessibleContext().setAccessibleName("Autenticação");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void autenticar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autenticar_buttonActionPerformed
-        String senha;
-        senha = password_txt.getText();
-        if(senha.equals("eggcfbrasil")){
-            Adm adm = new Adm();
-            this.setVisible(false);
-            adm.setLocationRelativeTo(null);
-            adm.setDefaultCloseOperation(adm.DISPOSE_ON_CLOSE);
-            adm.setVisible(true);
+        if(usuario.getText().equals("cbdia")){
+            if(senha.getText().equals("graficabrasil")){
+                Adm adm = new Adm();
+                adm.setLocationRelativeTo(null);
+                if(execucao){
+                    adm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                }else{
+                    adm.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                }
+                adm.setVisible(true);
+                this.dispose();
+            }
+        }else if(usuario.getText().equals("plantao")){
+            if(senha.getText().equals("graficaexercito")){
+                Cadastro cadastro = null;
+                try {
+                    cadastro = new Cadastro();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                cadastro.setLocationRelativeTo(null);
+                cadastro.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                cadastro.setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_autenticar_buttonActionPerformed
 
@@ -151,9 +171,16 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                if(System.getProperty("os.name").contains("Windows")){
+                    if ("Windows".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }else{
+                    if ("GTK+".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -184,7 +211,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField password_txt;
-    private javax.swing.JTextField user_txt;
+    private javax.swing.JPasswordField senha;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
+
 }

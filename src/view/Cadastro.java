@@ -103,6 +103,8 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialEntrada();
         
         carregando.setVisible(false);
+        carregando1.setVisible(false);
+        carregando2.setVisible(false);
         
 }
 
@@ -2074,6 +2076,7 @@ public class Cadastro extends javax.swing.JFrame {
         login.setDefaultCloseOperation(login.DISPOSE_ON_CLOSE);
         login.setLocationRelativeTo(null);
         login.setVisible(true);
+        Login.execucao = true;
     }//GEN-LAST:event_ferramentasAdministradorMouseClicked
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked

@@ -5,6 +5,9 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Acesso Restrito"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Autentica&#xe7;&#xe3;o"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -70,14 +73,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
-                          <Component id="autenticar_button" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="user_txt" alignment="0" max="32767" attributes="0"/>
-                      <Component id="password_txt" alignment="0" max="32767" attributes="0"/>
+                      <Component id="autenticar_button" alignment="1" min="-2" pref="258" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="senha" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
+                              <Component id="usuario" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -94,11 +94,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="user_txt" min="-2" max="-2" attributes="0"/>
+                  <Component id="usuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="password_txt" min="-2" max="-2" attributes="0"/>
+                  <Component id="senha" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="autenticar_button" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace pref="92" max="32767" attributes="0"/>
@@ -112,17 +112,14 @@
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="user_txt">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Administrador"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="usuario">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Senha:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="password_txt">
+        <Component class="javax.swing.JPasswordField" name="senha">
         </Component>
         <Component class="javax.swing.JButton" name="autenticar_button">
           <Properties>

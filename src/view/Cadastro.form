@@ -147,7 +147,6 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="carregando" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
