@@ -8,6 +8,7 @@ package view;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -143,6 +144,9 @@ public class Login extends javax.swing.JFrame {
                 }
                 adm.setVisible(true);
                 this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "USUÁRIO E/OU SENHA INCORRETOS!", "ERRO DE AUTENTICAÇÃO", 0);
+                return;
             }
         }else if(usuario.getText().equals("plantao")){
             if(senha.getText().equals("graficaexercito")){
@@ -156,6 +160,9 @@ public class Login extends javax.swing.JFrame {
                 cadastro.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 cadastro.setVisible(true);
                 this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "USUÁRIO E/OU SENHA INCORRETOS!", "ERRO DE AUTENTICAÇÃO", 0);
+                return;
             }
         }
     }//GEN-LAST:event_autenticar_buttonActionPerformed
