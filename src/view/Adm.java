@@ -28,9 +28,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.CadastroBEAN;
 import model.bean.ControleExpedienteBEAN;
-import model.dao.CadastroDAO;
-import model.dao.ControleFDAO;
-import model.dao.ControleDAO;
+import model.dao.ControleVisitantesDAO;
+import model.dao.ControleForaExpDAO;
+import model.dao.ControleDentroExpDAO;
 import com.itextpdf.text.Font;
 import java.util.Date;
 import model.bean.ControleForaExpedienteBEAN;
@@ -50,14 +50,14 @@ public class Adm extends javax.swing.JFrame {
         initComponents();
         PreencheServicoDAO psDAO = new PreencheServicoDAO();
         int retorno = psDAO.verificaServicoEmAberto();
-        if(retorno == 0){
+        if (retorno == 0) {
             iniciarServico.setEnabled(false);
             finalizarServico.setEnabled(false);
-        }else{
+        } else {
             iniciarServico.setEnabled(false);
             finalizarServico.setEnabled(false);
         }
-        
+
         abreRelatorios.setSelected(false);
         abrePasta.setSelected(true);
     }
@@ -181,11 +181,11 @@ public class Adm extends javax.swing.JFrame {
         SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
         ConfirmaFinalizarServico cfs = new ConfirmaFinalizarServico();
         cfs.setTitle("FINALIZAR SERCIÇO");
-        cfs.setLocationRelativeTo(null);   
+        cfs.setLocationRelativeTo(null);
         cfs.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ConfirmaFinalizarServico.hora.setText(sdf.format(new Date()));
         ConfirmaFinalizarServico.dia.setText(sdh.format(new Date()));
-        for(PreencheServicoBEAN psBEAN : psDAO.retornaGuarnicao()){
+        for (PreencheServicoBEAN psBEAN : psDAO.retornaGuarnicao()) {
             ConfirmaFinalizarServico.graduado_dia.setText(psBEAN.getGraduado_dia());
             ConfirmaFinalizarServico.cabo_dia.setText(psBEAN.getCabo_dia());
             ConfirmaFinalizarServico.soldado1.setText(psBEAN.getSoldado1());
@@ -199,28 +199,25 @@ public class Adm extends javax.swing.JFrame {
     }//GEN-LAST:event_finalizarServicoActionPerformed
 
     private void emitirRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emitirRelatoriosActionPerformed
-        SimpleDateFormat pathFormat = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat normalFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatadaPath = pathFormat.format(data_rel.getDate());
-        String dataFormatada = normalFormat.format(data_rel.getDate());
+        String dataFormatadaPath = Controle.dataPadraoSistema.format(data_rel.getDate());
+        String dataFormatada = Controle.dataPadrao.format(data_rel.getDate());
         String caminho = null;
-                
-        try{
+
+        try {
             caminho = System.getProperty("java.io.tmpdir") + "/relatorios_portaria";
             criaDiretorio(caminho);
             caminho = caminho + dataFormatadaPath;
             criaDiretorio(caminho);
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro!  " + e);
+        } catch (Exception e) {
+            Controle.exibePopUp((byte) 2, "" + e);
         }
-        
+
         emiteRelatorioVeiculos(dataFormatada, dataFormatadaPath, caminho);
         emiteRelatorioForaExpediente(dataFormatada, dataFormatadaPath, caminho);
         emiteRelatorioHorarioExpediente(dataFormatada, dataFormatadaPath, caminho);
         emiteRelatorioVisitantes(dataFormatada, dataFormatadaPath, caminho);
-        
-        if(abrePasta.isSelected() == true){
+
+        if (abrePasta.isSelected() == true) {
             try {
                 abreDiretorio(caminho);
             } catch (IOException ex) {
@@ -273,49 +270,36 @@ public class Adm extends javax.swing.JFrame {
     public static javax.swing.JButton iniciarServico;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public boolean verificaDiretorio(String caminho){
+    public boolean verificaDiretorio(String caminho) {
         boolean retorno = false;
         File dir = new File(caminho);
-        if(!dir.exists()){
+        if (!dir.exists()) {
             retorno = false;
-        }else{
+        } else {
             retorno = true;
         }
         return retorno;
     }
-    
-    public void criaDiretorio(String caminho){
-        try{
-            if(!verificaDiretorio(caminho)){
+
+    public void criaDiretorio(String caminho) {
+        try {
+            if (!verificaDiretorio(caminho)) {
                 File dir = new File(caminho);
                 dir.mkdir();
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao criar o diretorio");
         }
     }
-    
-    public void emiteRelatorioVeiculos(String dataFormatada, String dataFormatadaPath, String path){
-        CadastroDAO dao = new CadastroDAO();
-        
-        try{
-            boolean retorno;
-            retorno = dao.busca_data_nome(dataFormatada);
-            if(retorno == false){
-                JOptionPane.showMessageDialog(null,"Não existem registros de VEÍCULOS para a data selecionada!");
-                return;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
+
+    public void emiteRelatorioVeiculos(String dataFormatada, String dataFormatadaPath, String path) {
+        Document document = new Document(PageSize.A4, 30, 20, 20, 30);
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path + "/RelEntVeiculos" + dataFormatadaPath + ".pdf"));
             document.open();
 
-            document.setMargins(20,20,20,20);
+            document.setMargins(20, 20, 20, 20);
 
             Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
@@ -323,35 +307,35 @@ public class Adm extends javax.swing.JFrame {
             document.add(imagem);
 
             PdfPTable table = new PdfPTable(7);
-            float[] tams = {0.1f,0.1f,0.1f,0.1f,0.1f,0.1f, 0.3f};
+            float[] tams = {0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.3f};
             table.setWidths(tams);
             table.setWidthPercentage(105);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Veículos do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Veículos do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf", 12, Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
 
-            PdfPCell c1 = new PdfPCell(new Phrase("Marca do Veículo".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c1 = new PdfPCell(new Phrase("Marca do Veículo".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c1.setBackgroundColor(BaseColor.BLACK);
             c1.setHorizontalAlignment(1);
-            PdfPCell c2 = new PdfPCell(new Phrase("Modelo do Veículo".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c2 = new PdfPCell(new Phrase("Modelo do Veículo".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c2.setBackgroundColor(BaseColor.BLACK);
             c2.setHorizontalAlignment(1);
-            PdfPCell c3 = new PdfPCell(new Phrase("Cor do Veículo".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c3 = new PdfPCell(new Phrase("Cor do Veículo".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c3.setBackgroundColor(BaseColor.BLACK);
             c3.setHorizontalAlignment(1);
-            PdfPCell c4 = new PdfPCell(new Phrase("Placa do Veículo".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c4 = new PdfPCell(new Phrase("Placa do Veículo".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c4.setBackgroundColor(BaseColor.BLACK);
             c4.setHorizontalAlignment(1);
-            PdfPCell c5 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c5 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c5.setBackgroundColor(BaseColor.BLACK);
             c5.setHorizontalAlignment(1);
-            PdfPCell c6 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c6 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c6.setBackgroundColor(BaseColor.BLACK);
             c6.setHorizontalAlignment(1);
-            PdfPCell c7 = new PdfPCell(new Phrase("Condutor".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c7 = new PdfPCell(new Phrase("Condutor".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c7.setBackgroundColor(BaseColor.BLACK);
             c7.setHorizontalAlignment(1);
             table.addCell(c1);
@@ -362,65 +346,58 @@ public class Adm extends javax.swing.JFrame {
             table.addCell(c6);
             table.addCell(c7);
 
-            for(CadastroBEAN c: dao.read_pdf_veiculos(dataFormatada)){
-                PdfPCell c8 = new PdfPCell(new Phrase(c.getMarca_veiculo(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c9 = new PdfPCell(new Phrase(c.getModelo_veiculo(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c10 = new PdfPCell(new Phrase(c.getCor_veiculo(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c11 = new PdfPCell(new Phrase(c.getPlaca_veiculo(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c12 = new PdfPCell(new Phrase(c.getHoraE(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c13 = new PdfPCell(new Phrase(c.getHoraS(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c14 = new PdfPCell(new Phrase(c.getNomeCompleto(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+            if (ControleVisitantesDAO.buscaRegistrosVeiculos(dataFormatada) == false) {
+                PdfPCell c8 = new PdfPCell(new Phrase("SEM REGISTROS PARA A DATA SELECIONADA.", FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                c8.setColspan(7);
+                c8.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                 table.addCell(c8);
-                table.addCell(c9);
-                table.addCell(c10);
-                table.addCell(c11);
-                table.addCell(c12);
-                table.addCell(c13);
-                table.addCell(c14);
+            } else {
+                for (CadastroBEAN c : ControleVisitantesDAO.retornaRegistrosVeiculos(dataFormatada)) {
+                    PdfPCell c8 = new PdfPCell(new Phrase(c.getMarca_veiculo(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c9 = new PdfPCell(new Phrase(c.getModelo_veiculo(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c10 = new PdfPCell(new Phrase(c.getCor_veiculo(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c11 = new PdfPCell(new Phrase(c.getPlaca_veiculo(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c12 = new PdfPCell(new Phrase(c.getHoraE(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c13 = new PdfPCell(new Phrase(c.getHoraS(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c14 = new PdfPCell(new Phrase(c.getNomeCompleto(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    table.addCell(c8);
+                    table.addCell(c9);
+                    table.addCell(c10);
+                    table.addCell(c11);
+                    table.addCell(c12);
+                    table.addCell(c13);
+                    table.addCell(c14);
+                }
             }
             document.add(table);
             document.close();
-        } catch (FileNotFoundException | DocumentException ex ) {
-            JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!  " + ex);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
-        }
-        
-        if(abreRelatorios.isSelected() == true){
-           try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Veiculos"+ dataFormatadaPath +".pdf"));
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
-            } 
-        }
-    }
-    
-    public void emiteRelatorioForaExpediente(String dataFormatada, String dataFormatadaPath, String path){
-        
-        ControleFDAO cfdao = new ControleFDAO();
-          
-        try{
-            boolean retorno2;
-            retorno2 = cfdao.busca_data_controlef(dataFormatada);
-            if(retorno2 == false){
-                JOptionPane.showMessageDialog(null,"Não existem registros FORA DO EXPEDIENTE para a data selecionada!");
-                return;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException | DocumentException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de veículos. Detalhes: " + ex);
+        } catch (IOException | SQLException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de veículos. Detalhes: " + ex);
         }
 
+        if (abreRelatorios.isSelected() == true) {
+            try {
+                java.awt.Desktop.getDesktop().open(new File(path + "/RelEntVeiculos" + dataFormatadaPath + ".pdf"));
+            } catch (IOException ex) {
+                Controle.exibePopUp((byte) 3, "O arquivo não pode ser aberto. Detalhes: " + ex);
+            }
+        }
+    }
+
+    public void emiteRelatorioForaExpediente(String dataFormatada, String dataFormatadaPath, String path) {
         Document document = new Document(PageSize.A4, 30, 20, 20, 30);
-        
+
         try {
-            try{
-                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!" + ex);
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(path + "/RelEntForaExp" + dataFormatadaPath + ".pdf"));
+            } catch (Exception ex) {
+                Controle.exibePopUp((byte) 3, "Erro ao gerar o arquivo! Detalhes: " + ex);
             }
             document.open();
 
-            document.setMargins(20,20,20,20);
+            document.setMargins(20, 20, 20, 20);
 
             Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
@@ -428,33 +405,33 @@ public class Adm extends javax.swing.JFrame {
             document.add(imagem);
 
             PdfPTable table = new PdfPTable(6);
-            float[] tams = {0.06f,0.15f,0.12f,0.08f,0.07f,0.40f};
+            float[] tams = {0.06f, 0.15f, 0.12f, 0.08f, 0.07f, 0.40f};
             table.setWidths(tams);
             table.setWidthPercentage(105);
             table.setHorizontalAlignment(Element.ALIGN_CENTER);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de entrada de militares fora do horário de expediente do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de entrada de militares fora do horário de expediente do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf", 12, Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
 
-            PdfPCell c1 = new PdfPCell(new Phrase("Posto/Grad".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c1 = new PdfPCell(new Phrase("Posto/Grad".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c1.setBackgroundColor(BaseColor.BLACK);
             c1.setHorizontalAlignment(1);
-            PdfPCell c2 = new PdfPCell(new Phrase("Nome de Guerra".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c2 = new PdfPCell(new Phrase("Nome de Guerra".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c2.setBackgroundColor(BaseColor.BLACK);
             c2.setHorizontalAlignment(1);
-            PdfPCell c3 = new PdfPCell(new Phrase("Seção".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c3 = new PdfPCell(new Phrase("Seção".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c3.setBackgroundColor(BaseColor.BLACK);
             c3.setHorizontalAlignment(1);
-            PdfPCell c4 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c4 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c4.setBackgroundColor(BaseColor.BLACK);
             c4.setHorizontalAlignment(1);
-            PdfPCell c5 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c5 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c5.setBackgroundColor(BaseColor.BLACK);
             c5.setHorizontalAlignment(1);
-            PdfPCell c6 = new PdfPCell(new Phrase("Motivo Entrada".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c6 = new PdfPCell(new Phrase("Motivo Entrada".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c6.setBackgroundColor(BaseColor.BLACK);
             c6.setHorizontalAlignment(1);
             table.addCell(c1);
@@ -464,70 +441,62 @@ public class Adm extends javax.swing.JFrame {
             table.addCell(c5);
             table.addCell(c6);
 
-                for(ControleForaExpedienteBEAN cf: cfdao.read_pdf_controlef(dataFormatada)){
-                    PdfPCell c8 = new PdfPCell(new Phrase(cf.getGrad_posto(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c9 = new PdfPCell(new Phrase(cf.getNome_guerra(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c10 = new PdfPCell(new Phrase(cf.getSessao(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c11 = new PdfPCell(new Phrase(cf.getHora_entrada(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+            if (ControleForaExpDAO.buscaRegistrosForaExp(dataFormatada) == false) {
+                PdfPCell c8 = new PdfPCell(new Phrase("SEM REGISTROS PARA A DATA SELECIONADA.", FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                c8.setColspan(6);
+                c8.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+                table.addCell(c8);
+            } else {
+                for (ControleForaExpedienteBEAN cf : ControleForaExpDAO.retornaRegistrosForaExp(dataFormatada)) {
+                    PdfPCell c8 = new PdfPCell(new Phrase(cf.getGrad_posto(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c9 = new PdfPCell(new Phrase(cf.getNome_guerra(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c10 = new PdfPCell(new Phrase(cf.getSessao(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c11 = new PdfPCell(new Phrase(cf.getHora_entrada(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
 
                     table.addCell(c8);
                     table.addCell(c9);
                     table.addCell(c10);
                     table.addCell(c11);
-                    if(cf.getHora_saida() == null){
+                    if (cf.getHora_saida() == null) {
                         table.addCell("");
-                    }else{
-                        PdfPCell c12 = new PdfPCell(new Phrase(cf.getHora_saida(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+                    } else {
+                        PdfPCell c12 = new PdfPCell(new Phrase(cf.getHora_saida(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
                         table.addCell(c12);
                     }
-                    PdfPCell c13 = new PdfPCell(new Phrase(cf.getMotivo_entrada(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    table.addCell(c13);   
+                    PdfPCell c13 = new PdfPCell(new Phrase(cf.getMotivo_entrada(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    table.addCell(c13);
                 }
-                document.add(table);
-                document.close();
-            } catch (DocumentException ex) {
-                Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(abreRelatorios.isSelected() == true){
-           try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_Entrada_ForaDoExpediente" + dataFormatadaPath + ".pdf"));
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
-            } 
-        }
-        
-        
-    }
-    
-    public void emiteRelatorioHorarioExpediente(String dataFormatada, String dataFormatadaPath, String path){
-        
-        ControleDAO cdao = new ControleDAO();
-          
-        try{
-            boolean retorno2;
-            retorno2 = cdao.busca_data_controle(dataFormatada);
-            if(retorno2 == false){
-                JOptionPane.showMessageDialog(null,"Não existem registros NO HORÁRIO DE EXPEDIENTE para a data selecionada!");
-                return;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
+
+            document.add(table);
+            document.close();
+        } catch (DocumentException | IOException | SQLException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de entrada fora do expediente. Detalhes: " + ex);
         }
 
+        if (abreRelatorios.isSelected() == true) {
+            try {
+                java.awt.Desktop.getDesktop().open(new File(path + "/RelEntForaExp" + dataFormatadaPath + ".pdf"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "O arquivo não pode ser aberto!");
+            }
+        }
+
+    }
+
+    public void emiteRelatorioHorarioExpediente(String dataFormatada, String dataFormatadaPath, String path) {
+        ControleDentroExpDAO cdao = new ControleDentroExpDAO();
         Document document = new Document(PageSize.A4, 30, 20, 20, 30);
-        
+
         try {
-            try{
-                PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio_CB-SD" + dataFormatadaPath +".pdf"));
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!" + ex);
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(path + "/RelSaidaCbSd" + dataFormatadaPath + ".pdf"));
+            } catch (Exception ex) {
+                Controle.exibePopUp((byte) 3, "Erro ao gerar o arquivo! Detalhes: " + ex);
             }
             document.open();
 
-            document.setMargins(20,20,20,20);
+            document.setMargins(20, 20, 20, 20);
 
             Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
@@ -535,33 +504,33 @@ public class Adm extends javax.swing.JFrame {
             document.add(imagem);
 
             PdfPTable table = new PdfPTable(6);
-            float[] tams = {0.06f,0.20f,0.13f,0.08f,0.09f,0.39f};
+            float[] tams = {0.06f, 0.20f, 0.13f, 0.08f, 0.09f, 0.39f};
             table.setWidths(tams);
             table.setWidthPercentage(105);
             table.setHorizontalAlignment(Element.ALIGN_CENTER);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Saída de CB/SD no horário de expediente do dia "+ dataFormatada + ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Saída de CB/SD no horário de expediente do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf", 12, Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
 
-            PdfPCell c1 = new PdfPCell(new Phrase("Posto/Grad".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c1 = new PdfPCell(new Phrase("Posto/Grad".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c1.setBackgroundColor(BaseColor.BLACK);
             c1.setHorizontalAlignment(1);
-            PdfPCell c2 = new PdfPCell(new Phrase("Nome de Guerra".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c2 = new PdfPCell(new Phrase("Nome de Guerra".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c2.setBackgroundColor(BaseColor.BLACK);
             c2.setHorizontalAlignment(1);
-            PdfPCell c3 = new PdfPCell(new Phrase("Seção".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c3 = new PdfPCell(new Phrase("Seção".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c3.setBackgroundColor(BaseColor.BLACK);
             c3.setHorizontalAlignment(1);
-            PdfPCell c4 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c4 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c4.setBackgroundColor(BaseColor.BLACK);
             c4.setHorizontalAlignment(1);
-            PdfPCell c5 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c5 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c5.setBackgroundColor(BaseColor.BLACK);
             c5.setHorizontalAlignment(1);
-            PdfPCell c6 = new PdfPCell(new Phrase("Motivo Saída".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c6 = new PdfPCell(new Phrase("Motivo Saída".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c6.setBackgroundColor(BaseColor.BLACK);
             c6.setHorizontalAlignment(1);
             table.addCell(c1);
@@ -571,63 +540,55 @@ public class Adm extends javax.swing.JFrame {
             table.addCell(c5);
             table.addCell(c6);
 
-                for(ControleExpedienteBEAN c: cdao.read_pdf_controle(dataFormatada)){
-                    PdfPCell c8 = new PdfPCell(new Phrase(c.getGrad_posto(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c9 = new PdfPCell(new Phrase(c.getNome_guerra(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c10 = new PdfPCell(new Phrase(c.getSessao(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    PdfPCell c11 = new PdfPCell(new Phrase(c.getHora_saida(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+            if (!ControleDentroExpDAO.buscaRegistrosDentroExp(dataFormatada)) {
+                PdfPCell c8 = new PdfPCell(new Phrase("SEM REGISTROS PARA A DATA SELECIONADA.", FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                c8.setColspan(6);
+                c8.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+                table.addCell(c8);
+            } else {
+                for (ControleExpedienteBEAN c : cdao.retornaRegistrosDentroExp(dataFormatada)) {
+                    PdfPCell c8 = new PdfPCell(new Phrase(c.getGrad_posto(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c9 = new PdfPCell(new Phrase(c.getNome_guerra(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c10 = new PdfPCell(new Phrase(c.getSessao(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c11 = new PdfPCell(new Phrase(c.getHora_saida(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
 
                     table.addCell(c8);
                     table.addCell(c9);
                     table.addCell(c10);
                     table.addCell(c11);
-                    if(c.getHora_entrada() == null){
+                    if (c.getHora_entrada() == null) {
                         table.addCell("");
-                    }else{
-                        PdfPCell c12 = new PdfPCell(new Phrase(c.getHora_entrada(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+                    } else {
+                        PdfPCell c12 = new PdfPCell(new Phrase(c.getHora_entrada(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
                         table.addCell(c12);
                     }
-                    PdfPCell c13 = new PdfPCell(new Phrase(c.getMotivo_saida(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    table.addCell(c13);   
+                    PdfPCell c13 = new PdfPCell(new Phrase(c.getMotivo_saida(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    table.addCell(c13);
                 }
-                document.add(table);
-                document.close();
-            } catch (DocumentException ex) {
-                Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.add(table);
+            document.close();
+        } catch (DocumentException | IOException | SQLException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de saída dentro do expediente. Detalhes: " + ex);
         }
-        
-        if(abreRelatorios.isSelected() == true){
-           try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio_CB-SD" + dataFormatadaPath +".pdf"));
+
+        if (abreRelatorios.isSelected() == true) {
+            try {
+                java.awt.Desktop.getDesktop().open(new File(path + "/RelSaidaCbSd" + dataFormatadaPath + ".pdf"));
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
-            } 
+                Controle.exibePopUp((byte) 3, "O arquivo não pode ser aberto! Detalhes: " + ex);
+            }
         }
     }
-    
-    public void emiteRelatorioVisitantes(String dataFormatada, String dataFormatadaPath, String path){
-        
-        CadastroDAO dao = new CadastroDAO();
-        try{
-            boolean retorno;
-            retorno = dao.busca_data(dataFormatada);
-            if(retorno == false){
-                JOptionPane.showMessageDialog(null,"Não existem registros DE VISITANTES para a data selecionada!");
-                return;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Adm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Document document = new Document(PageSize.A4, 30, 20, 20, 30) {};
+
+    public void emiteRelatorioVisitantes(String dataFormatada, String dataFormatadaPath, String path) {
+        Document document = new Document(PageSize.A4, 30, 20, 20, 30);
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(path + "/Relatorio-Visitantes"+ dataFormatadaPath +".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path + "/RelEntVisitantes" + dataFormatadaPath + ".pdf"));
             document.open();
 
-            document.setMargins(20,20,20,20);
+            document.setMargins(20, 20, 20, 20);
 
             Image imagem = Image.getInstance(getClass().getResource("/view/rel.png"));
             imagem.setAlignment(1);
@@ -635,32 +596,32 @@ public class Adm extends javax.swing.JFrame {
             document.add(imagem);
 
             PdfPTable table = new PdfPTable(6);
-            float[] tams = {0.4f,0.15f,0.12f,0.08f,0.08f,0.17f};
+            float[] tams = {0.4f, 0.15f, 0.12f, 0.08f, 0.08f, 0.17f};
             table.setWidths(tams);
             table.setWidthPercentage(105);
 
             document.add(new Paragraph("\n"));
-            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Visitantes do dia " + dataFormatada+ ":", FontFactory.getFont("arial.ttf",12,Font.BOLD));
+            Paragraph p = new Paragraph("Relatório de Entrada/Saída de Visitantes do dia " + dataFormatada + ":", FontFactory.getFont("arial.ttf", 12, Font.BOLD));
             p.setAlignment(1);
             document.add(p);
             document.add(new Paragraph("\n"));
 
-            PdfPCell c1 = new PdfPCell(new Phrase("Nome Completo".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c1 = new PdfPCell(new Phrase("Nome Completo".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c1.setBackgroundColor(BaseColor.BLACK);
             c1.setHorizontalAlignment(1);
-            PdfPCell c2 = new PdfPCell(new Phrase("Tipo Doc".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c2 = new PdfPCell(new Phrase("Tipo Doc".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c2.setBackgroundColor(BaseColor.BLACK);
             c2.setHorizontalAlignment(1);
-            PdfPCell c3 = new PdfPCell(new Phrase("Nº".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c3 = new PdfPCell(new Phrase("Nº".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c3.setBackgroundColor(BaseColor.BLACK);
             c3.setHorizontalAlignment(1);
-            PdfPCell c4 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(),FontFactory.getFont("arial.ttf",8,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c4 = new PdfPCell(new Phrase("Hora Entrada".toUpperCase(), FontFactory.getFont("arial.ttf", 8, Font.BOLD, BaseColor.WHITE)));
             c4.setBackgroundColor(BaseColor.BLACK);
             c4.setHorizontalAlignment(1);
-            PdfPCell c5 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(),FontFactory.getFont("arial.ttf",9,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c5 = new PdfPCell(new Phrase("Hora Saída".toUpperCase(), FontFactory.getFont("arial.ttf", 9, Font.BOLD, BaseColor.WHITE)));
             c5.setBackgroundColor(BaseColor.BLACK);
             c5.setHorizontalAlignment(1);
-            PdfPCell c6 = new PdfPCell(new Phrase("Destino".toUpperCase(),FontFactory.getFont("arial.ttf",10,Font.BOLD,BaseColor.WHITE)));
+            PdfPCell c6 = new PdfPCell(new Phrase("Destino".toUpperCase(), FontFactory.getFont("arial.ttf", 10, Font.BOLD, BaseColor.WHITE)));
             c6.setBackgroundColor(BaseColor.BLACK);
             c6.setHorizontalAlignment(1);
             table.addCell(c1);
@@ -670,55 +631,63 @@ public class Adm extends javax.swing.JFrame {
             table.addCell(c5);
             table.addCell(c6);
 
-            for(CadastroBEAN c: dao.read_pdf(dataFormatada)){
-                PdfPCell c7 = new PdfPCell(new Phrase(c.getNomeCompleto(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c8 = new PdfPCell(new Phrase(c.getTipoDocumento(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c9 = new PdfPCell(new Phrase(c.getDocumentoIden(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                PdfPCell c10 = new PdfPCell(new Phrase(c.getHoraE(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
+            if (!ControleVisitantesDAO.buscaRegistrosVisitantes(dataFormatada)) {
+                PdfPCell c7 = new PdfPCell(new Phrase("SEM REGISTROS PARA A DATA SELECIONADA.", FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                c7.setColspan(6);
+                c7.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                 table.addCell(c7);
-                table.addCell(c8);
-                table.addCell(c9);
-                table.addCell(c10);
-                if(c.getHoraS() == null){
-                    table.addCell("");
-                }else{
-                    PdfPCell c11 = new PdfPCell(new Phrase(c.getHoraS(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                    table.addCell(c11);
+            } else {
+                for (CadastroBEAN c : ControleVisitantesDAO.retornaRegistrosVisitantes(dataFormatada)) {
+                    PdfPCell c7 = new PdfPCell(new Phrase(c.getNomeCompleto(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c8 = new PdfPCell(new Phrase(c.getTipoDocumento(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c9 = new PdfPCell(new Phrase(c.getDocumentoIden(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    PdfPCell c10 = new PdfPCell(new Phrase(c.getHoraE(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    table.addCell(c7);
+                    table.addCell(c8);
+                    table.addCell(c9);
+                    table.addCell(c10);
+                    if (c.getHoraS() == null) {
+                        table.addCell("");
+                    } else {
+                        PdfPCell c11 = new PdfPCell(new Phrase(c.getHoraS(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                        table.addCell(c11);
+                    }
+                    PdfPCell c12 = new PdfPCell(new Phrase(c.getDestino() + " - " + c.getComquemFalar(), FontFactory.getFont("arial.ttf", 10, BaseColor.BLACK)));
+                    table.addCell(c12);
                 }
-                PdfPCell c12 = new PdfPCell(new Phrase(c.getDestino() + " - " + c.getComquemFalar(),FontFactory.getFont("arial.ttf",10,BaseColor.BLACK)));
-                table.addCell(c12);
             }
+
             document.add(table);
             document.close();
-        } catch (FileNotFoundException | DocumentException ex ) {
-            JOptionPane.showMessageDialog(null,"Erro ao gerar o arquivo!  " + ex);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"Imagem não encontrada " + ex);
+        } catch (FileNotFoundException | DocumentException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de visitantes. Detalhes: " + ex);
+        } catch (IOException | SQLException ex) {
+            Controle.exibePopUp((byte) 3, "Erro ao gerar o relatório de visitantes. Detalhes: " + ex);
         }
-        
-        if(abreRelatorios.isSelected() == true){
-           try {
-                java.awt.Desktop.getDesktop().open( new File(path + "/Relatorio-Visitantes" + dataFormatadaPath +".pdf"));
+
+        if (abreRelatorios.isSelected() == true) {
+            try {
+                java.awt.Desktop.getDesktop().open(new File(path + "/RelEntVisitantes" + dataFormatadaPath + ".pdf"));
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null,"O arquivo não pode ser aberto!");
-            } 
+                Controle.exibePopUp((byte) 3, "O arquivo não pode ser aberto! Detalhes: " + ex);
+            }
         }
     }
-    
-    public void abreDiretorio(String caminho) throws IOException{
+
+    public void abreDiretorio(String caminho) throws IOException {
         String os = System.getProperty("os.name");
         os = os.toLowerCase();
-        if(os.contains("win") && !caminho.equals("")){
-            try{
+        if (os.contains("win") && !caminho.equals("")) {
+            try {
                 caminho = caminho.replace("/", "\\");
                 Runtime.getRuntime().exec("explorer.exe " + caminho);
-            }catch(IOException ex){
+            } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "FALHA AO ABRIR O DIRETÓRIO: " + ex, "ERRO INTERNO", 0);
             }
-        }else if(!caminho.equals("")){
-            try{
+        } else if (!caminho.equals("")) {
+            try {
                 Runtime.getRuntime().exec("nautilus " + caminho);
-            }catch(IOException ex){
+            } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "FALHA AO ABRIR O DIRETÓRIO: " + ex, "ERRO INTERNO", 0);
             }
         }

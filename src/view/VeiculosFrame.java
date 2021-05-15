@@ -35,59 +35,53 @@ public class VeiculosFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        modelo_veiculo = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        cor_veiculo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        marca_veiculo = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        placa_veiculo = new javax.swing.JFormattedTextField();
-        associar_veiculo = new javax.swing.JButton();
-        limpar_button = new javax.swing.JButton();
+        lblModeloVeiculo = new javax.swing.JLabel();
+        jtfModeloVeiculo = new javax.swing.JTextField();
+        lblMarcaVeiculo = new javax.swing.JLabel();
+        jtfCorVeiculo = new javax.swing.JTextField();
+        lblCorVeiculo = new javax.swing.JLabel();
+        jtfMarcaVeiculo = new javax.swing.JTextField();
+        lblPlacaVeiculo = new javax.swing.JLabel();
+        btnAssociarVeiculo = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        jtfPlacaVeiculo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Adicionar Veículo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Modelo do Veículo:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-        jPanel1.add(modelo_veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
+        lblModeloVeiculo.setText("Modelo do Veículo:");
+        jPanel1.add(lblModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+        jPanel1.add(jtfModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
 
-        jLabel2.setText("Marca do Veículo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-        jPanel1.add(cor_veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 120, -1));
+        lblMarcaVeiculo.setText("Marca do Veículo:");
+        jPanel1.add(lblMarcaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel1.add(jtfCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 120, -1));
 
-        jLabel3.setText("Cor do veículo:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
-        jPanel1.add(marca_veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, -1));
+        lblCorVeiculo.setText("Cor do veículo:");
+        jPanel1.add(lblCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
+        jPanel1.add(jtfMarcaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, -1));
 
-        jLabel4.setText("Placa do Veículo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+        lblPlacaVeiculo.setText("Placa do Veículo:");
+        jPanel1.add(lblPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
-        try {
-            placa_veiculo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("???-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jPanel1.add(placa_veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 100, -1));
-
-        associar_veiculo.setText("Associar Veículo");
-        associar_veiculo.addActionListener(new java.awt.event.ActionListener() {
+        btnAssociarVeiculo.setText("Associar Veículo");
+        btnAssociarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                associar_veiculoActionPerformed(evt);
+                btnAssociarVeiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(associar_veiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 80, -1, -1));
+        jPanel1.add(btnAssociarVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 80, -1, -1));
 
-        limpar_button.setText("Limpar Campos");
-        limpar_button.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpar.setText("Limpar Campos");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpar_buttonActionPerformed(evt);
+                btnLimparActionPerformed(evt);
             }
         });
-        jPanel1.add(limpar_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
+        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
+        jPanel1.add(jtfPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,7 +89,7 @@ public class VeiculosFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,50 +103,50 @@ public class VeiculosFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void associar_veiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associar_veiculoActionPerformed
+    private void btnAssociarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssociarVeiculoActionPerformed
         String placa = null;
         marca = null;
         modelo = null;
         cor = null;
         placa2 = null;
         
-        if(marca_veiculo.getText().isEmpty()){
+        if(jtfMarcaVeiculo.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Marca Veículo deve ser preenchido.");
             return;
         }else{
-            marca = marca_veiculo.getText().toUpperCase();
+            marca = jtfMarcaVeiculo.getText().toUpperCase();
         }
         
-        if(modelo_veiculo.getText().isEmpty()){
+        if(jtfModeloVeiculo.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Modelo Veículo deve ser preenchido.");
             return;
         }else{
-            modelo = modelo_veiculo.getText().toUpperCase();
+            modelo = jtfModeloVeiculo.getText().toUpperCase();
         }
         
-        if(cor_veiculo.getText().isEmpty()){
+        if(jtfCorVeiculo.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Cor do Veículo deve ser preenchido.");
             return;
         }else{
-            cor = cor_veiculo.getText().toUpperCase();
+            cor = jtfCorVeiculo.getText().toUpperCase();
         }
         
-        placa = placa_veiculo.getText().replaceAll("-", "");
+        placa = jtfPlacaVeiculo.getText().replaceAll("-", "");
         if(placa.equals("       ")){
             JOptionPane.showMessageDialog(null, "O campo Placa do Veículo deve ser preenchido.");
             return;
         }else{
-            placa2 = placa_veiculo.getText().toUpperCase();
+            placa2 = jtfPlacaVeiculo.getText().toUpperCase();
         }
         this.dispose();
-    }//GEN-LAST:event_associar_veiculoActionPerformed
+    }//GEN-LAST:event_btnAssociarVeiculoActionPerformed
 
-    private void limpar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpar_buttonActionPerformed
-        marca_veiculo.setText("");
-        modelo_veiculo.setText("");
-        cor_veiculo.setText("");
-        placa_veiculo.setText("");
-    }//GEN-LAST:event_limpar_buttonActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        jtfMarcaVeiculo.setText("");
+        jtfModeloVeiculo.setText("");
+        jtfCorVeiculo.setText("");
+        jtfPlacaVeiculo.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,16 +199,16 @@ public class VeiculosFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton associar_veiculo;
-    public static javax.swing.JTextField cor_veiculo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnAssociarVeiculo;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton limpar_button;
-    public static javax.swing.JTextField marca_veiculo;
-    public static javax.swing.JTextField modelo_veiculo;
-    public static javax.swing.JFormattedTextField placa_veiculo;
+    public static javax.swing.JTextField jtfCorVeiculo;
+    public static javax.swing.JTextField jtfMarcaVeiculo;
+    public static javax.swing.JTextField jtfModeloVeiculo;
+    private javax.swing.JTextField jtfPlacaVeiculo;
+    private javax.swing.JLabel lblCorVeiculo;
+    private javax.swing.JLabel lblMarcaVeiculo;
+    private javax.swing.JLabel lblModeloVeiculo;
+    private javax.swing.JLabel lblPlacaVeiculo;
     // End of variables declaration//GEN-END:variables
 }

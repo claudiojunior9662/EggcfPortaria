@@ -20,7 +20,7 @@ import model.bean.ControleForaExpedienteBEAN;
  *
  * @author claud
  */
-public class ControleFDAO {
+public class ControleForaExpDAO {
     public Statement st2;
     public ResultSet rs3;
     
@@ -181,10 +181,18 @@ public class ControleFDAO {
             return controlev;
         }
     
-    public boolean busca_data_controlef(String date) throws SQLException{
+    /**
+     * Retorna os registros de E/S fora do horário do expediente
+     * @param date Data selecionada
+     * @return true - se existir registro, false - se não existir registro
+     * @throws SQLException 
+     */
+    public static boolean buscaRegistrosForaExp(String date) throws SQLException{
             boolean retorno = false;
             Connection con = ConnectionFactory.getConnection();
-            String sql = "SELECT data FROM controlef_saida WHERE data = ?";
+            String sql = "SELECT data "
+                    + "FROM controlef_saida "
+                    + "WHERE data = ?";
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = con.prepareStatement(sql);
@@ -202,7 +210,12 @@ public class ControleFDAO {
             return retorno;
         }
     
-    public List<ControleForaExpedienteBEAN> read_pdf_controlef(String date){
+    /**
+     * Retorna os registros de entrada dentro do horário do expediente
+     * @param date Data selecionada
+     * @return Lista com registros
+     */
+    public static List<ControleForaExpedienteBEAN> retornaRegistrosForaExp(String date) throws SQLException{
             Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -210,7 +223,9 @@ public class ControleFDAO {
             List<ControleForaExpedienteBEAN> controlev = new ArrayList<>();
             
             try{
-                stmt = con.prepareStatement("SELECT grad_posto,nome_guerra,sessao,hora_entrada,hora_saida,motivo_entrada FROM controlef_saida WHERE data = ?");
+                stmt = con.prepareStatement("SELECT grad_posto,nome_guerra,sessao,hora_entrada,hora_saida,motivo_entrada "
+                        + "FROM controlef_saida "
+                        + "WHERE data = ?");
                 stmt.setString(1,date);
                 rs = stmt.executeQuery();
                 while(rs.next()){
@@ -224,7 +239,7 @@ public class ControleFDAO {
                     controlev.add(cf);
                 }
             }catch(SQLException ex){
-                System.err.println("Erro ao buscar data no banco!"+ex);
+                throw new SQLException(ex);
             }finally{
                 ConnectionFactory.closeConnection(con,stmt,rs);
             }

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -34,79 +36,84 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.bean.CadastroBEAN;
 import model.bean.ControleExpedienteBEAN;
-import model.dao.CadastroDAO;
-import model.dao.ControleDAO;
+import model.dao.ControleVisitantesDAO;
+import model.dao.ControleDentroExpDAO;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 import model.bean.ControleForaExpedienteBEAN;
-import model.dao.ControleFDAO;
+import model.dao.ControleForaExpDAO;
 
 /**
  *
  * @author claud
  */
 public class Cadastro extends javax.swing.JFrame {
-        BufferedImage imageArrayVisitantes = null;
-        BufferedImage imageArraySaida = null;
-        BufferedImage imageArrayEntrada = null;
-        private Dimension dimensao_default;
-        private Webcam WEBCAM;
-        boolean executando = true;
-        boolean executando2 = true;
-        DefaultListModel model_list;
-        DefaultListModel model_list2;
-        DefaultListModel model_list3;
-        int redefinirVisitantesAux = 0;
-        int redefinirSaidaAux = 0;
-        int redefinirEntradaAux = 0;
-        boolean webcamFound = false;
-        public static GregorianCalendar dtI;
-        
+
+    BufferedImage imageArrayVisitantes = null;
+    BufferedImage imageArraySaida = null;
+    BufferedImage imageArrayEntrada = null;
+    private Dimension dimensao_default;
+    private Webcam WEBCAM;
+    boolean executando = true;
+    boolean executando2 = true;
+    DefaultListModel model_list;
+    DefaultListModel model_list2;
+    DefaultListModel model_list3;
+    int redefinirVisitantesAux = 0;
+    int redefinirSaidaAux = 0;
+    int redefinirEntradaAux = 0;
+    boolean webcamFound = false;
+    public static GregorianCalendar dtI;
+
     public Cadastro() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
-        
-        try{
+
+        try {
             inicializaWebcam();
             webcamFound = true;
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Nao foi detectado nenhum dispositivo de video!\n O programa nao ira ser capaz de capturar imagens!\n Favor conecte um dispositivo de video e abra o programa novamente! "+ ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Nao foi detectado nenhum dispositivo de video!\n O programa nao ira ser capaz de capturar imagens!\n Favor conecte um dispositivo de video e abra o programa novamente! " + ex);
             iniciarVideoRegistroVisitantes.setEnabled(false);
             iniciarVideoSaida.setEnabled(false);
             webcamFound = false;
         }
-        
+
         atualizaTabelaVisitantes();
         readJTableControle();
         readJTable_controlef();
-        
+
         //Modela a lista de pesquisa do Registro de Visitantes
         listaPesquisaVisitantes.setVisible(false);
         model_list = new DefaultListModel();
         listaPesquisaVisitantes.setModel(model_list);
-        
+
         //Modela a lista de pesquisa do Controle de Saída de CB/SD
         listaPesquisaSaida.setVisible(false);
         model_list2 = new DefaultListModel();
         listaPesquisaSaida.setModel(model_list2);
-        
+
         //Modela a lista de pesquisa do ControleExpedienteBEAN de entrada fora do expediente
         listaPesquisaEntrada.setVisible(false);
         model_list3 = new DefaultListModel();
         listaPesquisaEntrada.setModel(model_list3);
-        
+
         estadoInicialVisitantes();
         estadoInicialSaida();
         estadoInicialEntrada();
-        
+
         carregando.setVisible(false);
         carregando1.setVisible(false);
         carregando2.setVisible(false);
-        
-}
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,6 +126,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        btnGrTipoTelefone = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         salvarVisitante = new javax.swing.JButton();
@@ -130,21 +138,21 @@ public class Cadastro extends javax.swing.JFrame {
         associarVeiculo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        listaPesquisaVisitantes = new javax.swing.JList<String>();
+        listaPesquisaVisitantes = new javax.swing.JList<>();
         nomeCompletoVisitante = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         pesquisaRegistroVisitantes = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tipoDocumentoVisitante = new javax.swing.JComboBox<String>();
+        tipoDocumentoVisitante = new javax.swing.JComboBox<>();
         civil = new javax.swing.JRadioButton();
         militar = new javax.swing.JRadioButton();
         txtVisitante = new javax.swing.JLabel();
         fornecedor = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        telefoneVisitante = new javax.swing.JFormattedTextField();
+        jftfTelefoneVisitante = new javax.swing.JFormattedTextField();
         destinoVisitante = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         comQuemFalarVisitante = new javax.swing.JTextField();
@@ -173,6 +181,8 @@ public class Cadastro extends javax.swing.JFrame {
         iniciarVideoRegistroVisitantes = new javax.swing.JButton();
         capturarVideoRegistroVisitantes = new javax.swing.JButton();
         numeroDocumentoVisitante = new javax.swing.JFormattedTextField();
+        jrbtnTipoTelefoneCelular = new javax.swing.JRadioButton();
+        jrbtnTipoTelefoneFixo = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaVisitantes = new javax.swing.JTable();
         carregando = new javax.swing.JLabel();
@@ -181,13 +191,13 @@ public class Cadastro extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         txt_info2 = new javax.swing.JTextPane();
         jPanel4 = new javax.swing.JPanel();
-        listaPesquisaSaida = new javax.swing.JList<String>();
-        postoGraduacaoSaida = new javax.swing.JComboBox<String>();
+        listaPesquisaSaida = new javax.swing.JList<>();
+        postoGraduacaoSaida = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nomeGuerraSaida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        sessaoSaida = new javax.swing.JComboBox<String>();
+        sessaoSaida = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         motivoSaida = new javax.swing.JTextField();
         pesquisaSaida = new javax.swing.JTextField();
@@ -207,13 +217,13 @@ public class Cadastro extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         txt_info3 = new javax.swing.JTextPane();
         jPanel9 = new javax.swing.JPanel();
-        listaPesquisaEntrada = new javax.swing.JList<String>();
-        postoGraduacaoEntrada = new javax.swing.JComboBox<String>();
+        listaPesquisaEntrada = new javax.swing.JList<>();
+        postoGraduacaoEntrada = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         nomeGuerraEntrada = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        sessaoEntrada = new javax.swing.JComboBox<String>();
+        sessaoEntrada = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         motivoEntrada = new javax.swing.JTextField();
         pesquisaEntrada = new javax.swing.JTextField();
@@ -276,6 +286,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        txt_info.setEditable(false);
         jScrollPane5.setViewportView(txt_info);
 
         associarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/associarVeiculo.png"))); // NOI18N
@@ -288,7 +299,6 @@ public class Cadastro extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel12.setBorder(null);
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         listaPesquisaVisitantes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -296,7 +306,7 @@ public class Cadastro extends javax.swing.JFrame {
                 listaPesquisaVisitantesMouseClicked(evt);
             }
         });
-        jPanel12.add(listaPesquisaVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 120));
+        jPanel12.add(listaPesquisaVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 400, 120));
 
         nomeCompletoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +339,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel2.setText("Número Documento:");
         jPanel12.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
-        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
+        tipoDocumentoVisitante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "ID Militar", "RG", "CNH(Num Reg)", "Passaporte", "Carteira de Trabalho", "Certificado de Reservista" }));
         tipoDocumentoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoDocumentoVisitanteActionPerformed(evt);
@@ -343,7 +353,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         buttonGroup1.add(militar);
         militar.setText("Militar");
-        jPanel12.add(militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+        jPanel12.add(militar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         txtVisitante.setText("Tipo Visitante:");
         jPanel12.add(txtVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
@@ -356,37 +366,33 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         jLabel7.setText("Destino:");
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
-        try {
-            telefoneVisitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        telefoneVisitante.setToolTipText("COLOCAR O 9º DÍGITO MESMO SE FOR TELEFONE FIXO");
-        telefoneVisitante.addActionListener(new java.awt.event.ActionListener() {
+        jftfTelefoneVisitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jftfTelefoneVisitante.setToolTipText("COLOCAR O 9º DÍGITO MESMO SE FOR TELEFONE FIXO");
+        jftfTelefoneVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefoneVisitanteActionPerformed(evt);
+                jftfTelefoneVisitanteActionPerformed(evt);
             }
         });
-        jPanel12.add(telefoneVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 139, -1));
+        jPanel12.add(jftfTelefoneVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 139, -1));
 
         destinoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 destinoVisitanteActionPerformed(evt);
             }
         });
-        jPanel12.add(destinoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 139, -1));
+        jPanel12.add(destinoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 139, -1));
 
         jLabel4.setText("Com Quem Falar:");
-        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        jPanel12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         comQuemFalarVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comQuemFalarVisitanteActionPerformed(evt);
             }
         });
-        jPanel12.add(comQuemFalarVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 139, -1));
+        jPanel12.add(comQuemFalarVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 139, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Crachá"));
 
@@ -625,6 +631,25 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel12.add(numeroDocumentoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, -1));
 
+        btnGrTipoTelefone.add(jrbtnTipoTelefoneCelular);
+        jrbtnTipoTelefoneCelular.setText("Celular");
+        jrbtnTipoTelefoneCelular.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrbtnTipoTelefoneCelularItemStateChanged(evt);
+            }
+        });
+        jPanel12.add(jrbtnTipoTelefoneCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        btnGrTipoTelefone.add(jrbtnTipoTelefoneFixo);
+        jrbtnTipoTelefoneFixo.setSelected(true);
+        jrbtnTipoTelefoneFixo.setText("Fixo");
+        jrbtnTipoTelefoneFixo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrbtnTipoTelefoneFixoItemStateChanged(evt);
+            }
+        });
+        jPanel12.add(jrbtnTipoTelefoneFixo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
         tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -671,7 +696,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
                         .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -691,7 +716,7 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -705,9 +730,9 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(associarVeiculo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(carregando)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                 .addGap(53, 53, 53))
         );
 
@@ -727,12 +752,11 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        txt_info2.setEditable(false);
         jScrollPane6.setViewportView(txt_info2);
 
-        jPanel4.setBorder(null);
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        listaPesquisaSaida.setBorder(null);
         listaPesquisaSaida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaPesquisaSaidaMouseClicked(evt);
@@ -740,7 +764,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel4.add(listaPesquisaSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 100));
 
-        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB" }));
+        postoGraduacaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB" }));
         jPanel4.add(postoGraduacaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
 
         jLabel11.setText("Posto/Graduação:");
@@ -753,7 +777,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel13.setText("Seção:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoSaida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel4.add(sessaoSaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 400, -1));
 
         jLabel14.setText("Motivo de Saída:");
@@ -871,7 +895,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(carregando1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
                             .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
         );
@@ -888,9 +912,7 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(novoSaida)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -902,8 +924,8 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(carregando1)
                         .addGap(15, 15, 15)))
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(60, 60, 60))
         );
 
         jTabbedPane1.addTab("Controle de saída de CB/SD", jPanel2);
@@ -921,9 +943,9 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        txt_info3.setEditable(false);
         jScrollPane7.setViewportView(txt_info3);
 
-        jPanel9.setBorder(null);
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         listaPesquisaEntrada.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -934,7 +956,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jPanel9.add(listaPesquisaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 90));
 
-        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
+        postoGraduacaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "SD", "CB", "SGT", "ST", "TEN", "CAP", "MAJ", "TC" }));
         jPanel9.add(postoGraduacaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 120, -1));
 
         jLabel18.setText("Posto/Graduação:");
@@ -947,7 +969,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel20.setText("Seção:");
         jPanel9.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
+        sessaoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Administrativa", "Produção", "Expedição", "Pessoal", "Direção", "Orçamentação", "Pré-impressão" }));
         jPanel9.add(sessaoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 400, -1));
 
         jLabel21.setText("Motivo de Entrada:");
@@ -1070,7 +1092,7 @@ public class Cadastro extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1080,15 +1102,15 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(salvarEntrada))
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(carregando2))
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
         );
 
         jTabbedPane1.addTab("Controle de Entrada Fora do Expediente de Militares", jPanel7);
@@ -1119,27 +1141,27 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void definirHorarioEntradaSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaSaidaActionPerformed
-        try{
+        try {
             SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             int l = tabelaSaida.getSelectedRow();
             ControleExpedienteBEAN c = new ControleExpedienteBEAN();
-            ControleDAO cdao = new ControleDAO();
-            
-            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            ControleDentroExpDAO cdao = new ControleDentroExpDAO();
+
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
             Date data = dtI.getTime();
-            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
             dtI.setTime(data);
             Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
             c.setHora_entrada(sdh.format(dtIni));
-            
-            c.setId((int)tabelaSaida.getValueAt(l, 0));
+
+            c.setId((int) tabelaSaida.getValueAt(l, 0));
             cdao.altera_controle(c);
             readJTableControle();
             definirHorarioEntradaSaida.setEnabled(false);
             txt_info2.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-        }catch(SQLException ex){
-            System.err.println("Erro na atualização!"+ex);
+        } catch (SQLException ex) {
+            System.err.println("Erro na atualização!" + ex);
         }
 
     }//GEN-LAST:event_definirHorarioEntradaSaidaActionPerformed
@@ -1148,8 +1170,8 @@ public class Cadastro extends javax.swing.JFrame {
         try {
             String selected = listaPesquisaSaida.getSelectedValue().toString();
             int id = selected.indexOf(" ");
-            String grad_posto = selected.substring(0,id);
-            String nome_guerra = selected.substring(id+1);
+            String grad_posto = selected.substring(0, id);
+            String nome_guerra = selected.substring(id + 1);
             ResultadoPesquisaSaida(grad_posto, nome_guerra);
         } catch (SQLException ex) {
             System.err.println("Erro1");
@@ -1179,27 +1201,27 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_pesquisaSaidaKeyReleased
 
     private void definirHorarioEntradaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaEntradaActionPerformed
-        try{
+        try {
             SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             int l = tabelaEntrada.getSelectedRow();
             ControleForaExpedienteBEAN cf = new ControleForaExpedienteBEAN();
-            ControleFDAO cfdao = new ControleFDAO();
-            
-            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+            ControleForaExpDAO cfdao = new ControleForaExpDAO();
+
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
             Date data = dtI.getTime();
-            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
             dtI.setTime(data);
             Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
             cf.setHora_saida(sdh.format(dtIni));
-            
-            cf.setId((int)tabelaEntrada.getValueAt(l, 0));
+
+            cf.setId((int) tabelaEntrada.getValueAt(l, 0));
             cfdao.altera_controlef(cf);
             readJTable_controlef();
             definirHorarioEntradaEntrada.setEnabled(false);
             txt_info3.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-        }catch(SQLException ex){
-            System.err.println("Erro na atualização!"+ex);
+        } catch (SQLException ex) {
+            System.err.println("Erro na atualização!" + ex);
         }
     }//GEN-LAST:event_definirHorarioEntradaEntradaActionPerformed
 
@@ -1207,10 +1229,10 @@ public class Cadastro extends javax.swing.JFrame {
         try {
             String selected = listaPesquisaEntrada.getSelectedValue().toString();
             int id = selected.indexOf(" ");
-            String grad_posto = selected.substring(0,id);
-            String nome_guerra = selected.substring(id+1);
+            String grad_posto = selected.substring(0, id);
+            String nome_guerra = selected.substring(id + 1);
             ResultadoPesquisaEntrada(grad_posto, nome_guerra);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
         redefinirEntrada.setEnabled(true);
@@ -1307,8 +1329,8 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_destinoVisitanteActionPerformed
 
     private void iniciarVideoRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarVideoRegistroVisitantesActionPerformed
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 executando = true;
                 fotoVisitante.setText("Iniciando...");
                 WEBCAM.open();
@@ -1324,32 +1346,42 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeCompletoVisitanteActionPerformed
 
     private void definirHorarioSaidaVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioSaidaVisitantesActionPerformed
-        SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        int l = tabelaVisitantes.getSelectedRow();
-        CadastroBEAN cadastro = new CadastroBEAN();
-        CadastroDAO cadastroDAO = new CadastroDAO();
-        
-        
-        try {
-            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
-            Date data = dtI.getTime();
-            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
-            dtI.setTime(data);
-            Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
-            cadastro.setHoraS(sdh.format(dtIni));
+        new Thread("Define horário de saída visitantes") {
+            @Override
+            public void run() {
+                carregando.setVisible(true);
+                int l = tabelaVisitantes.getSelectedRow();
+                CadastroBEAN cadastro = new CadastroBEAN();
+                ControleVisitantesDAO cadastroDAO = new ControleVisitantesDAO();
 
-            cadastro.setId((int)tabelaVisitantes.getValueAt(l, 0));
-            
-            cadastroDAO.altera(cadastro);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                try {
+                    dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
+                    Date data = dtI.getTime();
+                    data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
+                    dtI.setTime(data);
+                    Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+                    cadastro.setHoraS(Controle.horaPadrao.format(dtIni));
+                    cadastro.setId((int) tabelaVisitantes.getValueAt(l, 0));
+                    cadastroDAO.altera(cadastro);
+                } catch (SQLException ex) {
+                    Controle.exibePopUp((byte) 3, "Erro ao definir horário de saída do visitante. Detalhes: " + ex);
+                    carregando.setVisible(false);
+                    return;
+                }
 
-        atualizaTabelaVisitantes();
-        definirHorarioSaidaVisitantes.setEnabled(false);
-        txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-        verificaCheck();
+                atualizaTabelaVisitantes();
+                definirHorarioSaidaVisitantes.setEnabled(false);
+                if (webcamFound) {
+                    txt_info.setText("Dispositivo de vídeo:"
+                            + Webcam.getDefault().toString()
+                            + "  -- Data e hora da útima atualização:"
+                            + Controle.dataPadrao.format(new Date())
+                            + " " + Controle.horaPadrao.format(new Date()));
+                }
+                verificaCheck();
+                carregando.setVisible(false);
+            }
+        }.start();
     }//GEN-LAST:event_definirHorarioSaidaVisitantesActionPerformed
 
     private void capturarVideoRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capturarVideoRegistroVisitantesActionPerformed
@@ -1364,14 +1396,14 @@ public class Cadastro extends javax.swing.JFrame {
             int nova_largura = fotoVisitante.getWidth(), nova_altura = fotoVisitante.getHeight();
             BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
             Graphics2D g = new_img.createGraphics();
-            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            g.drawImage(imagem, 0, 0, nova_largura, nova_altura, null);
             imageArrayVisitantes = new_img;
         } catch (IOException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 WEBCAM.close();
                 executando = false;
                 capturarVideoRegistroVisitantes.setEnabled(false);
@@ -1384,186 +1416,187 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_redefinirVisitanteActionPerformed
 
     private void salvarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarVisitanteActionPerformed
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 carregando.setVisible(true);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
                 CadastroBEAN cadastroBEAN = new CadastroBEAN();
                 int cracha;
 
                 //VERIFICA SE JÁ EXISTE UM CADASTRO COM O MESMO NOME--------------------
                 try {
-                    if(CadastroDAO.buscaNome(nomeCompletoVisitante.getText().toUpperCase())== true && redefinirVisitantesAux == 0){
-                        JOptionPane.showMessageDialog(null,"O Sr.(a) " + nomeCompletoVisitante.getText() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
+                    if (ControleVisitantesDAO.buscaNome(nomeCompletoVisitante.getText().toUpperCase()) == true && redefinirVisitantesAux == 0) {
+                        Controle.exibePopUp(
+                                (byte) 3,
+                                "O Sr.(a) "
+                                + nomeCompletoVisitante.getText()
+                                + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
+                        carregando.setVisible(false);
                         return;
                     }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE " + ex, "ERRO DE CONEXÃO", 0);
+                    Controle.exibePopUp((byte) 3,
+                            "Verifique a sua conexão e tente novamente. Detalhes: "
+                            + ex);
+                    carregando.setVisible(false);
                     return;
                 }
                 //----------------------------------------------------------------------
                 //VERIFICA SE OS CAMPOS OBRIGATÓRIOS FORAM PREENCHIDOS------------------
-                if(nomeCompletoVisitante.getText().equals("")){
-                    JOptionPane.showMessageDialog(null,"O campo 'Nome Completo' não pode ser vazio!");
+                if (nomeCompletoVisitante.getText().equals("")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Nome Completo' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if(numeroDocumentoVisitante.getText().equals("")){
-                    JOptionPane.showMessageDialog(null,"O campo 'Número Documento' não pode ser vazio!");
+                if (numeroDocumentoVisitante.getText().equals("")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Número Documento' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if(destinoVisitante.getText().equals("")){
-                    JOptionPane.showMessageDialog(null,"O campo 'Destino' não pode ser vazio!");
+                if (destinoVisitante.getText().equals("")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Destino' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if(comQuemFalarVisitante.getText().equals("")){
-                    JOptionPane.showMessageDialog(null,"O campo 'Com quem falar' não pode ser vazio!");
+                if (comQuemFalarVisitante.getText().equals("")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Com quem falar' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if( telefoneVisitante == null){
-                    JOptionPane.showMessageDialog(null,"O campo 'Telefone' não pode ser vazio!");
+
+                String formatar = jftfTelefoneVisitante.getText();
+                System.out.println(formatar);
+                formatar = formatar.replace("(", "");
+                formatar = formatar.replace(")", "");
+                formatar = formatar.replace("-", "");
+                formatar = formatar.replace(" ", "");
+                if (formatar.equals("")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Telefone' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if(tipoDocumentoVisitante.getSelectedItem().toString().equals("Selecione...")){
-                    JOptionPane.showMessageDialog(null,"O campo 'Tipo Documento' não pode ser vazio!");
+                if (tipoDocumentoVisitante.getSelectedItem().toString().equals("Selecione...")) {
+                    Controle.exibePopUp((byte) 2, "O campo 'Tipo Documento' não pode ser vazio!");
+                    carregando.setVisible(false);
                     return;
                 }
-                if(civil.isSelected()== true){
+                if (civil.isSelected() == true) {
                     cadastroBEAN.setTipoVisitante("Civil");
-                }
-                else if(militar.isSelected()== true){
+                } else if (militar.isSelected() == true) {
                     cadastroBEAN.setTipoVisitante("Militar");
-                }
-                else if(fornecedor.isSelected()== true){
+                } else if (fornecedor.isSelected() == true) {
                     cadastroBEAN.setTipoVisitante("Fornecedor");
-                }else{
-                    JOptionPane.showMessageDialog(null,"Selecione o tipo do visitante!");
+                } else {
+                    Controle.exibePopUp((byte) 2, "Selecione o tipo do visitante!");
+                    carregando.setVisible(false);
                     return;
                 }
                 //----------------------------------------------------------------------
                 //VERIFICA SE A IMAGEM DO USUÁRIO FOI CAPTURADA-------------------------
-                if(imageArrayVisitantes == null && webcamFound){
-                    JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
+                if (imageArrayVisitantes == null && webcamFound) {
+                    Controle.exibePopUp((byte) 2, "Não foi capturada uma imagem do usuário!");
+                    carregando.setVisible(false);
                     return;
-                }else if(webcamFound){
+                } else if (webcamFound) {
                     try {
                         cadastroBEAN.setFoto(getImgBytes(imageArrayVisitantes));
                     } catch (IOException ex) {
                         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else if(redefinirVisitantesAux == 1 && imageArrayVisitantes != null){
+                } else if (redefinirVisitantesAux == 1 && imageArrayVisitantes != null) {
                     try {
                         cadastroBEAN.setFoto(getImgBytes(imageArrayVisitantes));
                     } catch (IOException ex) {
                         Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
+                } else {
+                    Controle.exibePopUp((byte) 2, "Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
                 }
                 //----------------------------------------------------------------------
                 //VERIFICA QUAL CRACHÁ FOI SELECIONADO----------------------------------
-                if(c1.isSelected()){
+                if (c1.isSelected()) {
                     cracha = 1;
                     cadastroBEAN.setN_cracha(cracha);
                     c1.setEnabled(false);
-                }
-                else if(c2.isSelected()){
+                } else if (c2.isSelected()) {
                     cracha = 2;
                     cadastroBEAN.setN_cracha(cracha);
                     c2.setEnabled(false);
-                }
-                else if(c3.isSelected()){
+                } else if (c3.isSelected()) {
                     cracha = 3;
                     cadastroBEAN.setN_cracha(cracha);
                     c3.setEnabled(false);
-                }
-                else if(c4.isSelected()){
+                } else if (c4.isSelected()) {
                     cracha = 4;
                     cadastroBEAN.setN_cracha(cracha);
                     c4.setEnabled(false);
-                }
-                else if(c5.isSelected()){
+                } else if (c5.isSelected()) {
                     cracha = 5;
                     cadastroBEAN.setN_cracha(cracha);
                     c5.setEnabled(false);
-                }
-                else if(c6.isSelected()){
+                } else if (c6.isSelected()) {
                     cracha = 6;
                     cadastroBEAN.setN_cracha(cracha);
                     c6.setEnabled(false);
-                }
-                else if(c7.isSelected()){
+                } else if (c7.isSelected()) {
                     cracha = 7;
                     cadastroBEAN.setN_cracha(cracha);
                     c7.setEnabled(false);
-                }
-                else if(c8.isSelected()){
+                } else if (c8.isSelected()) {
                     cracha = 8;
                     cadastroBEAN.setN_cracha(cracha);
                     c8.setEnabled(false);
-                }
-                else if(c9.isSelected()){
+                } else if (c9.isSelected()) {
                     cracha = 9;
                     cadastroBEAN.setN_cracha(cracha);
                     c9.setEnabled(false);
-                }
-                else if(c10.isSelected()){
+                } else if (c10.isSelected()) {
                     cracha = 10;
                     cadastroBEAN.setN_cracha(cracha);
                     c10.setEnabled(false);
-                }
-                else if(c11.isSelected()){
+                } else if (c11.isSelected()) {
                     cracha = 11;
                     cadastroBEAN.setN_cracha(cracha);
                     c11.setEnabled(false);
-                }
-                else if(c12.isSelected()){
+                } else if (c12.isSelected()) {
                     cracha = 12;
                     cadastroBEAN.setN_cracha(cracha);
                     c12.setEnabled(false);
-                }
-                else if(c13.isSelected()){
+                } else if (c13.isSelected()) {
                     cracha = 13;
                     cadastroBEAN.setN_cracha(cracha);
                     c13.setEnabled(false);
-                }
-                else if(c14.isSelected()){
+                } else if (c14.isSelected()) {
                     cracha = 14;
                     cadastroBEAN.setN_cracha(cracha);
                     c14.setEnabled(false);
-                }
-                else if(c15.isSelected()){
+                } else if (c15.isSelected()) {
                     cracha = 15;
                     cadastroBEAN.setN_cracha(cracha);
                     c15.setEnabled(false);
-                }
-                else if(c16.isSelected()){
+                } else if (c16.isSelected()) {
                     cracha = 16;
                     cadastroBEAN.setN_cracha(cracha);
                     c16.setEnabled(false);
-                }
-                else if(c17.isSelected()){
+                } else if (c17.isSelected()) {
                     cracha = 17;
                     cadastroBEAN.setN_cracha(cracha);
                     c17.setEnabled(false);
-                }
-                else if(c18.isSelected()){
+                } else if (c18.isSelected()) {
                     cracha = 18;
                     cadastroBEAN.setN_cracha(cracha);
                     c18.setEnabled(false);
-                }
-                else if(c19.isSelected()){
+                } else if (c19.isSelected()) {
                     cracha = 19;
                     cadastroBEAN.setN_cracha(cracha);
                     c19.setEnabled(false);
-                }
-                else if(c20.isSelected()){
+                } else if (c20.isSelected()) {
                     cracha = 20;
                     cadastroBEAN.setN_cracha(cracha);
                     c20.setEnabled(false);
-                }else{
-                    JOptionPane.showMessageDialog(null,"O usuário precisa estar relacionado à um crachá!");
+                } else {
+                    Controle.exibePopUp((byte) 2, "O usuário precisa estar relacionado à um crachá!");
+                    carregando.setVisible(false);
                     return;
                 }
                 //----------------------------------------------------------------------
@@ -1572,11 +1605,9 @@ public class Cadastro extends javax.swing.JFrame {
                 cadastroBEAN.setDocumentoIden(numeroDocumentoVisitante.getText());
                 cadastroBEAN.setDestino(destinoVisitante.getText().toUpperCase());
                 cadastroBEAN.setComquemFalar(comQuemFalarVisitante.getText().toUpperCase());
-                cadastroBEAN.setTelefone(telefoneVisitante.getText());
+                cadastroBEAN.setTelefone(jftfTelefoneVisitante.getText());
                 cadastroBEAN.setTipoDocumento(tipoDocumentoVisitante.getSelectedItem().toString());
-                
-                
-                
+
                 cadastroBEAN.setCor_veiculo(VeiculosFrame.cor);
                 cadastroBEAN.setModelo_veiculo(VeiculosFrame.modelo);
                 cadastroBEAN.setMarca_veiculo(VeiculosFrame.marca);
@@ -1587,22 +1618,23 @@ public class Cadastro extends javax.swing.JFrame {
                 VeiculosFrame.modelo = null;
                 VeiculosFrame.marca = null;
                 VeiculosFrame.placa2 = null;
-                    try {
-                        dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
-                        Date data = dtI.getTime();
-                        data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
-                        dtI.setTime(data);
-                        Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
-                        cadastroBEAN.setData(sdf.format(dtIni));
-                        cadastroBEAN.setHoraE(sdh.format(dtIni));
-                        cadastroBEAN.setHoraS(null);
-                        //----------------------------------------------------------------------
-                        //INSERE REGISTRO NO BANCO DE DADOS-------------------------------------
-                        CadastroDAO.create(cadastroBEAN);
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
-                        return;
-                    }
+                try {
+                    dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
+                    Date data = dtI.getTime();
+                    data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
+                    dtI.setTime(data);
+                    Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
+                    cadastroBEAN.setData(Controle.dataPadrao.format(dtIni));
+                    cadastroBEAN.setHoraE(Controle.horaPadrao.format(dtIni));
+                    cadastroBEAN.setHoraS(null);
+                    //----------------------------------------------------------------------
+                    //INSERE REGISTRO NO BANCO DE DADOS-------------------------------------
+                    ControleVisitantesDAO.create(cadastroBEAN);
+                } catch (SQLException ex) {
+                    Controle.exibePopUp((byte) 2, "Verifique a sua conexão e tente novamente.\nDetalhes: " + ex);
+                    carregando.setVisible(false);
+                    return;
+                }
                 //----------------------------------------------------------------------
                 //FAZ UPDATE NA TABELA VISITANTES---------------------------------------
                 atualizaTabelaVisitantes();
@@ -1611,19 +1643,29 @@ public class Cadastro extends javax.swing.JFrame {
                 estadoInicialVisitantes();
                 //----------------------------------------------------------------------
                 //COLOCA TEXTO DE OBSERVAÇÃO--------------------------------------------
-                if(webcamFound == true){
-                    txt_info.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
-                }else{
-                    txt_info.setText("Dispositivo de vídeo:" + " Nenhum" + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date()));
+                if (webcamFound == true) {
+                    txt_info.setText("Dispositivo de vídeo:"
+                            + Webcam.getDefault().toString()
+                            + "  -- Data e hora da útima atualização:"
+                            + Controle.dataPadrao.format(new Date())
+                            + " "
+                            + Controle.horaPadrao.format(new Date()));
+                } else {
+                    txt_info.setText("Dispositivo de vídeo:"
+                            + " Nenhum"
+                            + "  -- Data e hora da útima atualização:"
+                            + Controle.dataPadrao.format(new Date())
+                            + " "
+                            + Controle.horaPadrao.format(new Date()));
                 }
                 carregando.setVisible(false);
             }
         }.start();
     }//GEN-LAST:event_salvarVisitanteActionPerformed
 
-    private void telefoneVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneVisitanteActionPerformed
+    private void jftfTelefoneVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftfTelefoneVisitanteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_telefoneVisitanteActionPerformed
+    }//GEN-LAST:event_jftfTelefoneVisitanteActionPerformed
 
     private void comQuemFalarVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comQuemFalarVisitanteActionPerformed
         // TODO add your handling code here:
@@ -1646,14 +1688,14 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_pesquisaRegistroVisitantesActionPerformed
 
     private void listaPesquisaVisitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPesquisaVisitantesMouseClicked
-        listaPesquisaVisitantes.setVisible(false);   
+        listaPesquisaVisitantes.setVisible(false);
         estadoInicialVisitantes();
         try {
-                ResultadoPesquisaVisistantes();
+            ResultadoPesquisaVisistantes();
         } catch (SQLException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_listaPesquisaVisitantesMouseClicked
 
@@ -1668,49 +1710,47 @@ public class Cadastro extends javax.swing.JFrame {
     private void salvarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarSaidaActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        ControleDAO cdao = new ControleDAO();
+        ControleDentroExpDAO cdao = new ControleDentroExpDAO();
         ControleExpedienteBEAN c = new ControleExpedienteBEAN();
 
         //VERIFICA O HORÁRIO DO REGISTRO----------------------------------------
-        
-        
-        try{
-            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+        try {
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
             Date data = dtI.getTime();
-            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
             dtI.setTime(data);
             Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
             Calendar cal = Calendar.getInstance();
             cal.setTime(data);
-            if(ControleDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)){
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, false)){
+            if (ControleDentroExpDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)) {
+                if (ControleDentroExpDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, false)) {
                     c.setData(sdf.format(new Date()));
                     c.setHora_saida(sdh.format(dtI.getTime()));
                     c.setHora_entrada(null);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "HORÁRIO FORA DO EXPEDIENTE", "ERRO", 0);
                     return;
                 }
-            }else{
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, false)){
+            } else {
+                if (ControleDentroExpDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, false)) {
                     c.setData(sdf.format(new Date()));
                     c.setHora_saida(sdh.format(dtI.getTime()));
                     c.setHora_entrada(null);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "HORÁRIO FORA DO EXPEDIENTE", "ERRO", 0);
                     return;
                 }
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
-        
+
         //----------------------------------------------------------------------
         //VERIFICA SE JÁ EXISTE CADASTRO NO BANCO DE DADOS----------------------
         try {
-            if(cdao.busca_nome_controle(postoGraduacaoSaida.getSelectedItem().toString(),nomeGuerraSaida.getText().toUpperCase())==true && redefinirSaidaAux == 0){
-                JOptionPane.showMessageDialog(null,"O Sr.(a) " + postoGraduacaoSaida.getSelectedItem().toString() + " " + nomeGuerraSaida.getText().toUpperCase() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
+            if (cdao.busca_nome_controle(postoGraduacaoSaida.getSelectedItem().toString(), nomeGuerraSaida.getText().toUpperCase()) == true && redefinirSaidaAux == 0) {
+                JOptionPane.showMessageDialog(null, "O Sr.(a) " + postoGraduacaoSaida.getSelectedItem().toString() + " " + nomeGuerraSaida.getText().toUpperCase() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
                 return;
             }
         } catch (SQLException ex) {
@@ -1718,41 +1758,41 @@ public class Cadastro extends javax.swing.JFrame {
         }
         //----------------------------------------------------------------------
         //VERIFICA SE TODOS OS CAMPOS OBRIGATÓRIOS FORAM PREENCHIDOS------------
-        if(nomeGuerraSaida.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Nome de guerra' não pode ser vazio!");
+        if (nomeGuerraSaida.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Nome de guerra' não pode ser vazio!");
             return;
         }
-        if(postoGraduacaoSaida.getSelectedItem().toString().equals("Selecione...")){
-            JOptionPane.showMessageDialog(null,"O campo 'Posto/Graduação' não pode ser vazio!");
+        if (postoGraduacaoSaida.getSelectedItem().toString().equals("Selecione...")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Posto/Graduação' não pode ser vazio!");
             return;
         }
-        if(sessaoSaida.getSelectedItem().toString().equals("Selecione...")){
-            JOptionPane.showMessageDialog(null,"O campo 'Sessão' não pode ser vazio!");
+        if (sessaoSaida.getSelectedItem().toString().equals("Selecione...")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Sessão' não pode ser vazio!");
             return;
         }
-        if(motivoSaida.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Motivo' não pode ser vazio!");
+        if (motivoSaida.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Motivo' não pode ser vazio!");
             return;
         }
         //----------------------------------------------------------------------
         //VERIFICA SE A IMAGEM DO USUÁRIO FOI CAPTURADA-------------------------
-        if(imageArraySaida == null && webcamFound == true){
-            JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
+        if (imageArraySaida == null && webcamFound == true) {
+            JOptionPane.showMessageDialog(null, "Não foi capturada uma imagem do usuário!");
             return;
-        }else if(webcamFound == true){
+        } else if (webcamFound == true) {
             try {
                 c.setImagem(getImgBytes(imageArraySaida));
             } catch (IOException ex) {
                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(redefinirSaidaAux == 1 && imageArraySaida != null){
+        } else if (redefinirSaidaAux == 1 && imageArraySaida != null) {
             try {
                 c.setImagem(getImgBytes(imageArraySaida));
             } catch (IOException ex) {
                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
         }
         //----------------------------------------------------------------------
         //PREENCHE CAMPOS BEAN RESTANTES----------------------------------------
@@ -1770,16 +1810,16 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialSaida();
         //----------------------------------------------------------------------
         //COLOCA TEXTO DE OBSERVAÇÃO--------------------------------------------
-        if(webcamFound = true){
-            txt_info2.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date())+
-                "\n\nObservações: O registro de saída de CB/SD só deve ser feito durante o horário de expediente;"
-                + "\nCaso o expediente acabe e o militar não tenha retornado, o horário de entrada deve ficar em branco;"
-                + "\nSempre ao adicionar um novo registro preste atenção ao preenchimento correto dos campos.");
-        }else{
-            txt_info2.setText("Dispositivo de vídeo: Nenhum" + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date())+
-                "\n\nObservações: O registro de saída de CB/SD só deve ser feito durante o horário de expediente;"
-                + "\nCaso o expediente acabe e o militar não tenha retornado, o horário de entrada deve ficar em branco;"
-                + "\nSempre ao adicionar um novo registro preste atenção ao preenchimento correto dos campos.");
+        if (webcamFound = true) {
+            txt_info2.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date())
+                    + "\n\nObservações: O registro de saída de CB/SD só deve ser feito durante o horário de expediente;"
+                    + "\nCaso o expediente acabe e o militar não tenha retornado, o horário de entrada deve ficar em branco;"
+                    + "\nSempre ao adicionar um novo registro preste atenção ao preenchimento correto dos campos.");
+        } else {
+            txt_info2.setText("Dispositivo de vídeo: Nenhum" + "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + " " + sdh.format(new Date())
+                    + "\n\nObservações: O registro de saída de CB/SD só deve ser feito durante o horário de expediente;"
+                    + "\nCaso o expediente acabe e o militar não tenha retornado, o horário de entrada deve ficar em branco;"
+                    + "\nSempre ao adicionar um novo registro preste atenção ao preenchimento correto dos campos.");
         }
         //----------------------------------------------------------------------
     }//GEN-LAST:event_salvarSaidaActionPerformed
@@ -1796,14 +1836,14 @@ public class Cadastro extends javax.swing.JFrame {
             int nova_largura = fotoSaida.getWidth(), nova_altura = fotoSaida.getHeight();
             BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
             Graphics2D g = new_img.createGraphics();
-            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            g.drawImage(imagem, 0, 0, nova_largura, nova_altura, null);
             imageArraySaida = new_img;
         } catch (IOException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 WEBCAM.close();
                 executando = false;
                 capturarVideoSaida.setEnabled(false);
@@ -1812,8 +1852,8 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_capturarVideoSaidaActionPerformed
 
     private void iniciarVideoSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarVideoSaidaActionPerformed
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 executando = true;
                 fotoSaida.setText("Iniciando...");
                 WEBCAM.open();
@@ -1831,8 +1871,8 @@ public class Cadastro extends javax.swing.JFrame {
     private void salvarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarEntradaActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdh = new SimpleDateFormat("HH:mm:ss");
-        
-        ControleFDAO cfdao = new ControleFDAO();
+
+        ControleForaExpDAO cfdao = new ControleForaExpDAO();
         ControleForaExpedienteBEAN cf = new ControleForaExpedienteBEAN();
         String posto;
         String sessao;
@@ -1842,47 +1882,44 @@ public class Cadastro extends javax.swing.JFrame {
         String aux;
         int hora;
         int minuto;
-        
+
         //VERIFICA O HORÁRIO DO REGISTRO----------------------------------------
-        
-        
-        
-        try{
-            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"),new Locale("pt_BR"));
+        try {
+            dtI = new GregorianCalendar(TimeZone.getTimeZone("GMT-3"), new Locale("pt_BR"));
             Date data = dtI.getTime();
-            data.setHours(data.getHours() - ControleDAO.retornaHorarioVerao());
+            data.setHours(data.getHours() - ControleDentroExpDAO.retornaHorarioVerao());
             dtI.setTime(data);
             Timestamp dtIni = new Timestamp(dtI.getTimeInMillis());
             Calendar cal = Calendar.getInstance();
             cal.setTime(data);
-            if(ControleDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)){
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, true)){
+            if (ControleDentroExpDAO.retornaDiaEspecial() == cal.get(Calendar.DAY_OF_WEEK)) {
+                if (ControleDentroExpDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), true, true)) {
                     cf.setData(sdf.format(new Date()));
                     cf.setHora_saida(null);
                     cf.setHora_entrada(sdh.format(dtI.getTime()));
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "HORÁRIO DENTRO DO EXPEDIENTE", "ERRO", 0);
                     return;
                 }
-            }else{
-                if(ControleDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, true)){
+            } else {
+                if (ControleDentroExpDAO.horarioExpediente(new java.sql.Time(dtI.getTimeInMillis()), false, true)) {
                     cf.setData(sdf.format(new Date()));
                     cf.setHora_saida(null);
                     cf.setHora_entrada(sdh.format(dtI.getTime()));
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "HORÁRIO DENTRO DO EXPEDIENTE", "ERRO", 0);
                     return;
                 }
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
         //----------------------------------------------------------------------
         //VERIFICA SE O NOME JÁ EXISTE NO BANCO DE DADOS------------------------
         try {
-            if(cfdao.busca_nome_controlef(postoGraduacaoEntrada.getSelectedItem().toString(), nomeGuerraEntrada.getText().toUpperCase()) == true && redefinirEntradaAux == 0){
-                JOptionPane.showMessageDialog(null,"O Sr.(a) " + postoGraduacaoEntrada.getSelectedItem().toString() + " " + nomeGuerraEntrada.getText() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
+            if (cfdao.busca_nome_controlef(postoGraduacaoEntrada.getSelectedItem().toString(), nomeGuerraEntrada.getText().toUpperCase()) == true && redefinirEntradaAux == 0) {
+                JOptionPane.showMessageDialog(null, "O Sr.(a) " + postoGraduacaoEntrada.getSelectedItem().toString() + " " + nomeGuerraEntrada.getText() + " já existe no banco de dados!\n Por favor utilize o campo de busca ou digite outro nome.");
                 return;
             }
         } catch (SQLException ex) {
@@ -1890,41 +1927,41 @@ public class Cadastro extends javax.swing.JFrame {
         }
         //----------------------------------------------------------------------
         //VERIFICA SE OS CAMPOS OBRIGATÓRIOS FORAM PREENCHIDOS------------------
-        if(nomeGuerraEntrada.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Nome de guerra' não pode ser vazio!");
+        if (nomeGuerraEntrada.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Nome de guerra' não pode ser vazio!");
             return;
         }
-        if(posto.equals("Selecione...")){
-            JOptionPane.showMessageDialog(null,"O campo 'Posto/Graduação' não pode ser vazio!");
+        if (posto.equals("Selecione...")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Posto/Graduação' não pode ser vazio!");
             return;
         }
-        if(sessao.equals("Selecione...")){
-            JOptionPane.showMessageDialog(null,"O campo 'Sessão' não pode ser vazio!");
+        if (sessao.equals("Selecione...")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Sessão' não pode ser vazio!");
             return;
         }
-        if(motivoEntrada.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"O campo 'Motivo de Entrada' não pode ser vazio!");
+        if (motivoEntrada.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo 'Motivo de Entrada' não pode ser vazio!");
             return;
         }
         //----------------------------------------------------------------------
         //VERIFICA SE A FOTO DO USUÁRIO FOI CAPTURADA---------------------------
-        if(imageArrayEntrada == null && webcamFound == true){
-            JOptionPane.showMessageDialog(null,"Não foi capturada uma imagem do usuário!");
+        if (imageArrayEntrada == null && webcamFound == true) {
+            JOptionPane.showMessageDialog(null, "Não foi capturada uma imagem do usuário!");
             return;
-        }else if(webcamFound){
+        } else if (webcamFound) {
             try {
                 cf.setImagem(getImgBytes(imageArrayEntrada));
             } catch (IOException ex) {
                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(redefinirEntradaAux == 1 && imageArrayEntrada != null){
+        } else if (redefinirEntradaAux == 1 && imageArrayEntrada != null) {
             try {
                 cf.setImagem(getImgBytes(imageArrayEntrada));
             } catch (IOException ex) {
                 Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor procure um dispositivo de video!\n O registro foi salvo sem imagem!");
         }
         //----------------------------------------------------------------------
         //PREENCHE OS CAMPOS BEANS RESTANTES------------------------------------
@@ -1943,16 +1980,16 @@ public class Cadastro extends javax.swing.JFrame {
         estadoInicialEntrada();
         //----------------------------------------------------------------------
         //ATUALIZA AS OBSERVAÇÕES-----------------------------------------------
-        if(webcamFound == true){
-            txt_info3.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString() + 
-                "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + 
-                " " + sdh.format(new Date()) + 
-                "\n\nObservações: O registro fora do expediente só deve ser feito entre os horários:\n17h às 9h segunda a quarta/quinta\n17h às 8h quinta/sexta\nDurante todo o final de semana e feriados.");
-        }else{
-            txt_info3.setText("Dispositivo de vídeo: Nenhum"+ 
-                "  -- Data e hora da útima atualização:" + sdf.format(new Date()) + 
-                " " + sdh.format(new Date()) + 
-                "\n\nObservações: O registro fora do expediente só deve ser feito entre os horários:\n17h às 9h segunda a quarta/quinta\n17h às 8h quinta/sexta\nDurante todo o final de semana e feriados.");
+        if (webcamFound == true) {
+            txt_info3.setText("Dispositivo de vídeo:" + Webcam.getDefault().toString()
+                    + "  -- Data e hora da útima atualização:" + sdf.format(new Date())
+                    + " " + sdh.format(new Date())
+                    + "\n\nObservações: O registro fora do expediente só deve ser feito entre os horários:\n17h às 9h segunda a quarta/quinta\n17h às 8h quinta/sexta\nDurante todo o final de semana e feriados.");
+        } else {
+            txt_info3.setText("Dispositivo de vídeo: Nenhum"
+                    + "  -- Data e hora da útima atualização:" + sdf.format(new Date())
+                    + " " + sdh.format(new Date())
+                    + "\n\nObservações: O registro fora do expediente só deve ser feito entre os horários:\n17h às 9h segunda a quarta/quinta\n17h às 8h quinta/sexta\nDurante todo o final de semana e feriados.");
         }
         //----------------------------------------------------------------------
     }//GEN-LAST:event_salvarEntradaActionPerformed
@@ -1962,8 +1999,8 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_novoEntradaActionPerformed
 
     private void iniciarVideoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarVideoEntradaActionPerformed
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 executando = true;
                 fotoEntrada.setText("Iniciando...");
                 WEBCAM.open();
@@ -1986,14 +2023,14 @@ public class Cadastro extends javax.swing.JFrame {
             int nova_largura = fotoEntrada.getWidth(), nova_altura = fotoEntrada.getHeight();
             BufferedImage new_img = new BufferedImage(nova_largura, nova_altura, BufferedImage.TYPE_INT_RGB);
             Graphics2D g = new_img.createGraphics();
-            g.drawImage(imagem,0,0,nova_largura,nova_altura,null);
+            g.drawImage(imagem, 0, 0, nova_largura, nova_altura, null);
             imageArrayEntrada = new_img;
         } catch (IOException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        new Thread(){
-            public void run(){
+
+        new Thread() {
+            public void run() {
                 WEBCAM.close();
                 executando = false;
                 capturarVideoEntrada.setEnabled(false);
@@ -2003,11 +2040,11 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void tabelaVisitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVisitantesMouseClicked
         try {
-            Integer id2 = (Integer) tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(),0);
-            CadastroDAO cfdao = new CadastroDAO();
-            if(tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(), 11) == null){
+            Integer id2 = (Integer) tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(), 0);
+            ControleVisitantesDAO cfdao = new ControleVisitantesDAO();
+            if (tabelaVisitantes.getValueAt(tabelaVisitantes.getSelectedRow(), 11) == null) {
                 definirHorarioSaidaVisitantes.setEnabled(true);
-            }else{
+            } else {
                 definirHorarioSaidaVisitantes.setEnabled(false);
             }
             CadastroBEAN retorno = cfdao.buscaImg(id2);
@@ -2019,15 +2056,15 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void tabelaEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEntradaMouseClicked
         try {
-            Integer id2 = (Integer) tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(),0);
-            ControleFDAO cfdao = new ControleFDAO();
-            if(tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(), 6) == null){
+            Integer id2 = (Integer) tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(), 0);
+            ControleForaExpDAO cfdao = new ControleForaExpDAO();
+            if (tabelaEntrada.getValueAt(tabelaEntrada.getSelectedRow(), 6) == null) {
                 definirHorarioEntradaEntrada.setEnabled(true);
-            }else{
+            } else {
                 definirHorarioEntradaEntrada.setEnabled(false);
             }
             ControleForaExpedienteBEAN retorno = cfdao.buscaImagemEntrada(id2);
-            exibirImagemLabel(retorno.getImagem(),fotoEntrada);
+            exibirImagemLabel(retorno.getImagem(), fotoEntrada);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2035,37 +2072,35 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void tabelaSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSaidaMouseClicked
         try {
-            Integer id2 = (Integer) tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(),0);
-            ControleDAO cdao = new ControleDAO();
-            if(tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 6) == null){
+            Integer id2 = (Integer) tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 0);
+            ControleDentroExpDAO cdao = new ControleDentroExpDAO();
+            if (tabelaSaida.getValueAt(tabelaSaida.getSelectedRow(), 6) == null) {
                 definirHorarioEntradaSaida.setEnabled(true);
-            }else{
+            } else {
                 definirHorarioEntradaSaida.setEnabled(false);
             }
             ControleExpedienteBEAN retorno = cdao.buscaImg_controle(id2);
-            exibirImagemLabel(retorno.getImagem(),fotoSaida);
+            exibirImagemLabel(retorno.getImagem(), fotoSaida);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tabelaSaidaMouseClicked
 
     private void numeroDocumentoVisitanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroDocumentoVisitanteFocusLost
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
-                try{
-                    if(CadastroDAO.verificaDocumento(tipoDocumentoVisitante.getSelectedItem().toString(), 
-                            numeroDocumentoVisitante.getValue().toString())){
+            public void run() {
+                try {
+                    if (ControleVisitantesDAO.verificaDocumento(tipoDocumentoVisitante.getSelectedItem().toString(),
+                            numeroDocumentoVisitante.getValue().toString())) {
                         numeroDocumentoVisitante.setBorder(Controle.bordaLinhaVermelha);
                         JOptionPane.showMessageDialog(null, "TENTE 'PESQUISAR POR NOME'", "VISITANTE JÁ REGISTRADO", 0);
                         estadoInicialVisitantes();
-                        return;
-                    }else{
+                    } else {
                         numeroDocumentoVisitante.setBorder(Controle.bordaLinhaVerde);
                     }
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
-                    return;
                 }
             }
         }.start();
@@ -2082,6 +2117,46 @@ public class Cadastro extends javax.swing.JFrame {
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_sairMouseClicked
+
+    private void jrbtnTipoTelefoneFixoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrbtnTipoTelefoneFixoItemStateChanged
+        if (jrbtnTipoTelefoneFixo.isSelected()) {
+            try {
+                jftfTelefoneVisitante.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##) ####-####")));
+                jftfTelefoneVisitante.setValue("");
+                jftfTelefoneVisitante.setToolTipText("");
+            } catch (ParseException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (jrbtnTipoTelefoneCelular.isSelected()) {
+            try {
+                jftfTelefoneVisitante.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##) # ####-####")));
+                jftfTelefoneVisitante.setValue("");
+                jftfTelefoneVisitante.setToolTipText("Coloque o 9º dígito para telefones celulares.");
+            } catch (ParseException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jrbtnTipoTelefoneFixoItemStateChanged
+
+    private void jrbtnTipoTelefoneCelularItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrbtnTipoTelefoneCelularItemStateChanged
+        if (jrbtnTipoTelefoneFixo.isSelected()) {
+            try {
+                jftfTelefoneVisitante.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##) ####-####")));
+                jftfTelefoneVisitante.setValue("");
+                jftfTelefoneVisitante.setToolTipText("");
+            } catch (ParseException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (jrbtnTipoTelefoneCelular.isSelected()) {
+            try {
+                jftfTelefoneVisitante.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##) #####-####")));
+                jftfTelefoneVisitante.setValue("");
+                jftfTelefoneVisitante.setToolTipText("Coloque o 9º dígito para telefones celulares.");
+            } catch (ParseException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jrbtnTipoTelefoneCelularItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -2124,6 +2199,7 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton associarVeiculo;
+    private javax.swing.ButtonGroup btnGrTipoTelefone;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox c1;
@@ -2200,6 +2276,9 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
+    public static javax.swing.JFormattedTextField jftfTelefoneVisitante;
+    private javax.swing.JRadioButton jrbtnTipoTelefoneCelular;
+    private javax.swing.JRadioButton jrbtnTipoTelefoneFixo;
     private javax.swing.JList<String> listaPesquisaEntrada;
     private javax.swing.JList<String> listaPesquisaSaida;
     private javax.swing.JList<String> listaPesquisaVisitantes;
@@ -2230,7 +2309,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTable tabelaEntrada;
     private javax.swing.JTable tabelaSaida;
     private javax.swing.JTable tabelaVisitantes;
-    public static javax.swing.JFormattedTextField telefoneVisitante;
     public static javax.swing.JComboBox<String> tipoDocumentoVisitante;
     private javax.swing.JLabel txtVisitante;
     private javax.swing.JTextPane txt_info;
@@ -2238,348 +2316,350 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextPane txt_info3;
     // End of variables declaration//GEN-END:variables
     //ESTADOS DA UI-------------------------------------------------------------
-    public void estadoInicialVisitantes(){
+    public void estadoInicialVisitantes() {
         //VISITANTES------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoVisitante.setEnabled(true);
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoVisitante.setEnabled(true);
+        redefinirVisitante.setEnabled(false);
+        salvarVisitante.setEnabled(false);
+        associarVeiculo.setEnabled(false);
+        iniciarVideoRegistroVisitantes.setEnabled(false);
+        capturarVideoRegistroVisitantes.setEnabled(false);
+        definirHorarioSaidaVisitantes.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaRegistroVisitantes.setEnabled(true);
+        nomeCompletoVisitante.setEnabled(false);
+        tipoDocumentoVisitante.setEnabled(false);
+        numeroDocumentoVisitante.setEnabled(false);
+        numeroDocumentoVisitante.setBorder(Controle.bordaLinhaPadrao);
+        civil.setEnabled(false);
+        fornecedor.setEnabled(false);
+        militar.setEnabled(false);
+        jrbtnTipoTelefoneCelular.setEnabled(false);
+        jrbtnTipoTelefoneFixo.setEnabled(false);
+        jftfTelefoneVisitante.setEnabled(false);
+        destinoVisitante.setEnabled(false);
+        comQuemFalarVisitante.setEnabled(false);
+
+        pesquisaRegistroVisitantes.setText("");
+        nomeCompletoVisitante.setText("");
+        tipoDocumentoVisitante.setSelectedIndex(0);
+        numeroDocumentoVisitante.setText("");
+        jftfTelefoneVisitante.setText("");
+        destinoVisitante.setText("");
+        comQuemFalarVisitante.setText("");
+        buttonGroup1.clearSelection();
+        //CRACHÁ------------------------------------------------------------
+        c1.setEnabled(false);
+        c2.setEnabled(false);
+        c3.setEnabled(false);
+        c4.setEnabled(false);
+        c5.setEnabled(false);
+        c6.setEnabled(false);
+        c7.setEnabled(false);
+        c8.setEnabled(false);
+        c9.setEnabled(false);
+        c10.setEnabled(false);
+        c11.setEnabled(false);
+        c12.setEnabled(false);
+        c13.setEnabled(false);
+        c14.setEnabled(false);
+        c15.setEnabled(false);
+        c16.setEnabled(false);
+        c17.setEnabled(false);
+        c18.setEnabled(false);
+        c19.setEnabled(false);
+        c20.setEnabled(false);
+        buttonGroup2.clearSelection();
+        //FOTO--------------------------------------------------------------
+        fotoVisitante.setIcon(null);
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaVisitantes.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaVisitantes.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirVisitantesAux = 0;
+        imageArrayVisitantes = null;
+    }
+
+    public void novoVisitante() {
+        new Thread() {
+            @Override
+            public void run() {
+                //VISITANTES------------------------------------------------------------
+                //BOTÕES DE AÇÃO----------------------------------------------------
+                novoVisitante.setEnabled(false);
                 redefinirVisitante.setEnabled(false);
-                salvarVisitante.setEnabled(false);
-                associarVeiculo.setEnabled(false);
-                iniciarVideoRegistroVisitantes.setEnabled(false);
+                salvarVisitante.setEnabled(true);
+                associarVeiculo.setEnabled(true);
+                iniciarVideoRegistroVisitantes.setEnabled(true);
                 capturarVideoRegistroVisitantes.setEnabled(false);
-                definirHorarioSaidaVisitantes.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
+                //CAMPOS DE TEXTO---------------------------------------------------
                 pesquisaRegistroVisitantes.setEnabled(true);
-                nomeCompletoVisitante.setEnabled(false);
-                tipoDocumentoVisitante.setEnabled(false);
-                numeroDocumentoVisitante.setEnabled(false);
-                numeroDocumentoVisitante.setBorder(Controle.bordaLinhaPadrao);
-                civil.setEnabled(false);
-                fornecedor.setEnabled(false);
-                militar.setEnabled(false);
-                telefoneVisitante.setEnabled(false);
-                destinoVisitante.setEnabled(false);
-                comQuemFalarVisitante.setEnabled(false);
-                
+                nomeCompletoVisitante.setEnabled(true);
+                tipoDocumentoVisitante.setEnabled(true);
+                numeroDocumentoVisitante.setEnabled(true);
+                civil.setEnabled(true);
+                fornecedor.setEnabled(true);
+                militar.setEnabled(true);
+                jftfTelefoneVisitante.setEnabled(true);
+                destinoVisitante.setEnabled(true);
+                comQuemFalarVisitante.setEnabled(true);
                 pesquisaRegistroVisitantes.setText("");
                 nomeCompletoVisitante.setText("");
                 tipoDocumentoVisitante.setSelectedIndex(0);
                 numeroDocumentoVisitante.setText("");
-                telefoneVisitante.setText("");
+                jrbtnTipoTelefoneCelular.setEnabled(true);
+                jrbtnTipoTelefoneFixo.setEnabled(true);
+                jftfTelefoneVisitante.setText("");
                 destinoVisitante.setText("");
                 comQuemFalarVisitante.setText("");
                 buttonGroup1.clearSelection();
-            //CRACHÁ------------------------------------------------------------
-                c1.setEnabled(false);
-                c2.setEnabled(false);
-                c3.setEnabled(false);
-                c4.setEnabled(false);
-                c5.setEnabled(false);
-                c6.setEnabled(false);
-                c7.setEnabled(false);
-                c8.setEnabled(false);
-                c9.setEnabled(false);
-                c10.setEnabled(false);
-                c11.setEnabled(false);
-                c12.setEnabled(false);
-                c13.setEnabled(false);
-                c14.setEnabled(false);
-                c15.setEnabled(false);
-                c16.setEnabled(false);
-                c17.setEnabled(false);
-                c18.setEnabled(false);
-                c19.setEnabled(false);
-                c20.setEnabled(false);
+                verificaCheck();
                 buttonGroup2.clearSelection();
-            //FOTO--------------------------------------------------------------
+                //FOTO--------------------------------------------------------------
                 fotoVisitante.setIcon(null);
-            //LISTA PESQUISA----------------------------------------------------
+                executando = false;
+                //LISTA PESQUISA----------------------------------------------------
                 listaPesquisaVisitantes.setVisible(false);
-            //TABELA------------------------------------------------------------
+                //TABELA------------------------------------------------------------
                 tabelaVisitantes.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
+                //VARIÁVEIS AUXILIARES----------------------------------------------
                 redefinirVisitantesAux = 0;
                 imageArrayVisitantes = null;
-    }
-    
-    public void novoVisitante(){
-        new Thread(){
-            @Override
-            public void run(){
-                //VISITANTES------------------------------------------------------------
-                //BOTÕES DE AÇÃO----------------------------------------------------
-                    novoVisitante.setEnabled(false);
-                    redefinirVisitante.setEnabled(false);
-                    salvarVisitante.setEnabled(true);
-                    associarVeiculo.setEnabled(true);
-                    iniciarVideoRegistroVisitantes.setEnabled(true);
-                    capturarVideoRegistroVisitantes.setEnabled(false);
-                //CAMPOS DE TEXTO---------------------------------------------------
-                    pesquisaRegistroVisitantes.setEnabled(true);
-                    nomeCompletoVisitante.setEnabled(true);
-                    tipoDocumentoVisitante.setEnabled(true);
-                    numeroDocumentoVisitante.setEnabled(true);
-                    civil.setEnabled(true);
-                    fornecedor.setEnabled(true);
-                    militar.setEnabled(true);
-                    telefoneVisitante.setEnabled(true);
-                    destinoVisitante.setEnabled(true);
-                    comQuemFalarVisitante.setEnabled(true);
-
-                    pesquisaRegistroVisitantes.setText("");
-                    nomeCompletoVisitante.setText("");
-                    tipoDocumentoVisitante.setSelectedIndex(0);
-                    numeroDocumentoVisitante.setText("");
-                    telefoneVisitante.setText("");
-                    destinoVisitante.setText("");
-                    comQuemFalarVisitante.setText("");
-                    buttonGroup1.clearSelection();
-                    verificaCheck();
-                    buttonGroup2.clearSelection();
-                //FOTO--------------------------------------------------------------
-                    fotoVisitante.setIcon(null);
-                    executando = false;
-                //LISTA PESQUISA----------------------------------------------------
-                    listaPesquisaVisitantes.setVisible(false);  
-                //TABELA------------------------------------------------------------
-                    tabelaVisitantes.setEnabled(true);
-                //VARIÁVEIS AUXILIARES----------------------------------------------
-                    redefinirVisitantesAux = 0;
-                    imageArrayVisitantes = null;
             }
         }.start();
-        
+
     }
-    
-    public void redefinirVisitante(){
-        new Thread(){
+
+    public void redefinirVisitante() {
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 carregando.setVisible(true);
                 //VISITANTES------------------------------------------------------------
                 //BOTÕES DE AÇÃO----------------------------------------------------
-                    novoVisitante.setEnabled(true);
-                    redefinirVisitante.setEnabled(false);
-                    salvarVisitante.setEnabled(true);
-                    associarVeiculo.setEnabled(true);
-                    iniciarVideoRegistroVisitantes.setEnabled(true);
-                    capturarVideoRegistroVisitantes.setEnabled(false);
+                novoVisitante.setEnabled(true);
+                redefinirVisitante.setEnabled(false);
+                salvarVisitante.setEnabled(true);
+                associarVeiculo.setEnabled(true);
+                iniciarVideoRegistroVisitantes.setEnabled(true);
+                capturarVideoRegistroVisitantes.setEnabled(false);
                 //CAMPOS DE TEXTO---------------------------------------------------
-                    pesquisaRegistroVisitantes.setEnabled(true);
-                    nomeCompletoVisitante.setEnabled(false);
-                    tipoDocumentoVisitante.setEnabled(true);
-                    numeroDocumentoVisitante.setEnabled(true);
-                    civil.setEnabled(true);
-                    fornecedor.setEnabled(true);
-                    militar.setEnabled(true);
-                    telefoneVisitante.setEnabled(true);
-                    destinoVisitante.setEnabled(true);
-                    comQuemFalarVisitante.setEnabled(true);
-
-                    destinoVisitante.setText("");
-                    comQuemFalarVisitante.setText("");
-                    verificaCheck();
-                    buttonGroup2.clearSelection();
+                pesquisaRegistroVisitantes.setEnabled(true);
+                nomeCompletoVisitante.setEnabled(false);
+                tipoDocumentoVisitante.setEnabled(true);
+                numeroDocumentoVisitante.setEnabled(true);
+                civil.setEnabled(true);
+                fornecedor.setEnabled(true);
+                militar.setEnabled(true);
+                jrbtnTipoTelefoneCelular.setEnabled(true);
+                jrbtnTipoTelefoneFixo.setEnabled(true);
+                jftfTelefoneVisitante.setEnabled(true);
+                destinoVisitante.setEnabled(true);
+                comQuemFalarVisitante.setEnabled(true);
+                destinoVisitante.setText("");
+                comQuemFalarVisitante.setText("");
+                verificaCheck();
+                buttonGroup2.clearSelection();
                 //FOTO--------------------------------------------------------------
 
                 //LISTA PESQUISA----------------------------------------------------
-                    listaPesquisaVisitantes.setVisible(false);  
+                listaPesquisaVisitantes.setVisible(false);
                 //TABELA------------------------------------------------------------
-                    tabelaVisitantes.setEnabled(true);
+                tabelaVisitantes.setEnabled(true);
                 //VARIÁVEIS AUXILIARES----------------------------------------------
-                    redefinirVisitantesAux = 1;
-                
+                redefinirVisitantesAux = 1;
+
                 carregando.setVisible(false);
             }
         }.start();
-        
+
     }
-    
-    public void estadoInicialSaida(){
+
+    public void estadoInicialSaida() {
         //SAIDA-----------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoSaida.setEnabled(true);
-                redefinirSaida.setEnabled(false);
-                salvarSaida.setEnabled(false);
-                iniciarVideoSaida.setEnabled(false);
-                capturarVideoSaida.setEnabled(false);
-                definirHorarioEntradaSaida.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaSaida.setEnabled(true);
-                postoGraduacaoSaida.setEnabled(false);
-                nomeGuerraSaida.setEnabled(false);
-                sessaoSaida.setEnabled(false);
-                motivoSaida.setEnabled(false);
-                
-                postoGraduacaoSaida.setSelectedIndex(0);
-                nomeGuerraSaida.setText("");
-                sessaoSaida.setSelectedIndex(0);
-                motivoSaida.setText("");
-            //FOTO--------------------------------------------------------------
-                fotoSaida.setIcon(null);
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaSaida.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaSaida.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirSaidaAux = 0;
-                imageArraySaida = null;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoSaida.setEnabled(true);
+        redefinirSaida.setEnabled(false);
+        salvarSaida.setEnabled(false);
+        iniciarVideoSaida.setEnabled(false);
+        capturarVideoSaida.setEnabled(false);
+        definirHorarioEntradaSaida.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaSaida.setEnabled(true);
+        postoGraduacaoSaida.setEnabled(false);
+        nomeGuerraSaida.setEnabled(false);
+        sessaoSaida.setEnabled(false);
+        motivoSaida.setEnabled(false);
+
+        postoGraduacaoSaida.setSelectedIndex(0);
+        nomeGuerraSaida.setText("");
+        sessaoSaida.setSelectedIndex(0);
+        motivoSaida.setText("");
+        //FOTO--------------------------------------------------------------
+        fotoSaida.setIcon(null);
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaSaida.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaSaida.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirSaidaAux = 0;
+        imageArraySaida = null;
     }
-    
-    public void novoSaida(){
+
+    public void novoSaida() {
         //SAIDA-----------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoSaida.setEnabled(false);
-                redefinirSaida.setEnabled(false);
-                salvarSaida.setEnabled(true);
-                iniciarVideoSaida.setEnabled(true);
-                capturarVideoSaida.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaSaida.setEnabled(true);
-                postoGraduacaoSaida.setEnabled(true);
-                nomeGuerraSaida.setEnabled(true);
-                sessaoSaida.setEnabled(true);
-                motivoSaida.setEnabled(true);
-                
-                postoGraduacaoSaida.setSelectedIndex(0);
-                nomeGuerraSaida.setText("");
-                sessaoSaida.setSelectedIndex(0);
-                motivoSaida.setText("");
-            //FOTO--------------------------------------------------------------
-                fotoSaida.setIcon(null);
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaSaida.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaSaida.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirSaidaAux = 0;
-                imageArraySaida = null;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoSaida.setEnabled(false);
+        redefinirSaida.setEnabled(false);
+        salvarSaida.setEnabled(true);
+        iniciarVideoSaida.setEnabled(true);
+        capturarVideoSaida.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaSaida.setEnabled(true);
+        postoGraduacaoSaida.setEnabled(true);
+        nomeGuerraSaida.setEnabled(true);
+        sessaoSaida.setEnabled(true);
+        motivoSaida.setEnabled(true);
+
+        postoGraduacaoSaida.setSelectedIndex(0);
+        nomeGuerraSaida.setText("");
+        sessaoSaida.setSelectedIndex(0);
+        motivoSaida.setText("");
+        //FOTO--------------------------------------------------------------
+        fotoSaida.setIcon(null);
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaSaida.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaSaida.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirSaidaAux = 0;
+        imageArraySaida = null;
     }
-    
-    public void redefinirSaida(){
+
+    public void redefinirSaida() {
         //SAIDA-----------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoSaida.setEnabled(true);
-                redefinirSaida.setEnabled(false);
-                salvarSaida.setEnabled(true);
-                iniciarVideoSaida.setEnabled(true);
-                capturarVideoSaida.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaSaida.setEnabled(true);
-                postoGraduacaoSaida.setEnabled(true);
-                nomeGuerraSaida.setEnabled(false);
-                sessaoSaida.setEnabled(true);
-                motivoSaida.setEnabled(true);
-                
-                motivoSaida.setText("");
-            //FOTO--------------------------------------------------------------
-            
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaSaida.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaSaida.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirSaidaAux = 1;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoSaida.setEnabled(true);
+        redefinirSaida.setEnabled(false);
+        salvarSaida.setEnabled(true);
+        iniciarVideoSaida.setEnabled(true);
+        capturarVideoSaida.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaSaida.setEnabled(true);
+        postoGraduacaoSaida.setEnabled(true);
+        nomeGuerraSaida.setEnabled(false);
+        sessaoSaida.setEnabled(true);
+        motivoSaida.setEnabled(true);
+
+        motivoSaida.setText("");
+        //FOTO--------------------------------------------------------------
+
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaSaida.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaSaida.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirSaidaAux = 1;
     }
-    
-    public void estadoInicialEntrada(){
+
+    public void estadoInicialEntrada() {
         //ENTRADA---------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoEntrada.setEnabled(true);
-                redefinirEntrada.setEnabled(false);
-                salvarEntrada.setEnabled(false);
-                iniciarVideoEntrada.setEnabled(false);
-                capturarVideoEntrada.setEnabled(false);
-                definirHorarioEntradaEntrada.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaEntrada.setEnabled(true);
-                postoGraduacaoEntrada.setEnabled(false);
-                nomeGuerraEntrada.setEnabled(false);
-                sessaoEntrada.setEnabled(false);
-                motivoEntrada.setEnabled(false);
-                
-                postoGraduacaoEntrada.setSelectedIndex(0);
-                nomeGuerraEntrada.setText("");
-                sessaoEntrada.setSelectedIndex(0);
-                motivoEntrada.setText("");
-            //FOTO--------------------------------------------------------------
-                fotoEntrada.setIcon(null);
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaEntrada.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaEntrada.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirEntradaAux = 0;
-                imageArrayEntrada = null;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoEntrada.setEnabled(true);
+        redefinirEntrada.setEnabled(false);
+        salvarEntrada.setEnabled(false);
+        iniciarVideoEntrada.setEnabled(false);
+        capturarVideoEntrada.setEnabled(false);
+        definirHorarioEntradaEntrada.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaEntrada.setEnabled(true);
+        postoGraduacaoEntrada.setEnabled(false);
+        nomeGuerraEntrada.setEnabled(false);
+        sessaoEntrada.setEnabled(false);
+        motivoEntrada.setEnabled(false);
+
+        postoGraduacaoEntrada.setSelectedIndex(0);
+        nomeGuerraEntrada.setText("");
+        sessaoEntrada.setSelectedIndex(0);
+        motivoEntrada.setText("");
+        //FOTO--------------------------------------------------------------
+        fotoEntrada.setIcon(null);
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaEntrada.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaEntrada.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirEntradaAux = 0;
+        imageArrayEntrada = null;
     }
-    
-    public void novoEntrada(){
+
+    public void novoEntrada() {
         //ENTRADA---------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoEntrada.setEnabled(false);
-                redefinirEntrada.setEnabled(false);
-                salvarEntrada.setEnabled(true);
-                iniciarVideoEntrada.setEnabled(true);
-                capturarVideoEntrada.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaEntrada.setEnabled(true);
-                postoGraduacaoEntrada.setEnabled(true);
-                nomeGuerraEntrada.setEnabled(true);
-                sessaoEntrada.setEnabled(true);
-                motivoEntrada.setEnabled(true);
-                
-                postoGraduacaoEntrada.setSelectedIndex(0);
-                nomeGuerraEntrada.setText("");
-                sessaoEntrada.setSelectedIndex(0);
-                motivoEntrada.setText("");
-            //FOTO--------------------------------------------------------------
-                fotoEntrada.setIcon(null);
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaEntrada.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaEntrada.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirEntradaAux = 0;
-                imageArrayEntrada = null;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoEntrada.setEnabled(false);
+        redefinirEntrada.setEnabled(false);
+        salvarEntrada.setEnabled(true);
+        iniciarVideoEntrada.setEnabled(true);
+        capturarVideoEntrada.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaEntrada.setEnabled(true);
+        postoGraduacaoEntrada.setEnabled(true);
+        nomeGuerraEntrada.setEnabled(true);
+        sessaoEntrada.setEnabled(true);
+        motivoEntrada.setEnabled(true);
+
+        postoGraduacaoEntrada.setSelectedIndex(0);
+        nomeGuerraEntrada.setText("");
+        sessaoEntrada.setSelectedIndex(0);
+        motivoEntrada.setText("");
+        //FOTO--------------------------------------------------------------
+        fotoEntrada.setIcon(null);
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaEntrada.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaEntrada.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirEntradaAux = 0;
+        imageArrayEntrada = null;
     }
-    
-    public void redefinirEntrada(){
+
+    public void redefinirEntrada() {
         //ENTRADA---------------------------------------------------------------
-            //BOTÕES DE AÇÃO----------------------------------------------------
-                novoEntrada.setEnabled(true);
-                redefinirEntrada.setEnabled(false);
-                salvarEntrada.setEnabled(true);
-                iniciarVideoEntrada.setEnabled(true);
-                capturarVideoEntrada.setEnabled(false);
-            //CAMPOS DE TEXTO---------------------------------------------------
-                pesquisaEntrada.setEnabled(true);
-                postoGraduacaoEntrada.setEnabled(true);
-                nomeGuerraEntrada.setEnabled(true);
-                sessaoEntrada.setEnabled(true);
-                motivoEntrada.setEnabled(true);
-                
-                motivoEntrada.setText("");
-            //FOTO--------------------------------------------------------------
-            
-            //LISTA PESQUISA----------------------------------------------------
-                listaPesquisaEntrada.setVisible(false);
-            //TABELA------------------------------------------------------------
-                tabelaEntrada.setEnabled(true);
-            //VARIÁVEIS AUXILIARES----------------------------------------------
-                redefinirEntradaAux = 1;
+        //BOTÕES DE AÇÃO----------------------------------------------------
+        novoEntrada.setEnabled(true);
+        redefinirEntrada.setEnabled(false);
+        salvarEntrada.setEnabled(true);
+        iniciarVideoEntrada.setEnabled(true);
+        capturarVideoEntrada.setEnabled(false);
+        //CAMPOS DE TEXTO---------------------------------------------------
+        pesquisaEntrada.setEnabled(true);
+        postoGraduacaoEntrada.setEnabled(true);
+        nomeGuerraEntrada.setEnabled(true);
+        sessaoEntrada.setEnabled(true);
+        motivoEntrada.setEnabled(true);
+
+        motivoEntrada.setText("");
+        //FOTO--------------------------------------------------------------
+
+        //LISTA PESQUISA----------------------------------------------------
+        listaPesquisaEntrada.setVisible(false);
+        //TABELA------------------------------------------------------------
+        tabelaEntrada.setEnabled(true);
+        //VARIÁVEIS AUXILIARES----------------------------------------------
+        redefinirEntradaAux = 1;
     }
     //--------------------------------------------------------------------------
-    
-    
-    
-    public void atualizaTabelaVisitantes(){
-        try{
+
+    public void atualizaTabelaVisitantes() {
+        try {
             SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
             DefaultTableModel modelo = (DefaultTableModel) tabelaVisitantes.getModel();
             modelo.setNumRows(0);
-            CadastroDAO cadastroDAO = new CadastroDAO();
+            ControleVisitantesDAO cadastroDAO = new ControleVisitantesDAO();
 
-            for(CadastroBEAN cadastroBEAN: cadastroDAO.read(sdh.format(new Date()))){
+            for (CadastroBEAN cadastroBEAN : cadastroDAO.read(sdh.format(new Date()))) {
                 modelo.addRow(new Object[]{
                     cadastroBEAN.getId(),
                     cadastroBEAN.getN_cracha(),
@@ -2595,21 +2675,21 @@ public class Cadastro extends javax.swing.JFrame {
                     cadastroBEAN.getHoraS()});
             }
             corTabelaVisitantes();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
-        
+
     }
-    
-    public void readJTableControle(){
-        try{
+
+    public void readJTableControle() {
+        try {
             SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
             DefaultTableModel modelo2 = (DefaultTableModel) tabelaSaida.getModel();
             modelo2.setNumRows(0);
-            ControleDAO controleDAO = new ControleDAO();
+            ControleDentroExpDAO controleDAO = new ControleDentroExpDAO();
 
-            for(ControleExpedienteBEAN controleExpedienteBEAN: controleDAO.readControle(sdh.format(new Date()))){
+            for (ControleExpedienteBEAN controleExpedienteBEAN : controleDAO.readControle(sdh.format(new Date()))) {
                 modelo2.addRow(new Object[]{
                     controleExpedienteBEAN.getId(),
                     controleExpedienteBEAN.getGrad_posto(),
@@ -2621,20 +2701,20 @@ public class Cadastro extends javax.swing.JFrame {
                     controleExpedienteBEAN.getMotivo_saida()});
             }
             corTabelaSaida();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
     }
-    
-    public void readJTable_controlef(){
-        try{
+
+    public void readJTable_controlef() {
+        try {
             SimpleDateFormat sdh = new SimpleDateFormat("dd/MM/yyyy");
             DefaultTableModel modelo2 = (DefaultTableModel) tabelaEntrada.getModel();
             modelo2.setNumRows(0);
-            ControleFDAO controleFDAO = new ControleFDAO();
+            ControleForaExpDAO controleFDAO = new ControleForaExpDAO();
 
-            for(ControleForaExpedienteBEAN controleForaExpedienteBEAN: controleFDAO.readControleF(sdh.format(new Date()))){
+            for (ControleForaExpedienteBEAN controleForaExpedienteBEAN : controleFDAO.readControleF(sdh.format(new Date()))) {
                 modelo2.addRow(new Object[]{
                     controleForaExpedienteBEAN.getId(),
                     controleForaExpedienteBEAN.getGrad_posto(),
@@ -2646,154 +2726,157 @@ public class Cadastro extends javax.swing.JFrame {
                     controleForaExpedienteBEAN.getMotivo_entrada()});
             }
             corTabelaEntrada();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
             return;
         }
-        
+
     }
-    
-    public void inicializaWebcam(){
-        try{
+
+    public void inicializaWebcam() {
+        try {
             dimensao_default = WebcamResolution.VGA.getSize();
             WEBCAM = Webcam.getDefault();
             WEBCAM.setViewSize(dimensao_default);
-        }catch(WebcamException e){
-            JOptionPane.showMessageDialog(null,"Erro na inicialização do dispositivo de vídeo!\nVerifique se o dispositivo está corretamente instalado.");
+        } catch (WebcamException e) {
+            JOptionPane.showMessageDialog(null, "Erro na inicialização do dispositivo de vídeo!\nVerifique se o dispositivo está corretamente instalado.");
         }
     }
-    
-    private void inicializaVideoWebcam(JLabel label){
-        new Thread(){
+
+    private void inicializaVideoWebcam(JLabel label) {
+        new Thread() {
             @Override
-            public void run(){
-                while(true&&executando){
-                    try{
+            public void run() {
+                while (true && executando) {
+                    try {
                         Image imagem = WEBCAM.getImage();
                         ImageIcon icon = new ImageIcon(imagem);
-                        icon.setImage(icon.getImage().getScaledInstance(label.getWidth(),label.getHeight(),100));
+                        icon.setImage(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), 100));
                         label.setIcon(icon);
                         Thread.sleep(50);
-                    }catch(InterruptedException e){
+                    } catch (InterruptedException e) {
                         System.out.println(e);
                     }
                 }
             }
         }.start();
     }
-    
-    public static byte[] getImgBytes(BufferedImage image) throws IOException{
+
+    public static byte[] getImgBytes(BufferedImage image) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try{
+        try {
             ImageIO.write(image, "JPEG", baos);
-        }catch(IOException ex){
+        } catch (IOException ex) {
             System.err.println("Erro ao gerar bytes");
         }
-        
+
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
-        
+
         return baos.toByteArray();
     }
-    
-    public static void exibirImagemLabel(byte[] img, javax.swing.JLabel label){
-        if(img != null){
+
+    public static void exibirImagemLabel(byte[] img, javax.swing.JLabel label) {
+        if (img != null) {
             InputStream input = new ByteArrayInputStream(img);
-            try{
+            try {
                 BufferedImage imagem = ImageIO.read(input);
                 label.setIcon(new ImageIcon(imagem));
-            }catch(IOException ex){
+            } catch (IOException ex) {
                 System.err.println("Erro ao converter imagem");
             }
         }
     }
-    
-    public void corTabelaVisitantes(){
-        tabelaVisitantes.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+
+    public void corTabelaVisitantes() {
+        tabelaVisitantes.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus,
-                                                           int row, int column){
-            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            //***********************
-            Color c = Color.WHITE;
-            Object texto = table.getValueAt(row,11);
-            if(texto == null)
-                c = Color.RED;
-            label.setBackground(c);
-            tabelaVisitantes.setSelectionForeground(Color.BLUE);
-            //***********************
-            
-            return label;
-            }
-        });
-    }
-    
-    public void corTabelaSaida(){
-        tabelaSaida.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus,
-                                                           int row, int column){
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
                 JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            //***********************
-            Color c = Color.WHITE;
-            Object texto = table.getValueAt(row,6);
-            if(texto == null)
-                c = Color.RED;
-            label.setBackground(c);
-            tabelaSaida.setSelectionForeground(Color.BLUE);
-            //***********************
-            
-            return label;
+                //***********************
+                Color c = Color.WHITE;
+                Object texto = table.getValueAt(row, 11);
+                if (texto == null) {
+                    c = Color.RED;
+                }
+                label.setBackground(c);
+                tabelaVisitantes.setSelectionForeground(Color.BLUE);
+                //***********************
+
+                return label;
             }
         });
     }
-    
-    public void corTabelaEntrada(){
-        tabelaEntrada.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+
+    public void corTabelaSaida() {
+        tabelaSaida.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus,
-                                                           int row, int column){
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
                 JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            //***********************
-            Color c = Color.WHITE;
-            Object texto = table.getValueAt(row,6);
-            if(texto == null)
-                c = Color.RED;
-            label.setBackground(c);
-            tabelaEntrada.setSelectionForeground(Color.BLUE);
-            //***********************
-            
-            return label;
+                //***********************
+                Color c = Color.WHITE;
+                Object texto = table.getValueAt(row, 6);
+                if (texto == null) {
+                    c = Color.RED;
+                }
+                label.setBackground(c);
+                tabelaSaida.setSelectionForeground(Color.BLUE);
+                //***********************
+
+                return label;
             }
         });
     }
-    
-    public void ListaPesquisaVisitantesAux() throws SQLException{
-        new Thread(){
+
+    public void corTabelaEntrada() {
+        tabelaEntrada.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
-            public void run(){
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                //***********************
+                Color c = Color.WHITE;
+                Object texto = table.getValueAt(row, 6);
+                if (texto == null) {
+                    c = Color.RED;
+                }
+                label.setBackground(c);
+                tabelaEntrada.setSelectionForeground(Color.BLUE);
+                //***********************
+
+                return label;
+            }
+        });
+    }
+
+    public void ListaPesquisaVisitantesAux() throws SQLException {
+        new Thread() {
+            @Override
+            public void run() {
                 carregando.setVisible(true);
-                try{
-                    CadastroDAO dao = new CadastroDAO();
+                try {
+                    ControleVisitantesDAO dao = new ControleVisitantesDAO();
                     dao.executaSQL("SELECT NomeCompleto FROM cadastro WHERE NomeCompleto LIKE '%" + pesquisaRegistroVisitantes.getText() + "%' ORDER BY NomeCompleto");
                     model_list.removeAllElements();
                     int v = 0;
-                    while(dao.rs2.next() & v < 4){
-                        if(model_list.contains(dao.rs2.getString("NomeCompleto"))){
+                    while (dao.rs2.next() & v < 4) {
+                        if (model_list.contains(dao.rs2.getString("NomeCompleto"))) {
 
-                        }else{
+                        } else {
                             model_list.addElement(dao.rs2.getString("NomeCompleto"));
                             v++;
                         }
                     }
-                    if(v >= 1){
+                    if (v >= 1) {
                         listaPesquisaVisitantes.setVisible(true);
-                    }else{
+                    } else {
                         listaPesquisaVisitantes.setVisible(false);
                     }
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex, "ERRO NA CONSULTA", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -2801,104 +2884,123 @@ public class Cadastro extends javax.swing.JFrame {
             }
         }.start();
     }
-    
-    public void ListaPesquisaSaidaAux() throws SQLException{
-        new Thread(){
+
+    public void ListaPesquisaSaidaAux() throws SQLException {
+        new Thread() {
             @Override
-            public void run(){
-                try{
+            public void run() {
+                try {
                     carregando1.setVisible(true);
-                    ControleDAO cdao = new ControleDAO();
+                    ControleDentroExpDAO cdao = new ControleDentroExpDAO();
                     cdao.executaSQL("SELECT nome_guerra, grad_posto FROM controle_saida WHERE nome_guerra LIKE '%" + pesquisaSaida.getText() + "%' ORDER BY nome_guerra");
                     model_list2.removeAllElements();
                     int v2 = 0;
-                    while(cdao.rs3.next() & v2 < 4){
+                    while (cdao.rs3.next() & v2 < 4) {
                         String resultado;
                         resultado = cdao.rs3.getString("grad_posto") + " " + cdao.rs3.getString("nome_guerra");
-                        if(model_list2.contains(resultado)){
+                        if (model_list2.contains(resultado)) {
 
-                        }else{
+                        } else {
                             model_list2.addElement(resultado);
                             v2++;
                         }
                     }
-                    if(v2 >= 1){
+                    if (v2 >= 1) {
                         listaPesquisaSaida.setVisible(true);
-                    }else{
+                    } else {
                         listaPesquisaSaida.setVisible(false);
                     }
                     //ResultadoPesquisa();
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex, "ERRO NA CONSULTA", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 carregando1.setVisible(false);
             }
         }.start();
-        
+
     }
-    
-    public void ListaPesquisaEntradaAux(){
-        new Thread(){
+
+    public void ListaPesquisaEntradaAux() {
+        new Thread() {
             @Override
-            public void run(){
-                try{
+            public void run() {
+                try {
                     carregando2.setVisible(true);
-                    ControleFDAO cfdao = new ControleFDAO();
+                    ControleForaExpDAO cfdao = new ControleForaExpDAO();
                     cfdao.executaSQL("SELECT nome_guerra, grad_posto FROM controlef_saida WHERE nome_guerra LIKE '%" + pesquisaEntrada.getText() + "%' ORDER BY nome_guerra");
                     model_list3.removeAllElements();
                     int v3 = 0;
-                    while(cfdao.rs3.next() & v3 < 4){
+                    while (cfdao.rs3.next() & v3 < 4) {
                         String resultado;
                         resultado = cfdao.rs3.getString("grad_posto") + " " + cfdao.rs3.getString("nome_guerra");
-                        if(model_list3.contains(resultado)){
+                        if (model_list3.contains(resultado)) {
 
-                        }else{
+                        } else {
                             model_list3.addElement(resultado);
                             v3++;
                         }
                     }
-                    if(v3 >= 1){
+                    if (v3 >= 1) {
                         listaPesquisaEntrada.setVisible(true);
-                    }else{
+                    } else {
                         listaPesquisaEntrada.setVisible(false);
                     }
                     //ResultadoPesquisa();
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex, "ERRO NA CONSULTA", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 carregando2.setVisible(false);
             }
         }.start();
-        
+
     }
-    
-    public void ResultadoPesquisaVisistantes() throws SQLException, IOException{
-        new Thread(){
+
+    public void ResultadoPesquisaVisistantes() throws SQLException, IOException {
+        new Thread("Carrega dados visitante já registrado") {
             @Override
-            public void run(){
+            public void run() {
                 carregando.setVisible(true);
                 String tipoDocumento;
                 String tipoVisitante;
-                for(CadastroBEAN cadastroBEAN: CadastroDAO.preenchePesquisa(listaPesquisaVisitantes.getSelectedValue().toString())){
+                for (CadastroBEAN cadastroBEAN : ControleVisitantesDAO.preenchePesquisa(listaPesquisaVisitantes.getSelectedValue().toString())) {
                     nomeCompletoVisitante.setText(cadastroBEAN.getNomeCompleto());
-                    telefoneVisitante.setText(cadastroBEAN.getTelefone());
+
+                    String formatar = cadastroBEAN.getTelefone();
+                    formatar = formatar.replace("(", "");
+                    formatar = formatar.replace(")", "");
+                    formatar = formatar.replace("-", "");
+                    formatar = formatar.replace(" ", "");
+
+                    switch (formatar.length()) {
+                        case 11:
+                            jrbtnTipoTelefoneCelular.setSelected(true);
+                            break;
+                        case 10:
+                        default:
+                            jrbtnTipoTelefoneFixo.setSelected(true);
+                            break;
+                    }
+
+                    jftfTelefoneVisitante.setText(cadastroBEAN.getTelefone());
                     numeroDocumentoVisitante.setText(cadastroBEAN.getDocumentoIden());
                     tipoDocumento = cadastroBEAN.getTipoDocumento();
                     tipoVisitante = cadastroBEAN.getTipoVisitante();
                     tipoDocumentoVisitante.setSelectedItem(tipoDocumento);
-                    if(tipoVisitante.equals("Civil")){
+                    if (tipoVisitante.equals("Civil")) {
                         civil.setSelected(true);
-                    }if(tipoVisitante.equals("Militar")){
+                    }
+                    if (tipoVisitante.equals("Militar")) {
                         militar.setSelected(true);
-                    }if(tipoVisitante.equals("Fornecedor")){
+                    }
+                    if (tipoVisitante.equals("Fornecedor")) {
                         fornecedor.setSelected(true);
                     }
-                    if(cadastroBEAN.getFoto() == null){
+                    if (cadastroBEAN.getFoto() == null) {
                         fotoVisitante.setIcon(null);
                         imageArrayVisitantes = null;
-                    }else{
+                    } else {
                         exibirImagemLabel(cadastroBEAN.getFoto(), fotoVisitante);
                         InputStream input = new ByteArrayInputStream(cadastroBEAN.getFoto());
                         BufferedImage imagem;
@@ -2906,37 +3008,37 @@ public class Cadastro extends javax.swing.JFrame {
                             imagem = ImageIO.read(input);
                             imageArrayVisitantes = imagem;
                         } catch (IOException ex) {
-                            JOptionPane.showMessageDialog(null, ex, "ERRO AO SALVAR IMAGEM", JOptionPane.ERROR_MESSAGE);
+                            Controle.exibePopUp((byte) 3, "Erro ao carregar a foto!");
                             return;
                         }
-                         
+
                     }
                 }
                 redefinirVisitante.setEnabled(true);
                 carregando.setVisible(false);
             }
         }.start();
-        
+
     }
-    
-    public void ResultadoPesquisaSaida(String grad_posto, String nome_guerra) throws SQLException, IOException{
-        new Thread(){
+
+    public void ResultadoPesquisaSaida(String grad_posto, String nome_guerra) throws SQLException, IOException {
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 String posto_grad;
                 String sessao;
-                ControleDAO cdao = new ControleDAO();
-                for(ControleExpedienteBEAN c: cdao.preenche_pesquisa_controle(grad_posto, nome_guerra)){
+                ControleDentroExpDAO cdao = new ControleDentroExpDAO();
+                for (ControleExpedienteBEAN c : cdao.preenche_pesquisa_controle(grad_posto, nome_guerra)) {
                     nomeGuerraSaida.setText(c.getNome_guerra());
                     posto_grad = c.getGrad_posto();
                     sessao = c.getSessao();
                     postoGraduacaoSaida.setSelectedItem(posto_grad);
                     sessaoSaida.setSelectedItem(sessao);
-                    if(c.getImagem() == null){
+                    if (c.getImagem() == null) {
                         fotoSaida.setIcon(null);
                         imageArraySaida = null;
-                    }else{
-                        exibirImagemLabel(c.getImagem(),fotoSaida);
+                    } else {
+                        exibirImagemLabel(c.getImagem(), fotoSaida);
                         InputStream input = new ByteArrayInputStream(c.getImagem());
                         BufferedImage imagem;
                         try {
@@ -2946,33 +3048,33 @@ public class Cadastro extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, ex, "ERRO NA LEITURA DA IMAGEM", 0);
                             return;
                         }
-                        
+
                     }
                 }
                 listaPesquisaSaida.setVisible(false);
             }
         }.start();
-        
+
     }
-    
-    public void ResultadoPesquisaEntrada(String grad_posto, String nome_guerra) throws IOException{
-        new Thread(){
+
+    public void ResultadoPesquisaEntrada(String grad_posto, String nome_guerra) throws IOException {
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 String posto_grad;
                 String sessao;
-                ControleFDAO cfdao = new ControleFDAO();
-                for(ControleForaExpedienteBEAN cf: cfdao.preenche_pesquisa_controlef(grad_posto, nome_guerra)){
+                ControleForaExpDAO cfdao = new ControleForaExpDAO();
+                for (ControleForaExpedienteBEAN cf : cfdao.preenche_pesquisa_controlef(grad_posto, nome_guerra)) {
                     nomeGuerraEntrada.setText(cf.getNome_guerra());
                     posto_grad = cf.getGrad_posto();
                     sessao = cf.getSessao();
                     postoGraduacaoEntrada.setSelectedItem(posto_grad);
                     sessaoEntrada.setSelectedItem(sessao);
-                    if(cf.getImagem() == null){
+                    if (cf.getImagem() == null) {
                         fotoEntrada.setIcon(null);
                         imageArrayEntrada = null;
-                    }else{
-                        exibirImagemLabel(cf.getImagem(),fotoEntrada);
+                    } else {
+                        exibirImagemLabel(cf.getImagem(), fotoEntrada);
                         InputStream input = new ByteArrayInputStream(cf.getImagem());
                         BufferedImage imagem;
                         try {
@@ -2988,143 +3090,143 @@ public class Cadastro extends javax.swing.JFrame {
             }
         }.start();
     }
-    
-    public void verificaCheck(){
-        
-        new Thread(){
+
+    public void verificaCheck() {
+
+        new Thread() {
             @Override
-            public void run(){
-                try{
-                   CadastroDAO cadastroDAO = new CadastroDAO();
-        
-                    if(cadastroDAO.busca_cracha(1)){
+            public void run() {
+                try {
+                    ControleVisitantesDAO cadastroDAO = new ControleVisitantesDAO();
+
+                    if (cadastroDAO.verificaCracha(1)) {
                         c1.setEnabled(false);
-                    }else{
+                    } else {
                         c1.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(2)){
+                    if (cadastroDAO.verificaCracha(2)) {
                         c2.setEnabled(false);
-                    }else{
+                    } else {
                         c2.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(3)){
+                    if (cadastroDAO.verificaCracha(3)) {
                         c3.setEnabled(false);
-                    }else{
+                    } else {
                         c3.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(4)){
+                    if (cadastroDAO.verificaCracha(4)) {
                         c4.setEnabled(false);
-                    }else{
+                    } else {
                         c4.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(5)){
+                    if (cadastroDAO.verificaCracha(5)) {
                         c5.setEnabled(false);
-                    }else{
+                    } else {
                         c5.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(6)){
+                    if (cadastroDAO.verificaCracha(6)) {
                         c6.setEnabled(false);
-                    }else{
+                    } else {
                         c6.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(7)){
+                    if (cadastroDAO.verificaCracha(7)) {
                         c7.setEnabled(false);
-                    }else{
+                    } else {
                         c7.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(8)){
+                    if (cadastroDAO.verificaCracha(8)) {
                         c8.setEnabled(false);
-                    }else{
-                        c8.setEnabled(true);   
+                    } else {
+                        c8.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(9)){
+                    if (cadastroDAO.verificaCracha(9)) {
                         c9.setEnabled(false);
-                    }else{
+                    } else {
                         c9.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(10)){
+                    if (cadastroDAO.verificaCracha(10)) {
                         c10.setEnabled(false);
-                    }else{
+                    } else {
                         c10.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(11)){
+                    if (cadastroDAO.verificaCracha(11)) {
                         c11.setEnabled(false);
-                    }else{
+                    } else {
                         c11.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(12)){
+                    if (cadastroDAO.verificaCracha(12)) {
                         c12.setEnabled(false);
-                    }else{
+                    } else {
                         c12.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(13)){
+                    if (cadastroDAO.verificaCracha(13)) {
                         c13.setEnabled(false);
-                    }else{
+                    } else {
                         c13.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(14)){
+                    if (cadastroDAO.verificaCracha(14)) {
                         c14.setEnabled(false);
-                    }else{
+                    } else {
                         c14.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(15)){
+                    if (cadastroDAO.verificaCracha(15)) {
                         c15.setEnabled(false);
-                    }else{
+                    } else {
                         c15.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(16)){
+                    if (cadastroDAO.verificaCracha(16)) {
                         c16.setEnabled(false);
-                    }else{
+                    } else {
                         c16.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(17)){
+                    if (cadastroDAO.verificaCracha(17)) {
                         c17.setEnabled(false);
-                    }else{
+                    } else {
                         c17.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(18)){
+                    if (cadastroDAO.verificaCracha(18)) {
                         c18.setEnabled(false);
-                    }else{
+                    } else {
                         c18.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(19)){
+                    if (cadastroDAO.verificaCracha(19)) {
                         c19.setEnabled(false);
-                    }else{
+                    } else {
                         c19.setEnabled(true);
                     }
 
-                    if(cadastroDAO.busca_cracha(20)){
+                    if (cadastroDAO.verificaCracha(20)) {
                         c20.setEnabled(false);
-                    }else{
+                    } else {
                         c20.setEnabled(true);
-                    } 
-                }catch(SQLException ex){
+                    }
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "VERIFIQUE A SUA CONEXÃO E TENTE NOVAMENTE.\nDETALHES: " + ex, "ERRO DE CONEXÃO", 0);
                     return;
                 }
             }
         }.start();
     }
-    
-    private void desativa_botoes_encerra_sv(){
+
+    private void desativa_botoes_encerra_sv() {
         //Registro de visitantes
         pesquisaRegistroVisitantes.setEnabled(false);
         iniciarVideoRegistroVisitantes.setEnabled(false);
@@ -3133,7 +3235,7 @@ public class Cadastro extends javax.swing.JFrame {
         nomeCompletoVisitante.setEnabled(false);
         tipoDocumentoVisitante.setEnabled(false);
         numeroDocumentoVisitante.setEnabled(false);
-        telefoneVisitante.setEnabled(false);
+        jftfTelefoneVisitante.setEnabled(false);
         buttonGroup1.clearSelection();
         civil.setEnabled(false);
         militar.setEnabled(false);
@@ -3165,7 +3267,7 @@ public class Cadastro extends javax.swing.JFrame {
         salvarVisitante.setEnabled(false);
         definirHorarioSaidaVisitantes.setEnabled(false);
         tabelaVisitantes.setEnabled(false);
-        
+
         //Controle saída CB/SD
         pesquisaSaida.setEnabled(false);
         listaPesquisaSaida.setEnabled(false);
@@ -3180,7 +3282,7 @@ public class Cadastro extends javax.swing.JFrame {
         salvarSaida.setEnabled(false);
         tabelaSaida.setEnabled(false);
         definirHorarioEntradaSaida.setEnabled(false);
-        
+
         //Controle entrada fora do expediente
         pesquisaEntrada.setEnabled(false);
         listaPesquisaEntrada.setEnabled(false);
@@ -3195,8 +3297,8 @@ public class Cadastro extends javax.swing.JFrame {
         salvarEntrada.setEnabled(false);
         definirHorarioEntradaEntrada.setEnabled(false);
     }
-    
-    public void inicia_botoes_inicia_sv(){
+
+    public void inicia_botoes_inicia_sv() {
         //Registro de visitantes
         pesquisaRegistroVisitantes.setEnabled(true);
         iniciarVideoRegistroVisitantes.setEnabled(true);
@@ -3205,7 +3307,7 @@ public class Cadastro extends javax.swing.JFrame {
         nomeCompletoVisitante.setEnabled(false);
         tipoDocumentoVisitante.setEnabled(false);
         numeroDocumentoVisitante.setEnabled(false);
-        telefoneVisitante.setEnabled(false);
+        jftfTelefoneVisitante.setEnabled(false);
         buttonGroup1.clearSelection();
         civil.setEnabled(false);
         militar.setEnabled(false);
@@ -3237,7 +3339,7 @@ public class Cadastro extends javax.swing.JFrame {
         salvarVisitante.setEnabled(false);
         definirHorarioSaidaVisitantes.setEnabled(false);
         tabelaVisitantes.setEnabled(true);
-        
+
         //Controle de Saída de CB/SD
         pesquisaSaida.setEnabled(true);
         listaPesquisaSaida.setEnabled(true);
@@ -3252,7 +3354,7 @@ public class Cadastro extends javax.swing.JFrame {
         salvarSaida.setEnabled(false);
         tabelaSaida.setEnabled(true);
         definirHorarioEntradaSaida.setEnabled(false);
-        
+
         //Controle de entrada fora do expediente
         pesquisaEntrada.setEnabled(true);
         listaPesquisaEntrada.setEnabled(true);
