@@ -52,19 +52,25 @@ public class VeiculosFrame extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblModeloVeiculo.setText("Modelo do Veículo:");
-        jPanel1.add(lblModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-        jPanel1.add(jtfModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
+        jPanel1.add(lblModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
+
+        jtfModeloVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfModeloVeiculoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jtfModeloVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 120, -1));
 
         lblMarcaVeiculo.setText("Marca do Veículo:");
         jPanel1.add(lblMarcaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-        jPanel1.add(jtfCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 120, -1));
+        jPanel1.add(jtfCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 120, -1));
 
         lblCorVeiculo.setText("Cor do veículo:");
-        jPanel1.add(lblCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
+        jPanel1.add(lblCorVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
         jPanel1.add(jtfMarcaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, -1));
 
         lblPlacaVeiculo.setText("Placa do Veículo:");
-        jPanel1.add(lblPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+        jPanel1.add(lblPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
 
         btnAssociarVeiculo.setText("Associar Veículo");
         btnAssociarVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +78,7 @@ public class VeiculosFrame extends javax.swing.JFrame {
                 btnAssociarVeiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAssociarVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 80, -1, -1));
+        jPanel1.add(btnAssociarVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
 
         btnLimpar.setText("Limpar Campos");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,8 +86,8 @@ public class VeiculosFrame extends javax.swing.JFrame {
                 btnLimparActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
-        jPanel1.add(jtfPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 110, -1));
+        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+        jPanel1.add(jtfPlacaVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +95,7 @@ public class VeiculosFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,6 +153,10 @@ public class VeiculosFrame extends javax.swing.JFrame {
         jtfCorVeiculo.setText("");
         jtfPlacaVeiculo.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void jtfModeloVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfModeloVeiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfModeloVeiculoActionPerformed
 
     /**
      * @param args the command line arguments

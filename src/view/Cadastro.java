@@ -156,6 +156,7 @@ public class Cadastro extends javax.swing.JFrame {
         destinoVisitante = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         comQuemFalarVisitante = new javax.swing.JTextField();
+        fotoVisitante = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         c4 = new javax.swing.JCheckBox();
         c2 = new javax.swing.JCheckBox();
@@ -177,7 +178,6 @@ public class Cadastro extends javax.swing.JFrame {
         c17 = new javax.swing.JCheckBox();
         c18 = new javax.swing.JCheckBox();
         c13 = new javax.swing.JCheckBox();
-        fotoVisitante = new javax.swing.JLabel();
         iniciarVideoRegistroVisitantes = new javax.swing.JButton();
         capturarVideoRegistroVisitantes = new javax.swing.JButton();
         numeroDocumentoVisitante = new javax.swing.JFormattedTextField();
@@ -244,6 +244,7 @@ public class Cadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EGGCF Portaria");
         setExtendedState(6);
+        setPreferredSize(new java.awt.Dimension(1080, 1920));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jTabbedPane1.setAutoscrolls(true);
@@ -306,7 +307,7 @@ public class Cadastro extends javax.swing.JFrame {
                 listaPesquisaVisitantesMouseClicked(evt);
             }
         });
-        jPanel12.add(listaPesquisaVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 410, 120));
+        jPanel12.add(listaPesquisaVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 90));
 
         nomeCompletoVisitante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,6 +394,10 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
         jPanel12.add(comQuemFalarVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 139, -1));
+
+        fotoVisitante.setBackground(new java.awt.Color(0, 0, 0));
+        fotoVisitante.setOpaque(true);
+        jPanel12.add(fotoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 220, 220));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Crachá"));
 
@@ -481,12 +486,22 @@ public class Cadastro extends javax.swing.JFrame {
 
         buttonGroup2.add(c15);
         c15.setText("15");
+        c15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c15ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(c19);
         c19.setText("19");
 
         buttonGroup2.add(c20);
         c20.setText("20");
+        c20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c20ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(c12);
         c12.setText("12");
@@ -520,60 +535,42 @@ public class Cadastro extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(c1)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(c7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(c8))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(c2)
-                                .addGap(12, 12, 12)
-                                .addComponent(c3)))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(c4)
-                            .addComponent(c9))
-                        .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c5)
-                            .addComponent(c10)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(c16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(c17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(c18)
-                        .addGap(6, 6, 6)
-                        .addComponent(c19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(c20))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(c17)
+                            .addComponent(c13))
+                        .addGap(8, 8, 8)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(c2)
                             .addComponent(c6)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(c11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(c12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(c13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(c14)))
+                            .addComponent(c10)
+                            .addComponent(c14)
+                            .addComponent(c18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(c15)))
-                .addGap(17, 17, 17))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(c3)
+                            .addComponent(c7)
+                            .addComponent(c11)
+                            .addComponent(c15)
+                            .addComponent(c19))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(c4)
+                            .addComponent(c8)
+                            .addComponent(c12)
+                            .addComponent(c16)
+                            .addComponent(c20)))
+                    .addComponent(c9)
+                    .addComponent(c5)
+                    .addComponent(c1)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(c5)
                     .addComponent(c4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(c3)
                     .addComponent(c2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -581,33 +578,30 @@ public class Cadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(c7)
-                    .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(c8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(c9)
-                    .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(c5)
+                    .addComponent(c6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(c11)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(c14)
-                        .addComponent(c15)
-                        .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(c12)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(c12)
+                    .addComponent(c9)
+                    .addComponent(c10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(c11))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(c14)
+                    .addComponent(c15)
+                    .addComponent(c16)
+                    .addComponent(c13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(c20)
                     .addComponent(c19)
                     .addComponent(c18)
-                    .addComponent(c17)
-                    .addComponent(c16))
-                .addGap(18, 18, 18))
+                    .addComponent(c17))
+                .addGap(0, 0, 0))
         );
 
-        jPanel12.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 290, 170));
-
-        fotoVisitante.setBackground(new java.awt.Color(0, 0, 0));
-        fotoVisitante.setOpaque(true);
-        jPanel12.add(fotoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 220, 220));
+        jPanel12.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, 140));
 
         iniciarVideoRegistroVisitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iniciarGravacao.png"))); // NOI18N
         iniciarVideoRegistroVisitantes.setToolTipText("Iniciar Vídeo");
@@ -616,7 +610,7 @@ public class Cadastro extends javax.swing.JFrame {
                 iniciarVideoRegistroVisitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(iniciarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, -1, 38));
+        jPanel12.add(iniciarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, 38));
 
         capturarVideoRegistroVisitantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/capturarFoto.png"))); // NOI18N
         capturarVideoRegistroVisitantes.setToolTipText("Capturar Foto");
@@ -625,7 +619,7 @@ public class Cadastro extends javax.swing.JFrame {
                 capturarVideoRegistroVisitantesActionPerformed(evt);
             }
         });
-        jPanel12.add(capturarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, 38));
+        jPanel12.add(capturarVideoRegistroVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, -1, 38));
 
         numeroDocumentoVisitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         numeroDocumentoVisitante.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -688,8 +682,8 @@ public class Cadastro extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(associarVeiculo, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -697,16 +691,16 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(redefinirVisitante)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(novoVisitante))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(carregando, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(carregando, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
                             .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(7, 7, 7))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane5))
@@ -716,11 +710,10 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(definirHorarioSaidaVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -733,13 +726,15 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(salvarVisitante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(associarVeiculo)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(300, 300, 300)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(carregando)
-                        .addGap(35, 35, 35)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
-                .addGap(53, 53, 53))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
         );
 
         jTabbedPane1.addTab("Registro de Visitantes", jPanel1);
@@ -892,7 +887,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(novoSaida)
@@ -901,7 +896,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(carregando1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
                             .addComponent(definirHorarioEntradaSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
         );
@@ -913,7 +908,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                         .addGap(108, 108, 108))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -930,7 +925,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(carregando1)
                         .addGap(15, 15, 15)))
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addGap(60, 60, 60))
         );
 
@@ -1077,8 +1072,8 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(novoEntrada)
@@ -1087,8 +1082,10 @@ public class Cadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
-                            .addComponent(carregando2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(carregando2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane7)))
@@ -1108,14 +1105,14 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(salvarEntrada))
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(definirHorarioEntradaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(carregando2))
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                 .addGap(31, 31, 31))
         );
 
@@ -1143,7 +1140,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setBounds(0, 0, 1422, 786);
+        setBounds(0, 0, 1485, 892);
     }// </editor-fold>//GEN-END:initComponents
 
     private void definirHorarioEntradaSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_definirHorarioEntradaSaidaActionPerformed
@@ -1277,54 +1274,6 @@ public class Cadastro extends javax.swing.JFrame {
         vf.setLocationRelativeTo(null);
         vf.setVisible(true);
     }//GEN-LAST:event_associarVeiculoActionPerformed
-
-    private void c13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c13ActionPerformed
-
-    private void c16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c16ActionPerformed
-
-    private void c8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c8ActionPerformed
-
-    private void c9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c9ActionPerformed
-
-    private void c7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c7ActionPerformed
-
-    private void c6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c6ActionPerformed
-
-    private void c1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c1ActionPerformed
-
-    private void c10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c10ActionPerformed
-
-    private void c5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c5ActionPerformed
-
-    private void c3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c3ActionPerformed
-
-    private void c2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c2ActionPerformed
-
-    private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c4ActionPerformed
 
     private void novoVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoVisitanteActionPerformed
         novoVisitante();
@@ -1687,6 +1636,7 @@ public class Cadastro extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }//GEN-LAST:event_pesquisaRegistroVisitantesKeyReleased
 
     private void pesquisaRegistroVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaRegistroVisitantesActionPerformed
@@ -2163,6 +2113,62 @@ public class Cadastro extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jrbtnTipoTelefoneCelularItemStateChanged
+
+    private void c13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c13ActionPerformed
+
+    private void c16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c16ActionPerformed
+
+    private void c20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c20ActionPerformed
+
+    private void c15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c15ActionPerformed
+
+    private void c8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c8ActionPerformed
+
+    private void c9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c9ActionPerformed
+
+    private void c7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c7ActionPerformed
+
+    private void c6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c6ActionPerformed
+
+    private void c1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c1ActionPerformed
+
+    private void c10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c10ActionPerformed
+
+    private void c5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c5ActionPerformed
+
+    private void c3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c3ActionPerformed
+
+    private void c2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c2ActionPerformed
+
+    private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2946,7 +2952,7 @@ public class Cadastro extends javax.swing.JFrame {
                             model_list3.addElement(resultado);
                             v3++;
                         }
-                    }
+                    }  
                     if (v3 >= 1) {
                         listaPesquisaEntrada.setVisible(true);
                     } else {
@@ -2959,6 +2965,7 @@ public class Cadastro extends javax.swing.JFrame {
                 }
                 carregando2.setVisible(false);
             }
+            
         }.start();
 
     }
